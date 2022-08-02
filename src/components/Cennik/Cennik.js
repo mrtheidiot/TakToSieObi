@@ -27,6 +27,7 @@ const Cennik = () => {
             <div key={index} className={classes.one_row_80_width}>
               <Link to={item.link}>
                 <div className={classes.name}>{item.name}</div>
+                
               </Link>
               <div className={classes.price}>{item.price}</div>
             </div>

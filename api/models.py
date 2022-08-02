@@ -13,3 +13,7 @@ class Event (models.Model):
     year = models.CharField(max_length=20)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+class Tutorial(models.Model):
+    title = models.CharField(max_length=70, blank=False, default='')
+    description = models.CharField(max_length=200,blank=False, default='')

@@ -1,0 +1,23 @@
+.centered {
+    text-align: center;
+}
+
+.tutorial {
+    border-bottom: solid 1px black;
+    width: 50%;
+    margin: auto;
+}
+
+.overlay {
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    width: 50vh;
+    height: 50vh;
+    background-color: rgba(0,0,0,0.70);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

@@ -23,6 +23,7 @@ import Szarpaki from "./components/Asortyment/Products/Szarpaki";
 import SpodniczkiStandardowe from "./components/Asortyment/Products/SpodniczkiStandardowe";
 import SpodniczkiDlaWysokichPsow from "./components/Asortyment/Products/SpodniczkiDlaWysokichPsow";
 import Cennik from "./components/Cennik/Cennik";
+import Test from "./components/Test/Test";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -75,6 +76,7 @@ function App() {
               <Route path="/asortyment/spodniczki_standardowe" element={<SpodniczkiStandardowe />} />
               <Route path="/asortyment/spodniczki_dla_wysokich_psow" element={<SpodniczkiDlaWysokichPsow />} />
               <Route exact path="/cennik" element={<Cennik />} />
+              <Route exact path="/test" element={<Test />} />
             </Routes>
           </div>
         </Router>

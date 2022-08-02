@@ -19,6 +19,7 @@
 
 .name {
     transition: ease-in 0.1s transform;
+    
 }
 
 .name:hover {

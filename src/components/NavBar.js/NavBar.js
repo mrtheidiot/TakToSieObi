@@ -25,6 +25,7 @@ const NavBar = (props) => {
             <MenuItem name={"CENNIK"} destination={"/cennik"} />
             <MenuItem name={"KALENDARZ"} destination={"/kalendarz"} />
             <MenuItem name={"KONTAKT"} destination={"/kontakt"} />
+            <MenuItem name={"TEST"} destination={"/test"} />
           </div>
           <div
             className="nav-section-menuicon"
