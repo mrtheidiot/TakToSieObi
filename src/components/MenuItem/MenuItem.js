@@ -8,7 +8,7 @@ const MenuItem = (props) => {
         <Link to={props.destination}>{props.name}</Link>
       </div>
       {props.dropdown && (
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           {props.dropdown.map((trening, index) => (
             <div className="dropdown-link" key={index}>
               <Link to={trening.slug} >

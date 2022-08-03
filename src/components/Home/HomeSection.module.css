@@ -1,0 +1,44 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.mainpagesection__main {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  .mainpagesection__links {
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .mainpagesection__link a  {
+    text-decoration: none;
+  }
+  
+  .mainpagesection__text {
+    text-align: center;
+  }
+  .mainpagesection__text a {
+    color: black;
+  }
+  
+  .mainpagesection__text div {
+    margin-top: 1%;
+  }
+  
+  @media (max-width: 992px) {
+  
+    .mainpagesection__main {
+      width: 100%;
+    }
+  }
+
+  .edit-button {
+    
+  }

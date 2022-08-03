@@ -3,30 +3,19 @@ import { Link } from "react-router-dom";
 import "./Button.css";
 
 const Button = (props) => {
-  const linkColor = [
-    { classTitle: "button_link-1", id: 1 },
-    { classTitle: "button_link-2", id: 2 },
-    { classTitle: "button_link-3", id: 3 },
-  ];
 
-  const { classTitle } = Object.values(linkColor).filter(
-    (classTitle) => classTitle.id === props.button.preLink
-  )[0];
+  const classTitle = "button_link-1";
 
-  return props.button.internal === 1 ? (
+  return props.internal === true ? (
     <div className="button__main">
-      <Link to={props.button.link}>
-        <div className={`button__sub ${classTitle}`}>
-          {props.button.category}
-        </div>
+      <Link to={props.redirectTo}>
+        <div className={`button__sub ${classTitle}`}>{props.title}</div>
       </Link>
     </div>
   ) : (
     <div className="button__main">
-      <a href={props.button.link} target="_blank" rel="noreferrer noopener">
-        <div className={`button__sub ${classTitle}`}>
-          {props.button.category}
-        </div>
+      <a href={props.redirectTo} target="_blank" rel="noreferrer noopener">
+        <div className={`button__sub ${classTitle}`}>{props.title}</div>
       </a>
     </div>
   );

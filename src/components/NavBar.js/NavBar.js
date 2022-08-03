@@ -32,7 +32,7 @@ const NavBar = (props) => {
             onClick={props.handleOverlayMenu}
           >
             <div className="menuIcon">
-              <i class="fas fa-bars fa-3x"></i>
+              <i className="fas fa-bars fa-3x"></i>
             </div>
           </div>
         </div>

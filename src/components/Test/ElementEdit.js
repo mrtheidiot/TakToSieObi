@@ -1,42 +1,32 @@
 import React, { useState } from "react";
 import classes from "./Test.module.css";
-
+import { useDispatch } from "react-redux";
+import { sendData } from "../../store/TestStore/test-actions";
+import { testActions } from "../../store/TestStore/test-slice";
 const ElementEdit = (props) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState(props.title);
   const [description, setDescription] = useState(props.description);
 
-  const patchData = async (patchedTutorial) => {
-    const response = await fetch(
-      `http://localhost:8000/api/tutorials/${patchedTutorial.id}/`,
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          title: patchedTutorial.title,
-          description: patchedTutorial.description,
-        }),
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-  };
-
   const changeTtitleHandler = (event) => {
-    setTitle(event.target.value)
-  }
+    setTitle(event.target.value);
+  };
   const changeDescHandler = (event) => {
-    setDescription(event.target.value)
-  }
+    setDescription(event.target.value);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const patchedTutorial = {
-        id: props.id,
-        title: title,
-        description: description
-    }
+      id: props.id,
+      title: title,
+      description: description,
+    };
+    dispatch(testActions.changeTestItem(patchedTutorial));
 
-    patchData(patchedTutorial);
+    const url = "http://localhost:8000/api/tutorials";
+    dispatch(sendData(url, patchedTutorial));
   };
 
   return (

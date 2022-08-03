@@ -4,8 +4,19 @@ import classes from "./Test.module.css";
 
 const TestItem = (props) => {
   const [showEdit, setShowEdit] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const isLogged = window.localStorage.getItem("isLoggedIn");
+
   const showEditHandler = () => {
     setShowEdit((prevState) => !prevState);
+  };
+
+  const handleMouseOver = () => {
+    setIsHovering(true)
+  };
+  const handleMouseOut = () => {
+    setIsHovering(false)
   };
 
   return (
@@ -18,11 +29,19 @@ const TestItem = (props) => {
           onClose={showEditHandler}
         />
       )}
-      <div className={classes.tutorial}>
+      <div
+        className={classes.tutorial}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+      >
         <h2>{props.title}</h2>
         <p>{props.description}</p>
         <p>{props.id}</p>
-        <button onClick={showEditHandler}>Change</button>
+        {isHovering && (
+          <button onClick={showEditHandler} className={classes.hoverr}>
+            Hover Me
+          </button>
+        )}
       </div>
     </>
   );

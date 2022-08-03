@@ -1,37 +1,29 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Test.module.css";
 import TestItem from "./TestItem";
-import NewTutorial from "./NewTutorial";
-import PatchTutorial from "./PatchTutorial";
+import { useSelector } from "react-redux";
 const Test = () => {
-  const [tutorials, setTutorials] = useState([]);
-  const getTutorials = async () => {
-    console.log("Fetching started");
-    const response = await fetch("http://localhost:8000/api/tutorials");
-    const data = await response.json();
-    console.log(data);
-    setTutorials(data);
-  };
-
-  useEffect(() => {
-    getTutorials();
-  }, []);
+  const tutorials = useSelector((state) => state.test.testItems);
+  console.log(tutorials)
 
   return (
-    <div className={classes.centered}>
-      <h1>Komponent sie renderuje</h1>
-      {tutorials.map((tutorial, index) => (
-        <TestItem
-          key={index}
-          title={tutorial.title}
-          description={tutorial.description}
-          id={tutorial.id}
-        />
-      ))}
-      <NewTutorial />
-      <br />
-      <PatchTutorial />
-    </div>
+    <>
+      <div className={classes.centered}>
+        <h1>Komponent sie renderuje</h1>
+        {tutorials.map((tutorial, index) => (
+          <TestItem
+            key={index}
+            title={tutorial.title}
+            description={tutorial.description}
+            id={tutorial.id}
+          />
+        ))}
+      </div>
+      <div className={classes.box}>
+        Ten box posiada w sobie tekst.
+        <div className={classes.innerBox}></div>
+      </div>
+    </>
   );
 };
 

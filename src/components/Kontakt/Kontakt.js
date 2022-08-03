@@ -33,7 +33,7 @@ const Kontakt = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <i class="fab fa-2x fa-facebook-messenger fejs"></i>{" "}
+              <i className="fab fa-2x fa-facebook-messenger fejs"></i>{" "}
             </a>
             Messenger Me!
           </div>
@@ -48,7 +48,7 @@ const Kontakt = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-            <i class="fab fa-2x fa-facebook fejs"></i> </a>ObiTraining
+            <i className="fab fa-2x fa-facebook fejs"></i> </a>ObiTraining
             
           </div>
           <div className={classes.socialmedia}>
@@ -58,7 +58,7 @@ const Kontakt = () => {
               rel="noreferrer noopener"
             >
           
-          <i class="fab fa-2x fa-instagram insta"></i></a> taktosieobi
+          <i className="fab fa-2x fa-instagram insta"></i></a> taktosieobi
           
           </div>
         </div>
@@ -70,7 +70,7 @@ const Kontakt = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-            <i class="fab fa-2x fa-facebook fejs"></i></a> AnimalevraHusse
+            <i className="fab fa-2x fa-facebook fejs"></i></a> AnimalevraHusse
            
           </div>
           <div className={classes.socialmedia}>
