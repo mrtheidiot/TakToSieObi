@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import HomeSection from "./HomeSection";
 import { useSelector } from "react-redux";
 
@@ -6,9 +5,9 @@ import classes from "./Home.module.css";
 
 export const MainPage = () => {
   const allHomeContent = useSelector((state) => state.home.homePageContent);
-
   const contentList = allHomeContent.map((section) => (
     <HomeSection
+      id={section.id}
       key={section.id}
       title={section.title}
       content={section.content}

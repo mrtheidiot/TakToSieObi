@@ -99,11 +99,11 @@ def home_page_detail(request, pk):
  
     elif request.method == 'PUT': 
         page_data = JSONParser().parse(request) 
-        pages_serializer = HomePageSerializer(HomePage, data=page_data) 
+        pages_serializer = HomePageSerializer(page, data=page_data) 
         if pages_serializer.is_valid(): 
             pages_serializer.save() 
             return JsonResponse(pages_serializer.data) 
-        return JsonResponse(pages_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        return JsonResponse(pages_serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
  
     elif request.method == 'DELETE': 
         page.delete() 

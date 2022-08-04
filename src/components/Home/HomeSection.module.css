@@ -5,10 +5,11 @@
 
 .mainpagesection__main {
     width: 60%;
-    margin: auto;
+    margin: 5% auto;
     display: flex;
     text-align: center;
     flex-direction: column;
+    position: relative;
   }
   
   .mainpagesection__links {
@@ -37,8 +38,4 @@
     .mainpagesection__main {
       width: 100%;
     }
-  }
-
-  .edit-button {
-    
   }

@@ -21,21 +21,21 @@ import SpodniczkiDlaWysokichPsow from "./components/Asortyment/Products/Spodnicz
 import Cennik from "./components/Cennik/Cennik";
 import Login from "./components/Login/Login";
 import Test from "./components/Test/Test";
-import { useDispatch, useSelector } from "react-redux";
 
+import { useDispatch } from "react-redux";
 import { fetchContent } from "./store/fetch-actions";
-
-let isInitial = true;
-
 function App() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const handleOverlayMenu = () => setMenuOpen((prev) => !prev);
 
   useEffect(() => {
+    setIsLoading(true);
+    dispatch(fetchContent("test"));
     dispatch(fetchContent("buttons"));
     dispatch(fetchContent("home"));
-    dispatch(fetchContent("test"));
+    setIsLoading(false);
   }, [dispatch]);
 
   const trainingTitles = [
@@ -63,6 +63,7 @@ function App() {
 
   return (
     <>
+      {isLoading && <h1>LOADING...!</h1>}
       <div className="app-div">
         {menuOpen && <OverlayMenu callback={handleOverlayMenu} />}
         <NavBar

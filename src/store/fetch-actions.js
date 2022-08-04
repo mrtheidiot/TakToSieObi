@@ -27,32 +27,31 @@ export const fetchContent = (identifier) => {
             items: storeData,
           })
         );
+        break;
       case "buttons":
         dispatch(
           uiActions.replaceButtons({
             buttons: storeData,
           })
         );
+        break;
       case "home":
         dispatch(
           homePageActions.replaceHomePage({
             content: storeData,
-            url: url,
           })
         );
+        break;
     }
   };
 };
 
-const sendData = (url, patched) => {
+export const sendContent = (url, newContent) => {
   return async () => {
     const sendRequest = () => {
-      fetch(`${url}/${patched.id}/`, {
+      fetch(`${url}/${newContent.id}/`, {
         method: "PUT",
-        body: JSON.stringify({
-          title: patched.title,
-          description: patched.description,
-        }),
+        body: JSON.stringify(newContent),
       });
     };
     sendRequest();

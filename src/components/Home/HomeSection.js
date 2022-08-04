@@ -1,15 +1,11 @@
 import Button from "../Button/Button";
-import Edit from "../Edit/Edit";
-import { useState } from "react";
+import EditSection from "../Edit/EditSection";
 import { useSelector } from "react-redux";
 import classes from "./HomeSection.module.css";
 
 const HomeSection = (props) => {
   const allButtons = useSelector((state) => state.ui.buttons);
-  const url = useSelector((state) => state.home.url);
-  const [showEdit, setShowEdit] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-
+  const editMode = window.localStorage.getItem("isLoggedIn");
   const buttonsToCurrentSection = allButtons.filter(
     (button) =>
       button.id === props.btn1ID ||
@@ -17,25 +13,8 @@ const HomeSection = (props) => {
       button.id === props.btn3ID
   );
 
-  const showEditHandler = () => {
-    setShowEdit((prevState) => !prevState);
-  };
-
-  const mouseOverHandler = () => {
-    setIsHovering(true);
-  };
-
-  const mouseOutHandler = () => {
-    setIsHovering(false);
-  };
-
   return (
-    <div
-      className={classes.mainpagesection__main}
-      onClick={showEditHandler}
-      onMouseOver={mouseOverHandler}
-      onMouseOut={mouseOutHandler}
-    >
+    <div className={classes.mainpagesection__main}>
       <div className={classes.mainpagesection__text}>
         <div>{props.content}</div>
       </div>
@@ -51,8 +30,7 @@ const HomeSection = (props) => {
           />
         ))}
       </section>
-      {showEdit && <Edit url={url} onClose={showEditHandler}/>}
-      {isHovering && <div className={classes["edit-button"]}>Edit</div>}
+      {editMode && <EditSection type="home" id={props.id} />}
     </div>
   );
 };
