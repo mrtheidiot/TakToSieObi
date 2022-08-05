@@ -4,10 +4,10 @@ import Edit_HomeSection from "./EditElements/Edit_HomeSection";
 
 const EditOverlay = (props) => {
   let elementToEdit = null;
-  switch (props.type) {
-    case "home":
+  switch (props.path) {
+    case "/":
       elementToEdit = (
-        <Edit_HomeSection id={props.id} onChlose={props.onClose} />
+        <Edit_HomeSection id={props.id} onClose={props.onClose} />
       );
       break;
   }

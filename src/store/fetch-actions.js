@@ -46,6 +46,22 @@ export const fetchContent = (identifier) => {
   };
 };
 
+export const fetchInitialStoreData = () => {
+  return async (dispatch) => {
+    const fetchButtons = async () => {
+      const response = await fetch("http://localhost:8000/api/buttons");
+      const data = await response.json();
+      return data;
+    };
+    const buttons = await fetchButtons();
+    dispatch(
+      uiActions.replaceButtons({
+        buttons: buttons,
+      })
+    );
+  };
+};
+
 export const sendContent = (url, newContent) => {
   return async () => {
     const sendRequest = () => {

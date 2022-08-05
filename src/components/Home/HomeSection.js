@@ -1,12 +1,15 @@
 import Button from "../Button/Button";
 import EditSection from "../Edit/EditSection";
-import { useSelector } from "react-redux";
 import classes from "./HomeSection.module.css";
-
+import { useSelector } from "react-redux";
+import { useRouteMatch } from "react-router-dom";
 const HomeSection = (props) => {
-  const allButtons = useSelector((state) => state.ui.buttons);
+  const buttons = useSelector((state) => state.ui.buttons);
   const editMode = window.localStorage.getItem("isLoggedIn");
-  const buttonsToCurrentSection = allButtons.filter(
+  const match = useRouteMatch();
+  console.log(match);
+
+  const buttonsToCurrentSection = buttons.filter(
     (button) =>
       button.id === props.btn1ID ||
       button.id === props.btn2ID ||
@@ -30,7 +33,8 @@ const HomeSection = (props) => {
           />
         ))}
       </section>
-      {editMode && <EditSection type="home" id={props.id} />}
+
+      {editMode && <EditSection path={match.path} id={props.id} />}
     </div>
   );
 };

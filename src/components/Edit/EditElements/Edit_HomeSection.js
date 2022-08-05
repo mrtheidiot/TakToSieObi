@@ -1,79 +1,101 @@
-import React, { useState } from "react";
-import { sendContent } from "./../../../store/fetch-actions";
-import { homePageActions } from "../../../store/homePage-slice";
-import { useSelector, useDispatch } from "react-redux";
-
-const url = "http://127.0.0.1:8000/api/homepage";
-
+import React, { useRef, useEffect } from "react";
+import useHTTP from "../../../hooks/useHTTP";
+import { getHomePageSection } from "./../../../store/API/api-functions";
+import LoadingSpinner from "../../../UI/LoadingSpinner";
 const Edit_HomeSection = (props) => {
-  const dispatch = useDispatch();
-  const elements = useSelector((state) => state.home.homePageContent);
-  const element = elements.find((element) => element.id === props.id);
+  const contentInputRef = useRef();
+  const {
+    sendRequest,
+    status,
+    error,
+    data: loadedSection,
+  } = useHTTP(getHomePageSection, true);
+  console.log(status);
+  console.log(error);
+  console.log(loadedSection);
 
-  const [content, setContent] = useState(element.content);
-  const [button1, setButton1] = useState(element.button_1);
-  const [button2, setButton2] = useState(element.button_2);
-  const [button3, setButton3] = useState(element.button_3);
+  useEffect(() => {
+    sendRequest(props.id);
+  }, [sendRequest]);
 
-  const contentHandler = (event) => {
-    setContent(event.target.value);
-  };
-  const b1Handler = (event) => {
-    setButton1(event.target.value);
-  };
-  const b2Handler = (event) => {
-    setButton2(event.target.value);
-  };
-  const b3Handler = (event) => {
-    setButton3(event.target.value);
-  };
+  // const contentHandler = (event) => {
+  //   setContent1(event.target.value);
+  // };
+  // const b1Handler = (event) => {
+  //   setButton1(event.target.value);
+  // };
+  // const b2Handler = (event) => {
+  //   setButton2(event.target.value);
+  // };
+  // const b3Handler = (event) => {
+  //   setButton3(event.target.value);
+  // };
+
+  let content;
+
+  if (status === "loading") {
+    content = (
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  // if (error) {
+  //   content = <p>{error}</p>;
+  // }
+
+  if (status === "completed") {
+    content = (
+      <>
+        <div>
+          <label>Content</label>
+          <textarea
+            ref={contentInputRef}
+            type="text"
+            rows="10"
+            cols="50"
+            defaultValue={loadedSection.content}
+          />
+        </div>
+        <div>
+          <label>Button 1</label>
+          <input type="text" />
+        </div>
+        <div>
+          <label>Button 2 () </label>
+          <input type="text" />
+        </div>
+        <div>
+          <label>Button 3 ()</label>
+          <input type="text" />
+        </div>
+      </>
+    );
+  }
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const enteredContent = contentInputRef.current.value;
+    console.log(enteredContent);
+    // const enteredContent = content;
+    // const eButton1 = button1;
+    // const eButton2 = button2;
+    // const eButton3 = button3;
 
-    const enteredContent = content;
-    const eButton1 = button1;
-    const eButton2 = button2;
-    const eButton3 = button3;
-
-    const changedData = {
-      id: props.id,
-      title: element.title,
-      content: enteredContent,
-      button_1: eButton1,
-      button_2: eButton2,
-      button_3: eButton3,
-    };
-
-    console.log(url, changedData);
-    dispatch(homePageActions.changeHomeElement(changedData));
-    dispatch(sendContent(url, changedData));
+    // const changedData = {
+    //   id: props.id,
+    //   title: element.title,
+    //   content: enteredContent,
+    //   button_1: eButton1,
+    //   button_2: eButton2,
+    //   button_3: eButton3,
+    // };
   };
 
   return (
     <form onSubmit={submitHandler}>
-      <div>
-        <label>Content</label>
-        <textarea
-          onChange={contentHandler}
-          type="text"
-          rows="10"
-          cols="50"
-          value={content}
-        />
-      </div>
-      <div>
-        <label>Button 1</label>
-        <input onChange={b1Handler} type="text" value={button1} />
-      </div>
-      <div>
-        <label>Button 2 () </label>
-        <input onChange={b2Handler} type="text" />
-      </div>
-      <div>
-        <label>Button 3 ()</label>
-        <input onChange={b3Handler} type="text" />
-      </div>
+      {content}
       <button type="submit">Make changes</button>
     </form>
   );

@@ -1,30 +1,50 @@
 import HomeSection from "./HomeSection";
-import { useSelector } from "react-redux";
-
+import useHTTP from "../../hooks/useHTTP";
+import { getHomePageData } from "../../store/API/api-functions";
 import classes from "./Home.module.css";
+import { useEffect } from "react";
+import Banner from './../Banner/Banner'
 
 export const MainPage = () => {
-  const allHomeContent = useSelector((state) => state.home.homePageContent);
-  const contentList = allHomeContent.map((section) => (
-    <HomeSection
-      id={section.id}
-      key={section.id}
-      title={section.title}
-      content={section.content}
-      btn1ID={section.button_1}
-      btn2ID={section.button_2}
-    />
-  ));
+  const { sendRequest, status, error, data } = useHTTP(getHomePageData, true);
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
+  let content;
+
+  if (status === "loading") {
+    content = <p>Loading...</p>;
+  }
+
+  if (error) {
+    content = <p>{error}</p>;
+  }
+
+  if (status === "completed" && data.length > 0) {
+    content = data.map((section) => (
+      <HomeSection
+        id={section.id}
+        key={section.id}
+        title={section.title}
+        content={section.content}
+        btn1ID={section.button_1}
+        btn2ID={section.button_2}
+      />
+    ));
+  }
 
   return (
     <>
+      <Banner id={3} message="Witaj w TakToSięObi!" />
       <div className={classes.mainpage__main}>
         <div className={classes.mainpage__heading}>
           Witaj w Tak to się Obi!
           <br></br>
           Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:
         </div>
-        {contentList}
+        {content}
       </div>
     </>
   );

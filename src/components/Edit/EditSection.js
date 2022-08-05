@@ -40,7 +40,7 @@ const EditSection = (props) => {
       </div>
       {showEditOverlay && (
         <EditOverlay
-          type={props.type}
+          path={props.path}
           id={props.id}
           onClose={toggleEditOverlay}
         />
