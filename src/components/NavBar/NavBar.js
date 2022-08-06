@@ -5,16 +5,16 @@ import Logo from "./../../assets/Logo1.svg";
 import classes from "./NavBar.module.css";
 
 const navData = [
-  { title: "O MNIE", url: "/omnie" },
+  { title: "TRENING OBEDIENCE", url: "/treningi" },
   { title: "ASORTYMENT", url: "/asortyment" },
-  { title: "CENNIK", url: "/cennik" },
+  { title: "WYDARZENIA", url: "/wydarzenia" },
+  { title: "JA I MOJE PSY", url: "/omnie" },
   { title: "KONTAKT", url: "/kontakt" },
-  { title: "TEST", url: "/test" },
 ];
 
 const NavBar = () => {
-  const navItemsList = navData.map((item) => (
-    <NavLink className={classes.navlink} to={`${item.address}`}>
+  const navItemsList = navData.map((item, index) => (
+    <NavLink key={index} className={classes.navlink} to={`${item.url}`}>
       {item.title}
     </NavLink>
   ));
@@ -26,9 +26,7 @@ const NavBar = () => {
           <img src={Logo} alt="logo TakToSieObi" />
         </Link>
       </section>
-      <section className={classes.navlinks}>
-        {navItemsList}
-      </section>
+      <section className={classes.navlinks}>{navItemsList}</section>
     </div>
   );
 };

@@ -9,39 +9,71 @@ const urls = [
   { type: "asortyment", url: "http://localhost:8000/api/tutorials" },
 ];
 
-export const fetchContent = (identifier) => {
-  const url = urls.find((item) => item.type === identifier).url; //nie podoba mi sie to ale nie wiem
+export const fetchContent = (url, identifier) => {
+  // const url = urls.find((item) => item.type === identifier).url; //nie podoba mi sie to ale nie wiem
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(`${url}`);
+
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
       const data = await response.json();
       return data;
     };
-
-    const storeData = await fetchData();
-
-    switch (identifier) {
-      case "test":
-        dispatch(
-          testActions.replaceStore({
-            items: storeData,
-          })
-        );
-        break;
-      case "buttons":
-        dispatch(
-          uiActions.replaceButtons({
-            buttons: storeData,
-          })
-        );
-        break;
-      case "home":
-        dispatch(
-          homePageActions.replaceHomePage({
-            content: storeData,
-          })
-        );
-        break;
+    try {
+      dispatch(
+        uiActions.requestStateChange({
+          status: "loading",
+          error: null,
+        })
+      );
+      const storeData = await fetchData();
+      dispatch(
+        uiActions.requestStateChange({
+          status: "completed",
+          error: null,
+        })
+      );
+      switch (identifier) {
+        case "test":
+          dispatch(
+            testActions.replaceStore({
+              items: storeData,
+            })
+          );
+          break;
+        case "buttons":
+          dispatch(
+            uiActions.replaceButtons({
+              buttons: storeData,
+            })
+          );
+          break;
+        case "home":
+          let transformedObjects = [];
+          for (const key in storeData) {
+            const obj = {
+              id: key,
+              ...storeData[key],
+            };
+            transformedObjects.push(obj)
+          }
+          dispatch(
+            homePageActions.replaceHomePage({
+              content: transformedObjects,
+            })
+          );
+          break;
+      }
+    } catch (error) {
+      dispatch(
+        uiActions.requestStateChange({
+          status: "completed",
+          error: error.message,
+        })
+      );
     }
   };
 };
@@ -62,12 +94,44 @@ export const fetchInitialStoreData = () => {
   };
 };
 
-export const sendContent = (url, newContent) => {
+export const sendContent = (newContent) => {
+  const url =
+    "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json";
   return async () => {
     const sendRequest = () => {
-      fetch(`${url}/${newContent.id}/`, {
-        method: "PUT",
-        body: JSON.stringify(newContent),
+      fetch(`${url}/`, {
+        method: "POST",
+        body: JSON.stringify({
+          title: newContent.title,
+          content: newContent.content,
+          buttons: {
+            button_1: {
+              title: "Facebook",
+              address: "https:www.facebook.pl",
+              theme: "1",
+              internal: false,
+            },
+          }
+        }),
+      });
+    };
+    sendRequest();
+  };
+};
+
+export const deleteContent = (id) => {
+  const url =
+    "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage/";
+  return async () => {
+    const sendRequest = () => {
+      fetch(`${url}/${id}/button_1.json`, {
+        method: "POST",
+        body: JSON.stringify({
+          title: "Facebook",
+          address: "https:www.facebook.pl",
+          theme: "1",
+          internal: false,
+        }),
       });
     };
     sendRequest();

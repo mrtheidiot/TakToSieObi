@@ -4,6 +4,7 @@ import "./Button.css";
 
 const Button = (props) => {
 
+  console.log(props)
   const classTitle = "button_link-1";
 
   return props.internal === true ? (

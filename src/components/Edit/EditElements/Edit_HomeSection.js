@@ -10,26 +10,10 @@ const Edit_HomeSection = (props) => {
     error,
     data: loadedSection,
   } = useHTTP(getHomePageSection, true);
-  console.log(status);
-  console.log(error);
-  console.log(loadedSection);
 
   useEffect(() => {
     sendRequest(props.id);
   }, [sendRequest]);
-
-  // const contentHandler = (event) => {
-  //   setContent1(event.target.value);
-  // };
-  // const b1Handler = (event) => {
-  //   setButton1(event.target.value);
-  // };
-  // const b2Handler = (event) => {
-  //   setButton2(event.target.value);
-  // };
-  // const b3Handler = (event) => {
-  //   setButton3(event.target.value);
-  // };
 
   let content;
 

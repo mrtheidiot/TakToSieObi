@@ -1,12 +1,13 @@
 import classes from './App.module.css'
 import { Route } from "react-router-dom";
-import Home from "./components/Home/Home";
+import Home from "./pages/Home/Home";
 import Login from "./components/Login/Login";
 import Test from "./components/Test/Test";
 import NavBar from "./components/NavBar/NavBar";
 import { useDispatch } from "react-redux";
 import { fetchInitialStoreData } from "./store/fetch-actions";
 import { useEffect } from "react";
+import TrainingCourses from './pages/TrainingCourses/TrainingCourses';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
         <div className="apps-wrapper">
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/treningi" exact>
+            <TrainingCourses />
           </Route>
           <Route exact path="/login">
             <Login />

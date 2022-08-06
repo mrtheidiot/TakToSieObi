@@ -3,37 +3,51 @@ import useHTTP from "../../hooks/useHTTP";
 import { getHomePageData } from "../../store/API/api-functions";
 import classes from "./Home.module.css";
 import { useEffect } from "react";
-import Banner from './../Banner/Banner'
+import Banner from "../../components/Banner/Banner";
+import Add_HomeSection from "../../components/Edit/EditElements/Add_HomeSection";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteContent } from "../../store/fetch-actions";
+import { fetchContent } from "../../store/fetch-actions";
+
+const url =
+  "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json";
 
 export const MainPage = () => {
-  const { sendRequest, status, error, data } = useHTTP(getHomePageData, true);
+  const requestState = useSelector((state) => state.ui.requestState);
+  // const { sendRequest, status, error, data } = useHTTP(getHomePageData, true);
+  const content1 = useSelector(state => state.home.homePageContent)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    sendRequest();
-  }, []);
+    dispatch(fetchContent(url, "home"));
+  }, [dispatch]);
+  let content = [];
 
-  let content;
+  // if (status === "loading") {
+  //   content = <p>Loading...</p>;
+  // }
 
-  if (status === "loading") {
-    content = <p>Loading...</p>;
-  }
+  // if (error) {
+  //   content = <p>{error}</p>;
+  // }
 
-  if (error) {
-    content = <p>{error}</p>;
-  }
-
-  if (status === "completed" && data.length > 0) {
-    content = data.map((section) => (
+  if (requestState.status === "completed" && content1.length > 0) {
+    content = content1.map((section) => (
       <HomeSection
         id={section.id}
         key={section.id}
         title={section.title}
         content={section.content}
         btn1ID={section.button_1}
-        btn2ID={section.button_2}
+        // btn2ID={section.button_2}
       />
+      // <div>Home</div>
     ));
   }
+
+  const onDelete = () => {
+    dispatch(deleteContent("-N8nb908N92-9aUvmzqf"));
+  };
 
   return (
     <>
@@ -46,6 +60,8 @@ export const MainPage = () => {
         </div>
         {content}
       </div>
+      <Add_HomeSection />
+      <button onClick={onDelete}>Delete Button</button>
     </>
   );
 };

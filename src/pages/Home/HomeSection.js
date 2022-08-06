@@ -1,20 +1,24 @@
-import Button from "../Button/Button";
-import EditSection from "../Edit/EditSection";
+import Button from "../../components/Button/Button";
+import EditSection from "../../components/Edit/EditSection";
 import classes from "./HomeSection.module.css";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 const HomeSection = (props) => {
-  const buttons = useSelector((state) => state.ui.buttons);
+  const homePageContent = useSelector((state) => state.home.homePageContent)
+  const data = homePageContent.find(item => item.id === props.id).buttons
+  const buttonsToCurrentSection = []
+  for (const key in data)  {
+    const obj = {
+      id: [key],
+      title: data[key].title,
+      address: data[key].address,
+    }
+    buttonsToCurrentSection.push(obj)
+  }
+  console.log(buttonsToCurrentSection)
   const editMode = window.localStorage.getItem("isLoggedIn");
   const match = useRouteMatch();
-  console.log(match);
 
-  const buttonsToCurrentSection = buttons.filter(
-    (button) =>
-      button.id === props.btn1ID ||
-      button.id === props.btn2ID ||
-      button.id === props.btn3ID
-  );
 
   return (
     <div className={classes.mainpagesection__main}>
@@ -29,7 +33,7 @@ const HomeSection = (props) => {
             title={button.title}
             internal={button.internal}
             theme={button.theme}
-            redirectTo={button.redirectTo}
+            redirectTo={button.address}
           />
         ))}
       </section>
