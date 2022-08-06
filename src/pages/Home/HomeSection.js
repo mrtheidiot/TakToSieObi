@@ -3,22 +3,23 @@ import EditSection from "../../components/Edit/EditSection";
 import classes from "./HomeSection.module.css";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
+import Edit from "./SectionActions/Edit";
+
 const HomeSection = (props) => {
-  const homePageContent = useSelector((state) => state.home.homePageContent)
-  const data = homePageContent.find(item => item.id === props.id).buttons
-  const buttonsToCurrentSection = []
-  for (const key in data)  {
+  const homePageContent = useSelector((state) => state.home.homePageContent);
+  const data = homePageContent.find((item) => item.id === props.id).buttons;
+  const buttonsToCurrentSection = [];
+  for (const key in data) {
     const obj = {
       id: [key],
       title: data[key].title,
       address: data[key].address,
-    }
-    buttonsToCurrentSection.push(obj)
+    };
+    buttonsToCurrentSection.push(obj);
   }
-  console.log(buttonsToCurrentSection)
+  console.log(buttonsToCurrentSection);
   const editMode = window.localStorage.getItem("isLoggedIn");
   const match = useRouteMatch();
-
 
   return (
     <div className={classes.mainpagesection__main}>
@@ -38,7 +39,11 @@ const HomeSection = (props) => {
         ))}
       </section>
 
-      {editMode && <EditSection path={match.path} id={props.id} />}
+      {editMode && (
+        <EditSection path={match.path} id={props.id}>
+          <Edit />
+        </EditSection>
+      )}
     </div>
   );
 };

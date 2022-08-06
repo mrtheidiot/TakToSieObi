@@ -34,16 +34,12 @@ const EditSection = (props) => {
             className={classes["edit-button"]}
             onClick={toggleEditOverlay}
           >
-            Edit this section
+            Edit
           </button>
         )}
       </div>
       {showEditOverlay && (
-        <EditOverlay
-          path={props.path}
-          id={props.id}
-          onClose={toggleEditOverlay}
-        />
+        <EditOverlay onClose={toggleEditOverlay}>{props.children}</EditOverlay>
       )}
     </>
   );

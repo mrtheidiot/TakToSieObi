@@ -2,20 +2,22 @@ import HomeSection from "./HomeSection";
 import useHTTP from "../../hooks/useHTTP";
 import { getHomePageData } from "../../store/API/api-functions";
 import classes from "./Home.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Banner from "../../components/Banner/Banner";
-import Add_HomeSection from "../../components/Edit/EditElements/Add_HomeSection";
+// import Add_HomeSection from "./SectionActions/Add";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteContent } from "../../store/fetch-actions";
 import { fetchContent } from "../../store/fetch-actions";
+import Add_HomeSection from "./SectionActions/Add"; 
 
 const url =
   "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json";
 
 export const MainPage = () => {
+  const [showAddOverlay, setShowAddOverlay] = useState(false);
   const requestState = useSelector((state) => state.ui.requestState);
   // const { sendRequest, status, error, data } = useHTTP(getHomePageData, true);
-  const content1 = useSelector(state => state.home.homePageContent)
+  const content1 = useSelector((state) => state.home.homePageContent);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,6 +47,10 @@ export const MainPage = () => {
     ));
   }
 
+  const showAddHandler = () => {
+    setShowAddOverlay(prevState => !prevState);
+  };
+
   const onDelete = () => {
     dispatch(deleteContent("-N8nb908N92-9aUvmzqf"));
   };
@@ -60,8 +66,10 @@ export const MainPage = () => {
         </div>
         {content}
       </div>
-      <Add_HomeSection />
+      {/* <Add_HomeSection /> */}
       <button onClick={onDelete}>Delete Button</button>
+      <button onClick={showAddHandler}>Add new section</button>
+      {showAddOverlay && <Add_HomeSection onClose={showAddHandler} />}
     </>
   );
 };
