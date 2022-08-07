@@ -58,7 +58,7 @@ export const fetchContent = (url, identifier) => {
               id: key,
               ...storeData[key],
             };
-            transformedObjects.push(obj)
+            transformedObjects.push(obj);
           }
           dispatch(
             homePageActions.replaceHomePage({
@@ -101,18 +101,11 @@ export const sendContent = (newContent) => {
     const sendRequest = () => {
       fetch(`${url}/`, {
         method: "POST",
-        body: JSON.stringify({
+        body: JSON.stringify({ 
           title: newContent.title,
           content: newContent.content,
-          buttons: {
-            button_1: {
-              title: "Facebook",
-              address: "https:www.facebook.pl",
-              theme: "1",
-              internal: false,
-            },
-          }
-        }),
+          buttons: newContent.buttons
+         }),
       });
     };
     sendRequest();

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const Edit_HomeSection = (props) => {
   const content = useSelector(state => state.home.homePageContent)
-  console.log(content)
+  // console.log(content)
   const contentInputRef = useRef();
 
   // useEffect(() => {

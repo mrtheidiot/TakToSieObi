@@ -10,13 +10,13 @@ const HomeSection = (props) => {
   const data = homePageContent.find((item) => item.id === props.id).buttons;
   const buttonsToCurrentSection = [];
   for (const key in data) {
-    const obj = {
-      id: [key],
-      title: data[key].title,
-      address: data[key].address,
+    const button = {
+      id: key,
+      ...data[key],
     };
-    buttonsToCurrentSection.push(obj);
+    buttonsToCurrentSection.push(button);
   }
+
   console.log(buttonsToCurrentSection);
   const editMode = window.localStorage.getItem("isLoggedIn");
   const match = useRouteMatch();
@@ -30,10 +30,10 @@ const HomeSection = (props) => {
       <section className={classes.buttons}>
         {buttonsToCurrentSection.map((button) => (
           <Button
-            key={button.id}
+            // key={button.id}
             title={button.title}
-            internal={button.internal}
-            theme={button.theme}
+            internal={true}
+            // theme={button.theme}
             redirectTo={button.address}
           />
         ))}
