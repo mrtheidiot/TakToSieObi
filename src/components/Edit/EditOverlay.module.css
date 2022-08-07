@@ -10,23 +10,35 @@
 
 .modal {
     position: fixed;
-    height: 60vh;
-    width: 60vw;
+    padding: 1%;
+    height: 80vh;
+    width: 80vw;
     z-index: 1000;
-    top: 20vh;
-    left: 20vw;
+    top: 50%;
+    left: 50%;
     background-color: white;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transform: translateX(-50%) translateY(-50%);
 }
 .children {
     height: 90%;
     width: 100%;
 }
-.button {
-    width: 30%;
-    height: 7%;
-    margin: auto;
+
+.buttons button {
+    margin: 0 auto;
+    width: 45%;
+    height: 30px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal_main {
+    position: relative;
 }

@@ -6,7 +6,7 @@ const uiSlice = createSlice({
     banners: [],
     notification: null,
     requestState: {
-      status: null,
+      status: "loading",
       error: null,
     },
   },
@@ -15,6 +15,12 @@ const uiSlice = createSlice({
       state.requestState = {
         status: action.payload.status,
         error: action.payload.error,
+      };
+    },
+    resetStatusError(state) {
+      state.requestState = {
+        status: null,
+        error: null,
       };
     },
 

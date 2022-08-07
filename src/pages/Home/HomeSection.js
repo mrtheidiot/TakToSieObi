@@ -2,8 +2,7 @@ import Button from "../../components/Button/Button";
 import EditSection from "../../components/Edit/EditSection";
 import classes from "./HomeSection.module.css";
 import { useSelector } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
-import Edit from "./SectionActions/Edit";
+import Edit from "./HomeActions/Edit";
 
 const HomeSection = (props) => {
   const homePageContent = useSelector((state) => state.home.homePageContent);
@@ -16,31 +15,29 @@ const HomeSection = (props) => {
     };
     buttonsToCurrentSection.push(button);
   }
-
-  console.log(buttonsToCurrentSection);
   const editMode = window.localStorage.getItem("isLoggedIn");
-  const match = useRouteMatch();
 
   return (
     <div className={classes.mainpagesection__main}>
       <div className={classes.mainpagesection__text}>
-        <div>{props.content}</div>
+        <div>{props.contentPart1}</div>
+        <div>{props.contentPart2}</div>
       </div>
       <div className={classes.mainpagesection__links}></div>
       <section className={classes.buttons}>
         {buttonsToCurrentSection.map((button) => (
           <Button
-            // key={button.id}
-            title={button.title}
-            internal={true}
-            // theme={button.theme}
-            redirectTo={button.address}
+            key={button.id}
+            text={button.text}
+            isInternal={button.isInternal}
+            address={button.address}
+            backgroundColor={button.backgroundColor}
+            textColor={button.textColor}
           />
         ))}
       </section>
-
       {editMode && (
-        <EditSection path={match.path} id={props.id}>
+        <EditSection id={props.id}>
           <Edit />
         </EditSection>
       )}

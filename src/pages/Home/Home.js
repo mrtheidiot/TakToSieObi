@@ -1,82 +1,49 @@
 import HomeSection from "./HomeSection";
-import useHTTP from "../../hooks/useHTTP";
-import { getHomePageData } from "../../store/API/api-functions";
-import classes from "./Home.module.css";
-import { useEffect, useState } from "react";
+import Add from "./HomeActions/Add";
 import Banner from "../../components/Banner/Banner";
-// import Add_HomeSection from "./SectionActions/Add";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteContent } from "../../store/fetch-actions";
-import { fetchContent } from "../../store/fetch-actions";
-import Add_HomeSection from "./SectionActions/Add"; 
 
-const url =
-  "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import classes from "./Home.module.css";
 
 export const MainPage = () => {
   const [showAddOverlay, setShowAddOverlay] = useState(false);
-  const requestState = useSelector((state) => state.ui.requestState);
-  // const { sendRequest, status, error, data } = useHTTP(getHomePageData, true);
-  const content1 = useSelector((state) => state.home.homePageContent);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContent(url, "home"));
-  }, [dispatch]);
-  let content = [];
-
-  // if (status === "loading") {
-  //   content = <p>Loading...</p>;
-  // }
-
-  // if (error) {
-  //   content = <p>{error}</p>;
-  // }
-
-  if (requestState.status === "completed" && content1.length > 0) {
-    content = content1.map((section) => (
-      <HomeSection
-        id={section.id}
-        key={section.id}
-        title={section.title}
-        content={section.content}
-        btn1ID={section.button_1}
-        // btn2ID={section.button_2}
-      />
-      // <div>Home</div>
-    ));
-  }
+  const homePageContent = useSelector((state) => state.home.homePageContent);
+  // console.log(homePageContent)
 
   const showAddHandler = () => {
-    setShowAddOverlay(prevState => !prevState);
-  };
-
-  const onDelete = () => {
-    dispatch(deleteContent("-N8nb908N92-9aUvmzqf"));
+    setShowAddOverlay((prevState) => !prevState);
   };
 
   return (
     <>
-      <Banner id={3} message="Witaj w TakToSięObi!" />
+      <Banner id={3} />
       <div className={classes.mainpage__main}>
         <div className={classes.mainpage__heading}>
           Witaj w Tak to się Obi!
           <br></br>
           Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:
         </div>
-        {content}
+        {homePageContent.map((section) => (
+          <HomeSection
+            id={section.id}
+            key={section.id}
+            contentPart1={section.contentPart1}
+            contentPart2={section.contentPart2}
+            contentPage3={section.contentPage3}
+          />
+        ))}
       </div>
-      {/* <Add_HomeSection /> */}
-      <button onClick={onDelete}>Delete Button</button>
       <button onClick={showAddHandler}>Add new section</button>
-      {showAddOverlay && <Add_HomeSection onClose={showAddHandler} />}
+      {showAddOverlay && <Add onClose={showAddHandler} />}
     </>
   );
 };
 
 export default MainPage;
 
-/* <Banner id={5} />
+/* /* <Banner id={5} />
 <div className={classes.mainpage__main}>
   <div className={classes.mainpage__heading}>
     Witaj w Tak to się Obi!

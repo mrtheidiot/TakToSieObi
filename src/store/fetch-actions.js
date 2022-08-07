@@ -78,37 +78,55 @@ export const fetchContent = (url, identifier) => {
   };
 };
 
-export const fetchInitialStoreData = () => {
-  return async (dispatch) => {
-    const fetchButtons = async () => {
-      const response = await fetch("http://localhost:8000/api/buttons");
-      const data = await response.json();
-      return data;
-    };
-    const buttons = await fetchButtons();
-    dispatch(
-      uiActions.replaceButtons({
-        buttons: buttons,
-      })
-    );
-  };
-};
+// export const fetchInitialStoreData = () => {
+//   return async (dispatch) => {
+//     const fetchButtons = async () => {
+//       const response = await fetch("http://localhost:8000/api/buttons");
+//     const buttons = await fetchButtons();
+//     dispatch(
+//       uiActions.replaceButtons({
+//         buttons: buttons,
+//       })
+//     );
+//   };
+// };
 
 export const sendContent = (newContent) => {
+  // const url = "https:www.facebook.pl"
   const url =
     "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json";
-  return async () => {
-    const sendRequest = () => {
-      fetch(`${url}/`, {
+  return async (dispatch) => {
+    const sendRequest = async () => {
+      const response = await fetch(`${url}/`, {
         method: "POST",
-        body: JSON.stringify({ 
-          title: newContent.title,
-          content: newContent.content,
-          buttons: newContent.buttons
-         }),
+        body: JSON.stringify(newContent),
       });
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
     };
-    sendRequest();
+    try {
+      dispatch(
+        uiActions.requestStateChange({
+          status: "loading",
+          error: null,
+        })
+      );
+      await sendRequest();
+      dispatch(
+        uiActions.requestStateChange({
+          status: "completed",
+          error: null,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        uiActions.requestStateChange({
+          status: "completed",
+          error: error.message,
+        })
+      );
+    }
   };
 };
 

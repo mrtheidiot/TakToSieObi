@@ -4,7 +4,7 @@ import { getHomePageSection } from "../../../store/API/api-functions";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
 import { useSelector } from "react-redux";
 
-const Edit_HomeSection = (props) => {
+const Edit = (props) => {
   const content = useSelector(state => state.home.homePageContent)
   // console.log(content)
   const contentInputRef = useRef();
@@ -104,4 +104,4 @@ const Edit_HomeSection = (props) => {
   );
 };
 
-export default Edit_HomeSection;
+export default Edit;

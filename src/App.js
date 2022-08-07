@@ -1,43 +1,70 @@
-import classes from './App.module.css'
+import { useEffect } from "react";
 import { Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchContent } from "./store/fetch-actions";
+import useHTTP from "./hooks/useHTTP";
+
+import NavBar from "./components/NavBar/NavBar";
+import LoadingSpinner from "./UI/LoadingSpinner";
+
 import Home from "./pages/Home/Home";
+import TrainingCourses from "./pages/TrainingCourses/TrainingCourses";
 import Login from "./components/Login/Login";
 import Test from "./components/Test/Test";
-import NavBar from "./components/NavBar/NavBar";
-import { useDispatch } from "react-redux";
-import { fetchInitialStoreData } from "./store/fetch-actions";
-import { useEffect } from "react";
-import TrainingCourses from './pages/TrainingCourses/TrainingCourses';
+
+import classes from "./App.module.css";
 
 function App() {
-  const dispatch = useDispatch();
-
+const dispatch = useDispatch();
+  // const { status, error } = useSelector((state) => state.ui.requestState);
+  const {sendRequest, status} = useHTTP();
   useEffect(() => {
-    // dispatch(fetchInitialStoreData());
-  }, [dispatch]);
+    // dispatch(
+    //   fetchContent(
+    //     "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
+    //     "home"
+    //   )
+    // );
+    sendRequest();
+  }, [sendRequest]);
 
-  return (
-    <div className={classes.wrapper}>
-      <NavBar />
+  let content;
 
-      <div className="app-div">
-        <div className="apps-wrapper">
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/treningi" exact>
-            <TrainingCourses />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/test">
-            <Test />
-          </Route>
+  if (status !== "completed") {
+    content = (
+      <div className={classes.loadingSpinnerOuter}>
+        <div className={classes.loadingSpinnerInner}>
+          <LoadingSpinner />
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (status === "completed") {
+    content = (
+      <>
+        <NavBar />
+        <div className="app-div">
+          <div className="apps-wrapper">
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/treningi" exact>
+              <TrainingCourses />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/test">
+              <Test />
+            </Route>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return <div className={classes.wrapper}>{content}</div>;
 }
 
 export default App;
