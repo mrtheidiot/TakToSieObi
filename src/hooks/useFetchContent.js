@@ -1,5 +1,5 @@
 import { useCallback, useReducer } from "react";
-import { fetchContent } from "../store/fetch-actions";
+import { fetchStoreContent } from "../store/fetch-actions";
 import { useDispatch } from "react-redux";
 
 const requestReducer = (state, action) => {
@@ -7,7 +7,6 @@ const requestReducer = (state, action) => {
     return {
       status: "loading",
       error: null,
-      // data: null,
     };
   }
 
@@ -15,7 +14,6 @@ const requestReducer = (state, action) => {
     return {
       status: "completed",
       error: null,
-      // data: action.responseData,
     };
   }
 
@@ -29,12 +27,11 @@ const requestReducer = (state, action) => {
   return state;
 };
 
-const useHTTP = (startWithLoading = false) => {
+const useFetchContent = (startWithLoading = false) => {
   const dispatch = useDispatch();
   const initialState = {
     status: startWithLoading ? "loading" : null,
     error: null,
-    // data: null,
   };
 
   const [requestState, dispatchState] = useReducer(
@@ -42,26 +39,10 @@ const useHTTP = (startWithLoading = false) => {
     initialState,
   );
 
-  // const sendRequest = useCallback(
-  //   async (requestData) => {
-  //     dispatchState({ type: "SEND" });
-  //     try {
-  //       const responseData = await requestFunction(requestData);
-  //       dispatchState({ type: "SUCCESS", responseData });
-  //     } catch (error) {
-  //       dispatchState({
-  //         type: "ERROR",
-  //         errorMessage: error.message || "Ups! Coś poszło nie tak!",
-  //       });
-  //     }
-  //   },
-  //   [requestFunction]
-  // );
-
-  const sendRequest = useCallback(() => {
+  const fetchContent = useCallback(() => {
     dispatchState({ type: "SEND" });
     dispatch(
-      fetchContent(
+      fetchStoreContent(
         "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
         "home"
       )
@@ -71,9 +52,9 @@ const useHTTP = (startWithLoading = false) => {
   ,[])
 
   return {
-    sendRequest,
+    fetchContent,
     ...requestState,
   };
 };
 
-export default useHTTP;
+export default useFetchContent;

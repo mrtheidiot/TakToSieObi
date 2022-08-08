@@ -2,15 +2,7 @@ import { homePageActions } from "./homePage-slice";
 import { testActions } from "./TestStore/test-slice";
 import { uiActions } from "./ui-slice";
 
-const urls = [
-  { type: "test", url: "http://localhost:8000/api/tutorials" },
-  { type: "buttons", url: "http://localhost:8000/api/buttons" },
-  { type: "home", url: "http://127.0.0.1:8000/api/homepage" },
-  { type: "asortyment", url: "http://localhost:8000/api/tutorials" },
-];
-
-export const fetchContent = (url, identifier) => {
-  // const url = urls.find((item) => item.type === identifier).url; //nie podoba mi sie to ale nie wiem
+export const fetchStoreContent = (url, identifier) => {
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(`${url}`);
@@ -22,6 +14,7 @@ export const fetchContent = (url, identifier) => {
       const data = await response.json();
       return data;
     };
+
     try {
       dispatch(
         uiActions.requestStateChange({
@@ -29,13 +22,18 @@ export const fetchContent = (url, identifier) => {
           error: null,
         })
       );
+
+      // fetching store data and storing in a storeData
       const storeData = await fetchData();
+
+
       dispatch(
         uiActions.requestStateChange({
           status: "completed",
           error: null,
         })
       );
+
       switch (identifier) {
         case "test":
           dispatch(
@@ -54,12 +52,22 @@ export const fetchContent = (url, identifier) => {
         case "home":
           let transformedObjects = [];
           for (const key in storeData) {
-            const obj = {
+            let transformedButtons = [];
+            for (const id in storeData[key].buttons) {
+              const obj2 = {
+                id: id,
+                ...storeData[key].buttons[id],
+              };
+              transformedButtons.push(obj2);
+            }
+            storeData[key].buttons = [...transformedButtons];
+            const obj2 = {
               id: key,
               ...storeData[key],
             };
-            transformedObjects.push(obj);
+            transformedObjects.push(obj2);
           }
+
           dispatch(
             homePageActions.replaceHomePage({
               content: transformedObjects,
@@ -78,28 +86,48 @@ export const fetchContent = (url, identifier) => {
   };
 };
 
-// export const fetchInitialStoreData = () => {
-//   return async (dispatch) => {
-//     const fetchButtons = async () => {
-//       const response = await fetch("http://localhost:8000/api/buttons");
-//     const buttons = await fetchButtons();
-//     dispatch(
-//       uiActions.replaceButtons({
-//         buttons: buttons,
-//       })
-//     );
-//   };
-// };
-
-export const sendContent = (newContent) => {
-  // const url = "https:www.facebook.pl"
-  const url =
-    "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json";
+export const sendContent = (url, newContent) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(`${url}/`, {
         method: "POST",
         body: JSON.stringify(newContent),
+      });
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+    };
+    try {
+      dispatch(
+        uiActions.requestStateChange({
+          status: "loading",
+          error: null,
+        })
+      );
+      await sendRequest();
+      dispatch(
+        uiActions.requestStateChange({
+          status: "completed",
+          error: null,
+        })
+      );
+    } catch (error) {
+      dispatch(
+        uiActions.requestStateChange({
+          status: "completed",
+          error: error.message,
+        })
+      );
+    }
+  };
+};
+
+export const updateContent = (url, id, updatedContent) => {
+  return async (dispatch) => {
+    const sendRequest = async () => {
+      const response = await fetch(`${url}/${id}.json`, {
+        method: "PUT",
+        body: JSON.stringify(updatedContent),
       });
       if (!response.ok) {
         throw new Error("Something went wrong");

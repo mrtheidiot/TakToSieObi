@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContent } from "./store/fetch-actions";
-import useHTTP from "./hooks/useHTTP";
+import useFetchContent from "./hooks/useFetchContent";
 
 import NavBar from "./components/NavBar/NavBar";
 import LoadingSpinner from "./UI/LoadingSpinner";
@@ -15,20 +14,12 @@ import Test from "./components/Test/Test";
 import classes from "./App.module.css";
 
 function App() {
-const dispatch = useDispatch();
-  // const { status, error } = useSelector((state) => state.ui.requestState);
-  const {sendRequest, status} = useHTTP();
+  const {fetchContent, status} = useFetchContent();
   useEffect(() => {
-    // dispatch(
-    //   fetchContent(
-    //     "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
-    //     "home"
-    //   )
-    // );
-    sendRequest();
-  }, [sendRequest]);
+    fetchContent();
+  }, [fetchContent]);
 
-  let content;
+  let content;                                                                                                                                                        
 
   if (status !== "completed") {
     content = (

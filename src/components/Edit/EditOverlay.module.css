@@ -38,7 +38,3 @@
     display: flex;
     justify-content: space-around;
 }
-
-.modal_main {
-    position: relative;
-}

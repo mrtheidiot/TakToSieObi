@@ -8,9 +8,6 @@ const EditOverlay = (props) => {
           {props.children}
         </div>
         <div className={classes.buttons}>
-          <button type="buttons" onClick={props.accept}>
-            ZAAKCEPTUJ
-          </button>
           <button type="button" onClick={props.onClose}>
             Close
           </button>

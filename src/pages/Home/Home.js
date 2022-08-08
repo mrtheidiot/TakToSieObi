@@ -1,20 +1,14 @@
-import HomeSection from "./HomeSection";
-import Add from "./HomeActions/Add";
 import Banner from "../../components/Banner/Banner";
+import HomeSection from "./HomeSection";
+import Actions from "./HomeActions/Actions";
+import AddSection from "../../components/Edit/AddSection";
 
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import classes from "./Home.module.css";
 
 export const MainPage = () => {
-  const [showAddOverlay, setShowAddOverlay] = useState(false);
   const homePageContent = useSelector((state) => state.home.homePageContent);
-  // console.log(homePageContent)
-
-  const showAddHandler = () => {
-    setShowAddOverlay((prevState) => !prevState);
-  };
 
   return (
     <>
@@ -35,8 +29,9 @@ export const MainPage = () => {
           />
         ))}
       </div>
-      <button onClick={showAddHandler}>Add new section</button>
-      {showAddOverlay && <Add onClose={showAddHandler} />}
+      <AddSection>
+        <Actions />
+      </AddSection>
     </>
   );
 };

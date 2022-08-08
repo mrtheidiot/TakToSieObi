@@ -2,20 +2,14 @@ import Button from "../../components/Button/Button";
 import EditSection from "../../components/Edit/EditSection";
 import classes from "./HomeSection.module.css";
 import { useSelector } from "react-redux";
-import Edit from "./HomeActions/Edit";
+import Actions from "./HomeActions/Actions";
 
 const HomeSection = (props) => {
   const homePageContent = useSelector((state) => state.home.homePageContent);
-  const data = homePageContent.find((item) => item.id === props.id).buttons;
-  const buttonsToCurrentSection = [];
-  for (const key in data) {
-    const button = {
-      id: key,
-      ...data[key],
-    };
-    buttonsToCurrentSection.push(button);
-  }
-  const editMode = window.localStorage.getItem("isLoggedIn");
+  const buttonsToCurrentSection = homePageContent.find((item) => item.id === props.id).buttons;
+  
+  // const editMode = window.localStorage.getItem("isLoggedIn");
+  const editMode = false;
 
   return (
     <div className={classes.mainpagesection__main}>
@@ -37,8 +31,8 @@ const HomeSection = (props) => {
         ))}
       </section>
       {editMode && (
-        <EditSection id={props.id}>
-          <Edit />
+        <EditSection >
+          <Actions id={props.id} />
         </EditSection>
       )}
     </div>
