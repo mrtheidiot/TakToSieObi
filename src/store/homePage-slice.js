@@ -5,6 +5,7 @@ const homePageSlice = createSlice({
   initialState: {
     homePageContent: [],
     changed: false,
+    error: null,
     newSectionContent: {},
     newSectionButtons: [],
     editSectionButtons: [],
@@ -35,6 +36,9 @@ const homePageSlice = createSlice({
     },
     resetEditButtonElements(state) {
       state.editSectionButtons = [];
+    },
+    setError(state, action) {
+      state.error = action.payload;
     },
   },
 });

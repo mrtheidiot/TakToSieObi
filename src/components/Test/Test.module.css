@@ -1,57 +1,7 @@
-.centered {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.overlay {
-    position: fixed;
-    top: 40%;
-    left: 30%;
-    width: 50vh;
-    height: 50vh;
-    background-color: rgba(0,0,0,0.70);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 100;
-}
-.tutorial {
+.uploadbar {
     width: 50%;
     margin: auto;
-    margin: 20px;
-    background-color: rgba(0, 0, 0, 0.20);
-    position: relative;
-}
-
-.hoverr {
-    position: absolute;
-    top: 2%;
-    right: 1%;
-    width: 100px;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0.20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.box {
-    width: 300px;
-    height: 200px;
-    margin: auto;
-    background-color: yellow;
-    text-align: center;
-    position: relative;
-}
-
-.innerBox {
-    width: 100px;
     height: 100px;
-    background-color: blue;
-    position: absolute;
-    top: 60%;
+    padding: 2%;
+    border: solid 1px black;
 }

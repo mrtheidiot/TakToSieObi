@@ -1,0 +1,28 @@
+.wrapper {
+    width: 100%;
+    border: solid 1px black;
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+}
+
+.input {
+    width: 30%;
+}
+
+.button {
+    width: 10%;
+}
+
+.uploadBarOuter {
+    width: 50%;
+}
+.uploadBarInner {
+    background-color: blue;
+    color: white;
+}
+
+.changeColor {
+    background-color: green;
+}

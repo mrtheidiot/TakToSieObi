@@ -1,55 +1,27 @@
 import { homePageActions } from "./homePage-slice";
-import { testActions } from "./TestStore/test-slice";
 import { uiActions } from "./ui-slice";
 
 export const fetchStoreContent = (url, identifier) => {
   return async (dispatch) => {
-    const fetchData = async () => {
-      const response = await fetch(`${url}`);
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-
-      const data = await response.json();
-      return data;
-    };
-
+    dispatch(
+      uiActions.requestStateChange({
+        status: "loading",
+      })
+    );
     try {
-      dispatch(
-        uiActions.requestStateChange({
-          status: "loading",
-          error: null,
-        })
-      );
+      const fetchData = async () => {
+        const response = await fetch(`${url}`);
+        if (!response.ok) {
+          throw new Error();
+        }
+        const data = await response.json();
+        return data;
+      };
 
-      // fetching store data and storing in a storeData
       const storeData = await fetchData();
 
-
-      dispatch(
-        uiActions.requestStateChange({
-          status: "completed",
-          error: null,
-        })
-      );
-
       switch (identifier) {
-        case "test":
-          dispatch(
-            testActions.replaceStore({
-              items: storeData,
-            })
-          );
-          break;
-        case "buttons":
-          dispatch(
-            uiActions.replaceButtons({
-              buttons: storeData,
-            })
-          );
-          break;
-        case "home":
+        case "home": //START REPLACING THE HOME PAGE CONTENT SECTION
           let transformedObjects = [];
           for (const key in storeData) {
             let transformedButtons = [];
@@ -67,21 +39,27 @@ export const fetchStoreContent = (url, identifier) => {
             };
             transformedObjects.push(obj2);
           }
-
           dispatch(
             homePageActions.replaceHomePage({
               content: transformedObjects,
             })
           );
-          break;
+          break; //END REPLACING THE HOME PAGE CONTENT SECTION
       }
-    } catch (error) {
       dispatch(
         uiActions.requestStateChange({
           status: "completed",
-          error: error.message,
         })
       );
+    } catch (err) {
+      switch (identifier) {
+        case "home":
+          dispatch(
+            homePageActions.setError(
+              "Nie udało się pobrać zawartości strony domowej!"
+            )
+          );
+      }
     }
   };
 };

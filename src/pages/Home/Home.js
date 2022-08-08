@@ -1,14 +1,29 @@
+import { useEffect } from "react";
+
 import Banner from "../../components/Banner/Banner";
 import HomeSection from "./HomeSection";
 import Actions from "./HomeActions/Actions";
 import AddSection from "../../components/Edit/AddSection";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchStoreContent } from "../../store/fetch-actions";
+
 
 import classes from "./Home.module.css";
 
 export const MainPage = () => {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(
+      fetchStoreContent(
+        "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
+        "home"
+      )
+    )
+  },[dispatch])
+
   const homePageContent = useSelector((state) => state.home.homePageContent);
+  const error = useSelector((state) => state.home.error);
 
   return (
     <>
@@ -19,6 +34,7 @@ export const MainPage = () => {
           <br></br>
           Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:
         </div>
+        {error && <p>{error}</p>}
         {homePageContent.map((section) => (
           <HomeSection
             id={section.id}

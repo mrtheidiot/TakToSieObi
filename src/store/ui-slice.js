@@ -6,15 +6,13 @@ const uiSlice = createSlice({
     banners: [],
     notification: null,
     requestState: {
-      status: "loading",
-      error: null,
+      status: null,
     },
   },
   reducers: {
     requestStateChange(state, action) {
       state.requestState = {
         status: action.payload.status,
-        error: action.payload.error,
       };
     },
     resetStatusError(state) {

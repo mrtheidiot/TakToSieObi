@@ -10,6 +10,8 @@ const navData = [
   { title: "WYDARZENIA", url: "/wydarzenia" },
   { title: "JA I MOJE PSY", url: "/omnie" },
   { title: "KONTAKT", url: "/kontakt" },
+  { title: "TEST", url: "/test" },
+
 ];
 
 const NavBar = () => {

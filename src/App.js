@@ -1,7 +1,4 @@
-import { useEffect } from "react";
 import { Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import useFetchContent from "./hooks/useFetchContent";
 
 import NavBar from "./components/NavBar/NavBar";
 import LoadingSpinner from "./UI/LoadingSpinner";
@@ -10,52 +7,43 @@ import Home from "./pages/Home/Home";
 import TrainingCourses from "./pages/TrainingCourses/TrainingCourses";
 import Login from "./components/Login/Login";
 import Test from "./components/Test/Test";
+import { useSelector } from "react-redux";
 
 import classes from "./App.module.css";
 
 function App() {
-  const {fetchContent, status} = useFetchContent();
-  useEffect(() => {
-    fetchContent();
-  }, [fetchContent]);
+  const { status } = useSelector((state) => state.ui.requestState);
 
-  let content;                                                                                                                                                        
+  const loadingSpinner = (
+    <div className={classes.loadingSpinnerOuter}>
+      <div className={classes.loadingSpinnerInner}>
+        <LoadingSpinner />
+      </div>
+    </div>
+  );
 
-  if (status !== "completed") {
-    content = (
-      <div className={classes.loadingSpinnerOuter}>
-        <div className={classes.loadingSpinnerInner}>
-          <LoadingSpinner />
+  return (
+    <div className={classes.wrapper}>
+      {status === "loading" && loadingSpinner}
+      <NavBar />
+      <div className="app-div">
+        <div className="apps-wrapper">
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/treningi" exact>
+            <TrainingCourses />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/test">
+            <Test />
+          </Route>
         </div>
       </div>
-    );
-  }
-
-  if (status === "completed") {
-    content = (
-      <>
-        <NavBar />
-        <div className="app-div">
-          <div className="apps-wrapper">
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/treningi" exact>
-              <TrainingCourses />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/test">
-              <Test />
-            </Route>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  return <div className={classes.wrapper}>{content}</div>;
+    </div>
+  );
 }
 
 export default App;
