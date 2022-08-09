@@ -8,7 +8,7 @@ import classes from "./UploadBar.module.css";
 const UploadBar = (props) => {
   const [file, setFile] = useState("");
   const [percent, setPercent] = useState(0);
-  const [fileLink, setFileLink] = useState(null)
+  const [fileLink, setFileLink] = useState(null);
 
   function handleChange(event) {
     setFile(event.target.files[0]);
@@ -38,7 +38,7 @@ const UploadBar = (props) => {
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          fileLink = url;
+          setFileLink(url)
           props.returnURL(url);
         });
       }
@@ -56,6 +56,7 @@ const UploadBar = (props) => {
 
   return (
     <div className={classes.wrapper}>
+      <img src={fileLink} />
       <input type="file" onChange={handleChange} className={classes.input} />
       <button className={classes.button} onClick={handleUpload}>
         Dodaj

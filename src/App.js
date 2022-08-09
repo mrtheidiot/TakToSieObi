@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import classes from "./App.module.css";
 
 function App() {
-  const { status } = useSelector((state) => state.ui.requestState);
+  const isLoading = useSelector((state) => state.ui.isLoading);
 
   const loadingSpinner = (
     <div className={classes.loadingSpinnerOuter}>
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className={classes.wrapper}>
-      {status === "loading" && loadingSpinner}
+      {isLoading && loadingSpinner}
       <NavBar />
       <div className="app-div">
         <div className="apps-wrapper">

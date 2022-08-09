@@ -7,7 +7,7 @@ import classes from "./Actions.module.css";
 
 const Add = (props) => {
   const dispatch = useDispatch();
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
 
   const titleInputRef = useRef();
   const description1InputRef = useRef();
@@ -17,19 +17,6 @@ const Add = (props) => {
   const organizatorInputRef = useRef();
   const priceInputRef = useRef();
 
-  //   {
-  //     title: "TRENING INDYWIDUALNY",
-  //     link: "trening-indywidualny",
-  //     description: [
-  //       "Zajęcia przeznaczone dla pojedynczego teamu przewodnik-pies niezależnie od poziomu zaawansowania.",
-  //       "Miejsce spotkania wyznaczamy indywidualnie, ale generalnie spotykamy się w terenie.",
-  //       "Program nie jest z góry ustalony - trenujemy to, co jest Wam w tym momencie potrzebne.",
-  //     ],
-  //     image: `${piesek}`,
-  //     organizator: "Tak to się Obi",
-  //     koszt: "1 spotkanie (ok. 50min.) – 70 zł",
-  //     koszt2: "Pakiet 6 treningów – 380 zł",
-  //   },
   let element = null;
   //   let element;
   //   if (props.id) {
@@ -80,20 +67,11 @@ const Add = (props) => {
     }
   };
 
-  //   const titleInputRef = useRef();
-  //   const description1InputRef = useRef();
-  //   const description2InputRef = useRef();
-  //   const description3InputRef = useRef();
-  //   const link = useRef();
-  //   const organizator = useRef();
-  //   const price = useRef();
-  //   const price2 = useRef();
-
   const addToImagesList = (imageLink) => {
-    setImages(prevList => [...prevList, imageLink])
-  }
+    setImages((prevList) => [...prevList, imageLink]);
+  };
 
-  console.log(images)
+  console.log(images);
 
   return (
     <>
@@ -134,12 +112,7 @@ const Add = (props) => {
         <label htmlFor="price">Koszt</label>
         <input type="text" id="price" ref={priceInputRef} />
       </form>
-      <UploadBar returnURL={addToImagesList}/>
-      {/* <div className={classes.images_wrapper}>
-        {images.map((image) => (
-          <img src={image} alt="image" />
-        ))}
-      </div> */}
+      <UploadBar returnURL={addToImagesList} />
       <button onClick={submitHandler}>ZAAKCEPTUJ</button>
     </>
   );

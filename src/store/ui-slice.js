@@ -8,12 +8,16 @@ const uiSlice = createSlice({
     requestState: {
       status: null,
     },
+    isLoading: false,
   },
   reducers: {
     requestStateChange(state, action) {
       state.requestState = {
         status: action.payload.status,
       };
+    },
+    toggleLoading(state) {
+      state.isLoading = !state.isLoading;
     },
   },
 });

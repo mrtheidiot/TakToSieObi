@@ -10,11 +10,23 @@ import classes from "./TrainingCourses.module.css";
 import { fetchStoreContent } from "../../store/fetch-actions";
 import { useSelector, useDispatch } from "react-redux";
 import AddSection from "../../components/Edit/AddSection";
-import Actions from './Actions'
+import Actions from "./Actions";
+import { useEffect, useState } from "react";
 
 const TrainingCourses = () => {
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courses.coursesContent);
 
+  useEffect(() => {
+    dispatch(
+      fetchStoreContent(
+        "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses.json",
+        "courses"
+      )
+    );
+  }, [dispatch]);
 
+  console.log(courses);
 
   return (
     <>

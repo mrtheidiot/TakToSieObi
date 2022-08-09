@@ -1,13 +1,10 @@
 import { homePageActions } from "./homePage-slice";
+import { coursesActions } from "./trainingCourses-slice";
 import { uiActions } from "./ui-slice";
 
 export const fetchStoreContent = (url, identifier) => {
   return async (dispatch) => {
-    dispatch(
-      uiActions.requestStateChange({
-        status: "loading",
-      })
-    );
+    dispatch(uiActions.toggleLoading());
     try {
       const fetchData = async () => {
         const response = await fetch(`${url}`);
@@ -45,12 +42,11 @@ export const fetchStoreContent = (url, identifier) => {
             })
           );
           break; //END REPLACING THE HOME PAGE CONTENT SECTION
+        case "courses":
+          dispatch(coursesActions.replaceCourses(storeData));
+          break;
       }
-      dispatch(
-        uiActions.requestStateChange({
-          status: "completed",
-        })
-      );
+      dispatch(uiActions.toggleLoading());
     } catch (err) {
       switch (identifier) {
         case "home":
@@ -75,7 +71,7 @@ export const sendContent = (url, newContent, returnNewElementId) => {
         throw new Error("Something went wrong");
       }
       const data = await response.json();
-      returnNewElementId(data.name)
+      returnNewElementId(data.name);
     };
     try {
       dispatch(
