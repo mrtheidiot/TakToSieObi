@@ -2,21 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendContent, updateContent } from "../../store/fetch-actions";
 import UploadBar from "../../components/UploadBar/UploadBar";
-import useUpload from "../../hooks/useUpload";
 
 import classes from "./Actions.module.css";
 
 const Add = (props) => {
   const dispatch = useDispatch();
-
-  const {
-    handleChange,
-    handleUpload,
-    removeSelected,
-    percent,
-    fileLink,
-    status,
-  } = useUpload();
+  const [images, setImages] = useState([])
 
   const titleInputRef = useRef();
   const description1InputRef = useRef();
@@ -98,6 +89,12 @@ const Add = (props) => {
   //   const price = useRef();
   //   const price2 = useRef();
 
+  const addToImagesList = (imageLink) => {
+    setImages(prevList => [...prevList, imageLink])
+  }
+
+  console.log(images)
+
   return (
     <>
       <h1>Dodawanie nowej sekcji:</h1>
@@ -137,12 +134,7 @@ const Add = (props) => {
         <label htmlFor="price">Koszt</label>
         <input type="text" id="price" ref={priceInputRef} />
       </form>
-      <UploadBar
-        status={status}
-        haddleUpload={handleUpload}
-        handleChange={handleChange}
-        percent={percent}
-      />
+      <UploadBar returnURL={addToImagesList}/>
       {/* <div className={classes.images_wrapper}>
         {images.map((image) => (
           <img src={image} alt="image" />

@@ -1,38 +1,72 @@
-import { upload } from "@testing-library/user-event/dist/upload";
-import React from "react";
-import useUpload from "../../hooks/useUpload";
+import React, { useState } from "react";
+
+import storage from "../../firebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 import classes from "./UploadBar.module.css";
 
 const UploadBar = (props) => {
+  const [file, setFile] = useState("");
+  const [percent, setPercent] = useState(0);
+  const [fileLink, setFileLink] = useState(null)
 
-  const handleChangeHandler = (event) => {
-    props.handleChange(event);
+  function handleChange(event) {
+    setFile(event.target.files[0]);
+  }
+
+  const handleUpload = () => {
+    if (!file) {
+      alert("Please upload an image first!");
+    }
+
+    const storageRef = ref(storage, `/files/${file.name}`);
+
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+
+        setPercent(percent);
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          fileLink = url;
+          props.returnURL(url);
+        });
+      }
+    );
   };
 
-  const handleUploadHandler = () => {
-    props.handleUpload();
+  const handleRemove = (fileLink) => {
+    console.log(fileLink);
   };
 
   const barClasses =
-    props.status !== "completed"
+    percent !== 100
       ? `${classes.uploadBarInner}`
       : `${classes.uploadBarInner} ${classes.changeColor}`;
 
   return (
     <div className={classes.wrapper}>
-      <input
-        type="file"
-        onChange={handleChangeHandler}
-        className={classes.input}
-      />
-      <button className={classes.button} onClick={handleUploadHandler}>
+      <input type="file" onChange={handleChange} className={classes.input} />
+      <button className={classes.button} onClick={handleUpload}>
         Dodaj
       </button>
-      {/* <button className={classes.button} onClick={removeSelectedHandler}>
-        Usuń
-      </button> */}
+      {fileLink && (
+        <button className={classes.button} onClick={handleRemove}>
+          Usuń
+        </button>
+      )}
       <div className={classes.uploadBarOuter}>
-        <div className={barClasses} style={{ width: `${props.percent}%` }}>
+        <div className={barClasses} style={{ width: `${percent}%` }}>
           ...
         </div>
       </div>
