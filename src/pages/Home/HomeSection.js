@@ -8,8 +8,8 @@ const HomeSection = (props) => {
   const homePageContent = useSelector((state) => state.home.homePageContent);
   const buttonsToCurrentSection = homePageContent.find((item) => item.id === props.id).buttons;
   
-  // const editMode = window.localStorage.getItem("isLoggedIn");
-  const editMode = false;
+  const editMode = window.localStorage.getItem("isLoggedIn");
+  // const editMode = false;
 
   return (
     <div className={classes.mainpagesection__main}>

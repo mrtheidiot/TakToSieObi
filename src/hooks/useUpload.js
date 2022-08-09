@@ -12,7 +12,6 @@ const initialState = {
 };
 
 const uploadReducerFunction = (state, action) => {
-
   if (action.type === "SETFILE") {
     return {
       percent: 0,
@@ -53,7 +52,7 @@ const uploadReducerFunction = (state, action) => {
     return {
       percent: state.percent,
       file: "",
-      fileLink:'',
+      fileLink: "",
       error: null,
       status: "completed",
     };
@@ -77,9 +76,9 @@ const useUpload = () => {
 
   const removeSelected = () => {
     uploadReducer({
-        type: "REMOVE"
-    })
-  }
+      type: "REMOVE",
+    });
+  };
 
   const handleUpload = useCallback(() => {
     const file = uploadState.file;

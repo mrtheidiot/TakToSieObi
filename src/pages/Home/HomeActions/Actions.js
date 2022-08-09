@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../../components/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { sendContent, updateContent } from "../../../store/fetch-actions";
@@ -8,13 +8,8 @@ import classes from "./HomeActions.module.css";
 
 const Add = (props) => {
   const dispatch = useDispatch();
-  const addButtonSelection = useSelector(
-    (state) => state.home.newSectionButtons
-  );
-  const editButtonSelection = useSelector(
-    (state) => state.home.editSectionButtons
-  );
   const homePageContent = useSelector((state) => state.home.homePageContent);
+  const [buttons, setButtons] = useState([]);
 
   let element;
   if (props.id) {
@@ -22,15 +17,12 @@ const Add = (props) => {
   }
 
   useEffect(() => {
-    if (props.id) {
-      dispatch(homePageActions.resetEditButtonElements())
-      const data = homePageContent.find((item) => item.id === props.id).buttons;
-      data.forEach((button)=>{
-        dispatch(homePageActions.editButtonElement(button));
-      })
+    if (element) {
+      element.buttons.forEach((button) => {
+        setButtons((prevList) => [...prevList, button]);
+      });
     }
   }, []);
-
 
   const content1InputRef = useRef();
   const content2InputRef = useRef();
@@ -51,11 +43,8 @@ const Add = (props) => {
       textColor: buttonTextColorRef.current.value,
       isInternal: buttonInternalRef.current.value,
     };
-    if (element) {
-      dispatch(homePageActions.editButtonElement(newButton));
-    } else {
-      dispatch(homePageActions.addButtonElement(newButton));
-    }
+
+    setButtons((prevList) => [...prevList, newButton]);
 
     buttonTextRef.current.value = "";
     buttonAddressRef.current.value = "";
@@ -65,53 +54,62 @@ const Add = (props) => {
   };
 
   const removeButtonHandler = (address) => {
-    if (element) {
-      dispatch(homePageActions.removeEditButtonElement(address))
-    }
+    setButtons((prevList) =>
+      prevList.filter(
+        (item) =>
+          item.address !==
+          buttons.find((object) => object.address === address).address
+      )
+    );
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
+    const newOrUpdatedSectionElement = {
+      id: props.id,
+      contentPart1: content1InputRef.current.value,
+      contentPart2: content2InputRef.current.value,
+      contentPart3: content3InputRef.current.value,
+      buttons: buttons,
+    };
+
     if (element) {
-      const editSectionElement = {
-        id: props.id,
-        contentPart1: content1InputRef.current.value,
-        contentPart2: content2InputRef.current.value,
-        contentPart3: content3InputRef.current.value,
-        buttons: editButtonSelection,
-      };
       dispatch(
         homePageActions.changeHomeElement({
           id: element.id,
-          updatedContent: editSectionElement,
+          updatedContent: newOrUpdatedSectionElement,
         })
       );
       dispatch(
         updateContent(
           "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage",
           element.id,
-          editSectionElement
+          newOrUpdatedSectionElement
         )
       );
     } else {
-      const newSectionElement = {
-        contentPart1: content1InputRef.current.value,
-        contentPart2: content2InputRef.current.value,
-        contentPart3: content3InputRef.current.value,
-        buttons: addButtonSelection,
+      const returnNewElementId = (id) => {
+        dispatch(
+          homePageActions.addElement({
+            ...newOrUpdatedSectionElement,
+            id: id,
+          })
+        );
       };
+
       dispatch(
         sendContent(
           "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
-          newSectionElement
+          newOrUpdatedSectionElement,
+          returnNewElementId
         )
       );
     }
   };
 
   return (
-<>
+    <>
       <h1>Dodawanie nowej sekcji:</h1>
       <form className={classes["add-content-form"]}>
         <label htmlFor="homePart1">Część 1:</label>
@@ -120,34 +118,39 @@ const Add = (props) => {
           id="homePart1"
           ref={content1InputRef}
           defaultValue={element ? element.contentPart1 : ""}
-          />
+        />
         <label htmlFor="homePart1">Część 2:</label>
         <textarea
           type="text"
           id="homePart2"
           ref={content2InputRef}
           defaultValue={element ? element.contentPart2 : ""}
-          />
+        />
         <label htmlFor="homePart1">Część 3:</label>
         <textarea
           type="text"
           id="homePart3"
           ref={content3InputRef}
           defaultValue={element ? element.contentPart3 : ""}
-          />
+        />
       </form>
       <div>
-        {(element ? editButtonSelection : addButtonSelection).map((button, index) => (
-          <div>
+        {buttons.map((button) => (
+          <div key={button.id}>
             <Button
-              key={button.id}
               text={button.text}
               isInternal={button.isInternal}
               address={button.address}
               backgroundColor={button.backgroundColor}
               textColor={button.textColor}
-              />
-            <button onClick={()=>{removeButtonHandler(button.address)}}>Usuń</button>
+            />
+            <button
+              onClick={() => {
+                removeButtonHandler(button.address);
+              }}
+            >
+              Usuń
+            </button>
           </div>
         ))}
       </div>
@@ -157,17 +160,17 @@ const Add = (props) => {
           type="text"
           placeholder="strona docelowa"
           ref={buttonAddressRef}
-          />
+        />
         <input
           type="text"
           placeholder="kolor tła"
           ref={buttonBackGroundColorRef}
-          />
+        />
         <input
           type="text"
           placeholder="kolor tekstu"
           ref={buttonTextColorRef}
-          />
+        />
         <select name="internal" ref={buttonInternalRef}>
           <option value="1">Tak</option>
           <option value="0">Nie</option>
@@ -175,7 +178,7 @@ const Add = (props) => {
         <button>DODAJ NOWY PRZYCISK</button>
         <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </form>
-  </>
+    </>
   );
 };
 

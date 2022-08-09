@@ -4,29 +4,17 @@ import useUpload from "../../hooks/useUpload";
 import classes from "./UploadBar.module.css";
 
 const UploadBar = (props) => {
-  const {
-    handleChange,
-    handleUpload,
-    removeSelected,
-    percent,
-    fileLink,
-    status,
-  } = useUpload();
 
   const handleChangeHandler = (event) => {
-    handleChange(event);
+    props.handleChange(event);
   };
 
   const handleUploadHandler = () => {
-    handleUpload();
-  };
-
-  const removeSelectedHandler = () => {
-    removeSelected();
+    props.handleUpload();
   };
 
   const barClasses =
-    status !== "completed"
+    props.status !== "completed"
       ? `${classes.uploadBarInner}`
       : `${classes.uploadBarInner} ${classes.changeColor}`;
 
@@ -40,11 +28,11 @@ const UploadBar = (props) => {
       <button className={classes.button} onClick={handleUploadHandler}>
         Dodaj
       </button>
-      <button className={classes.button} onClick={removeSelectedHandler}>
+      {/* <button className={classes.button} onClick={removeSelectedHandler}>
         Usuń
-      </button>
+      </button> */}
       <div className={classes.uploadBarOuter}>
-        <div className={barClasses} style={{ width: `${percent}%` }}>
+        <div className={barClasses} style={{ width: `${props.percent}%` }}>
           ...
         </div>
       </div>

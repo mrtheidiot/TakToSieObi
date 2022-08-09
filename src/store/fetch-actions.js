@@ -64,7 +64,7 @@ export const fetchStoreContent = (url, identifier) => {
   };
 };
 
-export const sendContent = (url, newContent) => {
+export const sendContent = (url, newContent, returnNewElementId) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(`${url}/`, {
@@ -74,6 +74,8 @@ export const sendContent = (url, newContent) => {
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
+      const data = await response.json();
+      returnNewElementId(data.name)
     };
     try {
       dispatch(

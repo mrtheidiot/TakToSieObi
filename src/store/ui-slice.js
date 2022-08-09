@@ -15,16 +15,6 @@ const uiSlice = createSlice({
         status: action.payload.status,
       };
     },
-    resetStatusError(state) {
-      state.requestState = {
-        status: null,
-        error: null,
-      };
-    },
-
-    replaceButtons(state, action) {
-      state.buttons = action.payload.buttons;
-    },
   },
 });
 export const uiActions = uiSlice.actions;
