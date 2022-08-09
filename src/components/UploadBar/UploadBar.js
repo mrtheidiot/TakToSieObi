@@ -20,9 +20,6 @@ const UploadBar = (props) => {
     }
 
     const storageRef = ref(storage, `/files/${file.name}`);
-
-    // progress can be paused and resumed. It also exposes progress updates.
-    // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -36,7 +33,6 @@ const UploadBar = (props) => {
       },
       (err) => console.log(err),
       () => {
-        // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           setFileLink(url)
           props.returnURL(url);

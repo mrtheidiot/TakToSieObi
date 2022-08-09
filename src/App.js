@@ -10,6 +10,7 @@ import Test from "./components/Test/Test";
 import { useSelector } from "react-redux";
 
 import classes from "./App.module.css";
+import Posluszenstwo from "./components/Treningi/Posluszenstwo";
 
 function App() {
   const isLoading = useSelector((state) => state.ui.isLoading);
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/test">
             <Test />
+          </Route>
+          <Route exact path="/indywidualy">
+            <Posluszenstwo />
           </Route>
         </div>
       </div>

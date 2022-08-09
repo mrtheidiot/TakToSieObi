@@ -4,9 +4,11 @@ import { sendContent, updateContent } from "../../store/fetch-actions";
 import UploadBar from "../../components/UploadBar/UploadBar";
 
 import classes from "./Actions.module.css";
+import { coursesActions } from "../../store/trainingCourses-slice";
 
 const Add = (props) => {
   const dispatch = useDispatch();
+  const [sectionImage, setSectionImage] = useState();
   const [images, setImages] = useState([]);
 
   const titleInputRef = useRef();
@@ -16,6 +18,12 @@ const Add = (props) => {
   const linkInputRef = useRef();
   const organizatorInputRef = useRef();
   const priceInputRef = useRef();
+  const list1InputRef = useRef();
+  const list2InputRef = useRef();
+  const list3InputRef = useRef();
+  const list4InputRef = useRef();
+  const list5InputRef = useRef();
+  const list6InputRef = useRef();
 
   let element = null;
   //   let element;
@@ -33,6 +41,7 @@ const Add = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const splitedList1 = list1InputRef.current.value.split("/,");
 
     const newOrUpdatedSectionElement = {
       id: props.id,
@@ -43,6 +52,9 @@ const Add = (props) => {
       link: linkInputRef.current.value,
       organizator: organizatorInputRef.current.value,
       price: priceInputRef.current.value,
+      list1: splitedList1,
+      sectionImage: sectionImage,
+      galleryImages: images,
     };
 
     if (element) {
@@ -55,23 +67,23 @@ const Add = (props) => {
         )
       );
     } else {
-      const returnNewElementId = (id) => {};
-      // add dispatch
       dispatch(
         sendContent(
-          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
+          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses.json",
           newOrUpdatedSectionElement,
-          returnNewElementId
+          "courses"
         )
       );
     }
   };
 
+  const newSectionImage = (imageLink) => {
+    setSectionImage(imageLink);
+  };
+
   const addToImagesList = (imageLink) => {
     setImages((prevList) => [...prevList, imageLink]);
   };
-
-  console.log(images);
 
   return (
     <>
@@ -112,7 +124,36 @@ const Add = (props) => {
         <label htmlFor="price">Koszt</label>
         <input type="text" id="price" ref={priceInputRef} />
       </form>
+      <div className={classes["add-content-form"]}>
+        <h3>Dodaj zdjęcie do sekcji:</h3>
+        <UploadBar returnURL={newSectionImage} />
+      </div>
+      <form className={classes["add-content-form"]}>
+        <h2>Strona podtreningu:</h2>
+        <label>Lista 1</label>
+        <textarea type="text" ref={list1InputRef} />
+        <label>Lista 2</label>
+        <textarea type="text" ref={list2InputRef} />
+        <label>Lista 3</label>
+        <textarea type="text" ref={list3InputRef} />
+        <label>Lista 4</label>
+        <textarea type="text" ref={list4InputRef} />
+        <label>Lista 5</label>
+        <textarea type="text" ref={list5InputRef} />
+        <label>Lista 6</label>
+        <textarea type="text" ref={list6InputRef} />
+        <label>Lista 6</label>
+        <textarea type="text" ref={list6InputRef} />
+        <h2>Zdjecia do galerii:</h2>
+      </form>
       <UploadBar returnURL={addToImagesList} />
+      <div className={classes["add-content-form"]}>
+        <div className={classes.images_wrapper}>
+          {images.map((image) => (
+            <img src={image} />
+          ))}
+        </div>
+      </div>
       <button onClick={submitHandler}>ZAAKCEPTUJ</button>
     </>
   );

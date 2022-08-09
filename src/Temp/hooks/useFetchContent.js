@@ -1,7 +1,7 @@
 import { useCallback, useReducer } from "react";
-import { fetchStoreContent } from "../store/fetch-actions";
+import { fetchStoreContent } from "../../store/fetch-actions";
 import { useDispatch } from "react-redux";
-import { homePageActions } from "../store/homePage-slice";
+import { homePageActions } from "../../store/homePage-slice";
 
 const requestReducer = (state, action) => {
   if (action.type === "SEND") {

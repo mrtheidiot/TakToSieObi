@@ -60,7 +60,7 @@ export const fetchStoreContent = (url, identifier) => {
   };
 };
 
-export const sendContent = (url, newContent, returnNewElementId) => {
+export const sendContent = (url, newContent, identifier) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(`${url}/`, {
@@ -71,30 +71,21 @@ export const sendContent = (url, newContent, returnNewElementId) => {
         throw new Error("Something went wrong");
       }
       const data = await response.json();
-      returnNewElementId(data.name);
+      return data;
     };
     try {
-      dispatch(
-        uiActions.requestStateChange({
-          status: "loading",
-          error: null,
-        })
-      );
-      await sendRequest();
-      dispatch(
-        uiActions.requestStateChange({
-          status: "completed",
-          error: null,
-        })
-      );
-    } catch (error) {
-      dispatch(
-        uiActions.requestStateChange({
-          status: "completed",
-          error: error.message,
-        })
-      );
-    }
+      const idd = await sendRequest();
+
+      switch (identifier) {
+        case "courses":
+          const content = {
+            ...newContent,
+            id: idd.name,
+          };
+          dispatch(coursesActions.addCourse(content));
+          break;
+      }
+    } catch (error) {}
   };
 };
 

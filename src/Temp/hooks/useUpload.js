@@ -1,6 +1,6 @@
 import { useReducer, useCallback } from "react";
 
-import storage from "../firebaseConfig.js";
+import storage from "../../firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const initialState = {

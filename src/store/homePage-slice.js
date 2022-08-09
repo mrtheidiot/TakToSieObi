@@ -11,7 +11,7 @@ const homePageSlice = createSlice({
       state.homePageContent = action.payload.content;
     },
     addElement(state, action) {
-      state.homePageContent = state.homePageContent.push(action.payload);
+      state.homePageContent.push(action.payload);
     },
     changeHomeElement(state, action) {
       const elementIndex = state.homePageContent.findIndex(

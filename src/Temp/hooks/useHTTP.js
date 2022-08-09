@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { uiActions } from "../store/ui-slice";
+import { uiActions } from "../../store/ui-slice";
 
 const useHTTP = (requestFunction) => {
   const dispatch = useDispatch();
@@ -14,10 +14,10 @@ const useHTTP = (requestFunction) => {
       try {
         const responseData = await requestFunction(requestData);
         setData(responseData);
-        dispatch(uiActions.toggleLoading());
+        // dispatch(uiActions.toggleLoading());
       } catch (error) {
         setError(error);
-        dispatch(uiActions.toggleLoading());
+        // dispatch(uiActions.toggleLoading());
       }
     },
     [requestFunction]
