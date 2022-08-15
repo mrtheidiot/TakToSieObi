@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import EditOverlay from "./EditOverlay";
-
+import EditOverlay from "./Overlay";
+import { useSelector } from "react-redux";
+import LoadingSpinner from '../LoadingSpinner'
 import classes from "./EditSection.module.css";
 
-const EditSection = (props) => {
+const Edit = (props) => {
   const [isHovering, setIsHovering] = useState(false);
   const [showEditOverlay, setShowEditOverlay] = useState(false);
 
@@ -45,4 +46,4 @@ const EditSection = (props) => {
   );
 };
 
-export default EditSection;
+export default Edit;

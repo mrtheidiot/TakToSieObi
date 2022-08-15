@@ -5,15 +5,24 @@ const coursesSlice = createSlice({
   initialState: {
     coursesContent: [],
     error: null,
+    isUpToDate: false,
   },
   reducers: {
     replaceCourses(state, action) {
       state.coursesContent = action.payload;
     },
+    changeCourse(state, action) {
+      const elementIndex = state.coursesContent.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      console.log(state.coursesContent)
+      state.coursesContent[elementIndex] = action.payload.updatedCourse;
+    },
     addCourse(state, action) {
-      console.log("inside addCourse");
-      console.log(action.payload);
       state.coursesContent = state.coursesContent.push(action.payload);
+    },
+    toggleIsUpToDate(state) {
+      state.isUpToDate = !state.isUpToDate;
     },
   },
 });

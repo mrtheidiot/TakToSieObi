@@ -2,22 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    buttons: [],
-    banners: [],
-    notification: null,
-    requestState: {
-      status: null,
-    },
-    isLoading: false,
+    isAppLoading: false,
+    isOverlayVisible: false,
+    isOverlayLoading: false,
+    overlayLoadingStatus: null,
   },
   reducers: {
-    requestStateChange(state, action) {
-      state.requestState = {
-        status: action.payload.status,
-      };
+    toggleLoadingInApp(state) {
+      state.isAppLoading = !state.isAppLoading;
     },
-    toggleLoading(state) {
-      state.isLoading = !state.isLoading;
+    toggleIsOverlayLoading(state) {
+      state.isOverlayLoading = !state.isOverlayLoading;
+    },
+    setOverlayLoadingStatus(state, action) {
+      state.overlayLoadingStatus = action.payload;
+    },
+    toogleIsOverlayVisible(state) {
+      state.isOverlayVisible = !state.isOverlayVisible;
     },
   },
 });

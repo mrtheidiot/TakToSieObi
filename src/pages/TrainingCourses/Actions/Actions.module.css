@@ -1,24 +1,15 @@
-.overlay {
-    height: 100%;
-}
-
-.overlay > h1 {
-    text-align: center;
-}
 .add-content-form {
     display: flex;
     flex-direction: column;
-    padding: 1%
-}
-
-.add-button-form {
-    display: flex;
-    justify-content: space-around;
 }
 
 .add-button-form > input {
     height: 25px;
     text-align: center;
+}
+
+.add-content-form > input {
+    margin-bottom: 5px;
 }
 
 .add-button-form button {
@@ -35,4 +26,9 @@
 
 .images_wrapper img {
     height: 50px;
+}
+
+.subSection_heading {
+    text-align: center;
+    margin: 10px 0
 }

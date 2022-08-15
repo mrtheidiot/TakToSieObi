@@ -10,7 +10,6 @@
   margin-bottom: 5vh;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 .section-wrapper-2 {
@@ -19,7 +18,6 @@
   margin-bottom: 5vh;
   display: flex;
   justify-content: center;
-  position: relative;
   background-color: #edcfa9;
 }
 

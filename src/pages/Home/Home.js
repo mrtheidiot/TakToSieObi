@@ -2,25 +2,24 @@ import { useEffect } from "react";
 
 import Banner from "../../components/Banner/Banner";
 import HomeSection from "./HomeSection";
-import Actions from "./HomeActions/Actions";
-import AddSection from "../../components/Edit/AddSection";
+import Actions from "./Actions/Actions";
+import Add from "../../UI/Actions/Add";
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchStoreContent } from "../../store/fetch-actions";
 
-
 import classes from "./Home.module.css";
 
 export const MainPage = () => {
-  const dispatch = useDispatch()
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  useEffect(() => {
     dispatch(
       fetchStoreContent(
         "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
         "home"
       )
-    )
-  },[dispatch])
+    );
+  }, [dispatch]);
 
   const homePageContent = useSelector((state) => state.home.homePageContent);
   const error = useSelector((state) => state.home.error);
@@ -45,9 +44,9 @@ export const MainPage = () => {
           />
         ))}
       </div>
-      <AddSection>
+      <Add>
         <Actions />
-      </AddSection>
+      </Add>
     </>
   );
 };

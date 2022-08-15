@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+.wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+.wrapper h1 {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+    font-size: 5rem;
+    letter-spacing: 1px;
+}
+
+.list_alignCenter {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 5vh;
+}
+
+.list_alignLeft {
+    margin-bottom: 5vh;
+}
+
+
+
+
+.list_alignLeft h3 {
+    font-family: 'Amatic SC', cursive;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: row;
+    color: green;
+}
+.list_alignLeft h3:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: black 1px solid;
+    margin: auto;
+}
+.list_alignLeft  h3:after {
+    margin-left: 10px
+}
+
+.li_content {
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+    font-size: 22px;
+    margin: 5px 0;
+    align-items: center;
+}
+
+.li_content i {
+    margin-right: 10px;
+    font-size: 0.6rem;
+    color: green;
+}

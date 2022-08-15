@@ -17,6 +17,7 @@ const homePageSlice = createSlice({
       const elementIndex = state.homePageContent.findIndex(
         (item) => item.id === action.payload.id
       );
+      console.log(state.homePageContent)
       state.homePageContent[elementIndex] = action.payload.updatedContent;
     },
     setError(state, action) {

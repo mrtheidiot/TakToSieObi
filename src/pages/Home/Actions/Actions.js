@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendContent, updateContent } from "../../../store/fetch-actions";
 import { homePageActions } from "../../../store/homePage-slice";
 
-import classes from "./HomeActions.module.css";
+import classes from "./Actions.module.css";
 
-const Add = (props) => {
+const Actions = (props) => {
   const dispatch = useDispatch();
   const homePageContent = useSelector((state) => state.home.homePageContent);
   const [buttons, setButtons] = useState([]);
+
+  console.log("inside home actions: " + props.id)
 
   let element;
   if (props.id) {
@@ -182,4 +184,4 @@ const Add = (props) => {
   );
 };
 
-export default Add;
+export default Actions;

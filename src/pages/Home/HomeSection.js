@@ -1,21 +1,25 @@
 import Button from "../../components/Button/Button";
-import EditSection from "../../components/Edit/EditSection";
 import classes from "./HomeSection.module.css";
 import { useSelector } from "react-redux";
-import Actions from "./HomeActions/Actions";
+import Actions from "./Actions/Actions";
+import Edit from "../../UI/Actions/Edit";
+import Output from "../../UI/Output/Output";
 
 const HomeSection = (props) => {
   const homePageContent = useSelector((state) => state.home.homePageContent);
-  const buttonsToCurrentSection = homePageContent.find((item) => item.id === props.id).buttons;
-  
+  const buttonsToCurrentSection = homePageContent.find(
+    (item) => item.id === props.id
+  ).buttons;
+
   const editMode = window.localStorage.getItem("isLoggedIn");
   // const editMode = false;
 
   return (
     <div className={classes.mainpagesection__main}>
       <div className={classes.mainpagesection__text}>
-        <div>{props.contentPart1}</div>
+        <Output text={props.contentPart1}/>
         <div>{props.contentPart2}</div>
+        <div>{props.contentPart3}</div>
       </div>
       <div className={classes.mainpagesection__links}></div>
       <section className={classes.buttons}>
@@ -31,9 +35,9 @@ const HomeSection = (props) => {
         ))}
       </section>
       {editMode && (
-        <EditSection >
+        <Edit>
           <Actions id={props.id} />
-        </EditSection>
+        </Edit>
       )}
     </div>
   );

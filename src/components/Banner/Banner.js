@@ -17,6 +17,7 @@ import banner4 from "./../../assets/Bannery/banner4.png";
 import banner5 from "./../../assets/Bannery/banner5.png";
 
 const Banner = (props) => {
+  console.log(props)
   const banners = [
     { img: `${banner1}`, alt: "piesek", id: 1 },
     { img: `${banner2}`, alt: "piesek", id: 2 },
@@ -26,9 +27,13 @@ const Banner = (props) => {
     { img: `${dog5}`, alt: "piesek", id: 5 },
     { img: `${dog6}`, alt: "piesek", id: 6 },
   ];
-  const { img, alt } = Object.values(banners).filter(
+  let { img, alt } = Object.values(banners).filter(
     (baner) => baner.id === props.id
   )[0];
+
+  if (props.imageURL) {
+    img = props.imageURL
+  }
 
   return (
     <>

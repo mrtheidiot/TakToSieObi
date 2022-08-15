@@ -1,56 +1,40 @@
-import TrainingSection from "./TrainingSection";
-import piesek from "./../../assets/indywid.png";
-import wsp1 from "./../../assets/Treningi/wsp1.png";
-import posluszenstwo from "./../../assets/elobd.jpg";
-import szczeniak from "./../../assets/szczeniak.jpg";
-import soon from "./../../assets/soon.png";
 import Banner from "../../components/Banner/Banner";
 import classes from "./TrainingCourses.module.css";
+import TrainingSection from "./TrainingSection";
+import { Route } from "react-router-dom";
 
 import { fetchStoreContent } from "../../store/fetch-actions";
 import { useSelector, useDispatch } from "react-redux";
-import AddSection from "../../components/Edit/AddSection";
-import Actions from "./Actions";
-import { useEffect, useState } from "react";
+import Add from "../../UI/Actions/Add";
+import Actions from "./Actions/Actions";
+import { useEffect } from "react";
 
 const TrainingCourses = () => {
-  const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses.coursesContent);
-
-  useEffect(() => {
-    dispatch(
-      fetchStoreContent(
-        "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses.json",
-        "courses"
-      )
-    );
-  }, [dispatch]);
-
-  console.log(courses);
-
+  console.log(courses)
   return (
     <>
       <Banner id={4} />
-      <div className="training-wrapper">
-        Treningi
-        {/* {trainings.map((trening, index) => (
+      <div className={classes.courses_container}>
+        {courses.map((item, index) => (
           <TrainingSection
-            title={trening.title}
-            link={trening.link}
-            description={trening.description}
-            image={trening.image}
-            organizator={trening.organizator}
-            koszt={trening.koszt}
-            koszt2={trening.koszt2}
-            koszt3={trening.koszt3}
+            id={item.id}
+            key={item.id}
+            title={item.title}
+            link={item.link}
+            description1={item.description1}
+            description2={item.description2}
+            description3={item.description3}
+            sectionImage={item.sectionImage}
+            organizer={item.organizer}
+            price={item.price}
             ifReverse={index % 2 === 0 ? 0 : 1}
-            key={index}
           />
-        ))} */}
+        ))}
       </div>
-      <AddSection>
+      <Add>
         <Actions />
-      </AddSection>
+      </Add>
     </>
   );
 };

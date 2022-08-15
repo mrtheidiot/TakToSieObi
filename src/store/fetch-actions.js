@@ -4,7 +4,7 @@ import { uiActions } from "./ui-slice";
 
 export const fetchStoreContent = (url, identifier) => {
   return async (dispatch) => {
-    dispatch(uiActions.toggleLoading());
+    dispatch(uiActions.toggleLoadingInApp());
     try {
       const fetchData = async () => {
         const response = await fetch(`${url}`);
@@ -43,10 +43,20 @@ export const fetchStoreContent = (url, identifier) => {
           );
           break; //END REPLACING THE HOME PAGE CONTENT SECTION
         case "courses":
-          dispatch(coursesActions.replaceCourses(storeData));
+          let transformedObjects2 = [];
+          for (const key in storeData) {
+            const obj = {
+              id: key,
+              ...storeData[key],
+            };
+            transformedObjects2.push(obj);
+          }
+
+          dispatch(coursesActions.replaceCourses(transformedObjects2));
+          dispatch(coursesActions.toggleIsUpToDate());
           break;
       }
-      dispatch(uiActions.toggleLoading());
+      dispatch(uiActions.toggleLoadingInApp());
     } catch (err) {
       switch (identifier) {
         case "home":
@@ -60,7 +70,7 @@ export const fetchStoreContent = (url, identifier) => {
   };
 };
 
-export const sendContent = (url, newContent, identifier) => {
+export const sendContent = (url, newContent) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(`${url}/`, {
@@ -74,18 +84,11 @@ export const sendContent = (url, newContent, identifier) => {
       return data;
     };
     try {
-      const idd = await sendRequest();
-
-      switch (identifier) {
-        case "courses":
-          const content = {
-            ...newContent,
-            id: idd.name,
-          };
-          dispatch(coursesActions.addCourse(content));
-          break;
-      }
+      dispatch(uiActions.toggleIsOverlayLoading());
+      await sendRequest();
     } catch (error) {}
+    dispatch(uiActions.toggleIsOverlayLoading());
+    dispatch(uiActions.setOverlayLoadingStatus("completed"));
   };
 };
 
@@ -101,27 +104,8 @@ export const updateContent = (url, id, updatedContent) => {
       }
     };
     try {
-      dispatch(
-        uiActions.requestStateChange({
-          status: "loading",
-          error: null,
-        })
-      );
       await sendRequest();
-      dispatch(
-        uiActions.requestStateChange({
-          status: "completed",
-          error: null,
-        })
-      );
-    } catch (error) {
-      dispatch(
-        uiActions.requestStateChange({
-          status: "completed",
-          error: error.message,
-        })
-      );
-    }
+    } catch (error) {}
   };
 };
 

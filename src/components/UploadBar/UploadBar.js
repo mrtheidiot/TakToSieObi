@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import palceholder from "./../../assets/placeholder.png";
 import storage from "../../firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -8,7 +8,9 @@ import classes from "./UploadBar.module.css";
 const UploadBar = (props) => {
   const [file, setFile] = useState("");
   const [percent, setPercent] = useState(0);
-  const [fileLink, setFileLink] = useState(null);
+  const [fileLink, setFileLink] = useState(props.presetImage);
+
+
 
   function handleChange(event) {
     setFile(event.target.files[0]);
@@ -34,41 +36,52 @@ const UploadBar = (props) => {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setFileLink(url)
-          props.returnURL(url);
+          setFileLink(url);
+          props.returnLink(url);
         });
       }
     );
   };
 
-  const handleRemove = (fileLink) => {
-    console.log(fileLink);
-  };
-
-  const barClasses =
-    percent !== 100
-      ? `${classes.uploadBarInner}`
-      : `${classes.uploadBarInner} ${classes.changeColor}`;
-
   return (
     <div className={classes.wrapper}>
-      <img src={fileLink} />
-      <input type="file" onChange={handleChange} className={classes.input} />
-      <button className={classes.button} onClick={handleUpload}>
-        Dodaj
-      </button>
-      {fileLink && (
-        <button className={classes.button} onClick={handleRemove}>
-          Usuń
-        </button>
-      )}
-      <div className={classes.uploadBarOuter}>
-        <div className={barClasses} style={{ width: `${percent}%` }}>
-          ...
+      <section className={classes.image_container}>
+        <img src={fileLink ? fileLink : palceholder} alt="uploaded image" />
+      </section>
+      <section className={classes.inputs_container}>
+        <div className={classes.inputs}>
+          <h3>Wybierz zdjęcie:</h3>
+          <input
+            type="file"
+            onChange={handleChange}
+            className={classes.input}
+          />
+          <button onClick={handleUpload}>Dodaj</button>
         </div>
-      </div>
+        <div className={classes.loadingBar_container}>
+          <div className={classes.loadingBar} style={{ width: `${percent}%` }}>
+            .
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
 export default UploadBar;
+
+// <img src={fileLink} />
+// <input type="file" onChange={handleChange} className={classes.input} />
+// <button className={classes.button} onClick={handleUpload}>
+//   Dodaj
+// </button>
+// {fileLink && (
+//   <button className={classes.button} onClick={handleRemove}>
+//     Usuń
+//   </button>
+// )}
+// <div className={classes.uploadBarOuter}>
+//   <div className={barClasses} style={{ width: `${percent}%` }}>
+//     ...
+//   </div>
+// </div>

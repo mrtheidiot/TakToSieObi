@@ -1,7 +1,4 @@
 import { useCallback, useReducer } from "react";
-import { fetchStoreContent } from "../../store/fetch-actions";
-import { useDispatch } from "react-redux";
-import { homePageActions } from "../../store/homePage-slice";
 
 const requestReducer = (state, action) => {
   if (action.type === "SEND") {
@@ -28,29 +25,22 @@ const requestReducer = (state, action) => {
   return state;
 };
 
-const useFetchContent = (startWithLoading = false) => {
-  const dispatch = useDispatch();
-  const initialState = {
-    status: startWithLoading ? "loading" : null,
-    error: null,
-  };
-
+const useFetchContent = (requestFunction, startWithLoading = false) => {
   const [requestState, dispatchState] = useReducer(
     requestReducer,
-    initialState,
+    {status: startWithLoading ? "loading" : null, error: null,}
   );
 
-  const fetchContent = useCallback(() => {
+  const fetchContent = useCallback(async (requestData) => {
     dispatchState({ type: "SEND" });
-    dispatch(
-      fetchStoreContent(
-        "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
-        "home"
-      )
-    )
-    dispatchState({ type: "SUCCESS"  });
+    try {
+      // const responseData = await requestFunction(requestData)
+      dispatchState({ type: "SUCCESS"  });
+    } catch (error) {
+      dispatchState({type: "ERROR", errorMessage: error.message || "Something went wrong!"})
+    }
   }
-  ,[])
+  ,[requestFunction])
 
   return {
     fetchContent,

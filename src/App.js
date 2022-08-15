@@ -1,19 +1,35 @@
 import { Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar/NavBar";
-import LoadingSpinner from "./UI/LoadingSpinner";
+import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 
 import Home from "./pages/Home/Home";
 import TrainingCourses from "./pages/TrainingCourses/TrainingCourses";
 import Login from "./components/Login/Login";
 import Test from "./components/Test/Test";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import classes from "./App.module.css";
 import Posluszenstwo from "./components/Treningi/Posluszenstwo";
+import CourseDetails from "./pages/TrainingCourses/CourseDetails";
+import { useEffect } from 'react'
+import {fetchStoreContent } from './store/fetch-actions'
 
 function App() {
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.ui.isAppLoading);
+  const isUpToDate = useSelector((state) => state.courses.isUpToDate);
+
+  useEffect(() => {
+    if (!isUpToDate) {
+      dispatch(
+        fetchStoreContent(
+          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses.json",
+          "courses"
+        )
+      );
+    }
+  }, [dispatch, isUpToDate]);
 
   const loadingSpinner = (
     <div className={classes.loadingSpinnerOuter}>
@@ -40,6 +56,9 @@ function App() {
           </Route>
           <Route exact path="/test">
             <Test />
+          </Route>
+          <Route path="/treningi/:courselink">
+            <CourseDetails />
           </Route>
           <Route exact path="/indywidualy">
             <Posluszenstwo />
@@ -76,3 +95,27 @@ export default App;
 // ];
 
 // {menuOpen && <OverlayMenu callback={handleOverlayMenu} />}
+
+
+// let str =
+// "cokolwiek /bold/powiem ci/bold/ cos/nextl/ jeszcze /bold/czego nie/bold/ wiem";
+
+// // str = str.split("/bold/");
+
+// const cos1 = str.split("/nextl/").map((item) => <div>{item}</div>);
+// const cos2 = [];
+// cos1.forEach((item) => cos2.push(item.props.children));
+// console.log(cos2);
+
+// return (
+// <ul className={classes.uploadbar}>
+//   {cos2.map((item) => (
+//     <div>
+//       {item.split("/bold/").map((item2, index) => (
+//         <li>{index & (2 !== 0) ? <b>{item2}</b> : item2}</li>
+//       ))}
+//     </div>
+//   ))}
+// </ul>
+// );
+// };
