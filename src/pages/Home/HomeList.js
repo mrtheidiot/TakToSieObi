@@ -24,7 +24,7 @@ export const HomeList = () => {
         </h3>
         {error && <p>{error}</p>}
         {homePageContent.map((section) => (
-          <div className="dispay-flex" data-aos={editMode ? "" : "fade-up"}>
+          <section className="dispay-flex" data-aos={editMode ? "" : "fade-up"}>
             <HomeSection
               id={section.id}
               key={section.id}
@@ -37,7 +37,7 @@ export const HomeList = () => {
                 <Actions id={section.id} />
               </AddOrEdit>
             )}
-          </div>
+          </section>
         ))}
         {editMode && (
           <AddOrEdit edit={false}>

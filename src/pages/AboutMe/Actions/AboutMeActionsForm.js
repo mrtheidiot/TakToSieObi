@@ -29,14 +29,18 @@ const AboutMeActionsForm = (props) => {
     event.preventDefault();
     const updatedObject = {
       title: values.title,
-      part1: values.part1,
-      part2: values.part2,
-      part3: values.part3,
-      part4: values.part4,
-      part5: values.part5,
-      part6: values.part6,
-      part7: values.part7,
-      part8: values.part8,
+      parts: [
+        values.part1,
+        values.part2,
+        values.part3,
+        values.part4,
+        values.part5,
+        values.part6,
+        values.part7,
+        values.part8,
+        values.part9,
+        values.part10,
+      ],
       sideImage: values.sideImage,
       sectionGallery: sectionGallery,
     };
@@ -60,7 +64,7 @@ const AboutMeActionsForm = (props) => {
         <textarea
           type="text"
           id="part1"
-          value={values.part2}
+          value={values.part1}
           onChange={handleInputChange}
           name="part1"
         />
@@ -100,7 +104,7 @@ const AboutMeActionsForm = (props) => {
         <textarea
           type="text"
           id="part6"
-          value={values.part1}
+          value={values.part6}
           onChange={handleInputChange}
           name="part6"
         />

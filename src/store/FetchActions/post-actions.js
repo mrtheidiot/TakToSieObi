@@ -1,5 +1,6 @@
 import { homePageActions } from "../homePage-slice";
 import { coursesActions } from "../coursesList-slice";
+import { aboutMeActions } from "../aboutme-slice";
 import { uiActions } from "../ui-slice";
 
 export const addHomeSection = (newSection) => {
@@ -59,3 +60,30 @@ export const addCoursesSection = (newSection) => {
     dispatch(uiActions.setIsOverlayLoading(false));
   };
 }
+
+export const addAboutMeSection = (newSection) => {
+  return async (dispatch) => {
+    dispatch(uiActions.setIsOverlayLoading(true));
+    try {
+      const response = await fetch(
+        `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/aboutMe.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(newSection),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+      const data = await response.json();
+      dispatch(
+        aboutMeActions.addAboutMeSection({
+          id: data.name,
+          ...newSection,
+        })
+      );
+      dispatch(uiActions.setHideOverlay(true));
+    } catch (error) {}
+    dispatch(uiActions.setIsOverlayLoading(false));
+  };
+};

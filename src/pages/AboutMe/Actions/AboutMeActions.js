@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import classes from "./AboutMeActions.module.css";
 import AboutMeActionsForm from "./AboutMeActionsForm";
+import { updateAboutMeSection } from "../../../store/FetchActions/put-actions";
+import { addAboutMeSection } from "../../../store/FetchActions/post-actions";
 
 const AboutMeActions = (props) => {
   const dispatch = useDispatch();
@@ -38,16 +38,18 @@ const AboutMeActions = (props) => {
   }
 
   const updateSection = (updatedObject) => {
-    console.log(updatedObject);
+    if (objectToEdit) {
+      dispatch(updateAboutMeSection(updatedObject, objectToEdit.id));
+    } else {
+      dispatch(addAboutMeSection(updatedObject));
+    }
   };
 
   return (
-    <div>
-      <AboutMeActionsForm
-        initialValues={initialValues}
-        updateSection={updateSection}
-      />
-    </div>
+    <AboutMeActionsForm
+      initialValues={initialValues}
+      updateSection={updateSection}
+    />
   );
 };
 

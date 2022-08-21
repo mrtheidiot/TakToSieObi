@@ -10,8 +10,8 @@ const aboutMeSlice = createSlice({
     replaceAboutMe(state, action) {
       state.aboutMeContent = action.payload;
     },
-    changeABoutMeSection(state, action) {
-      const elementIndex = state.homePageContent.findIndex(
+    changeAboutMeSection(state, action) {
+      const elementIndex = state.aboutMeContent.findIndex(
         (item) => item.id === action.payload.id
       );
       state.aboutMeContent[elementIndex] = action.payload.updatedSection;

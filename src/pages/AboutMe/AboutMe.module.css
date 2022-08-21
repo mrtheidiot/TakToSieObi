@@ -1,0 +1,50 @@
+.wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.contentWrapper {
+    width: 70%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 10px;
+}
+
+.title {
+    grid-column: 1 / 3;
+    text-align: center;
+    font-size: 2.3rem;
+    font-family: 'Nasalization Rg', sans-serif;
+    margin: 15px 0;
+}
+
+.parts {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.parts p {
+    margin: 10px 0;
+    text-indent: 20px;
+}
+
+.sideImage {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideImage img {
+    width: 100%;
+    border-radius: 10px;
+}
