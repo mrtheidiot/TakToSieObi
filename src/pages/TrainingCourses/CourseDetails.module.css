@@ -7,46 +7,42 @@
 .wrapper h1 {
     font-family: 'Amatic SC', cursive;
     text-align: center;
-    font-size: 5rem;
+    font-size: 4rem;
     letter-spacing: 1px;
 }
 
 .list_alignCenter {
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 5vh;
+    font-size: 1.5rem;
+    margin-top: 5vh;
 }
 
 .list_alignLeft {
-    margin-bottom: 5vh;
+    margin-top: 3vh;
 }
-
-
-
 
 .list_alignLeft h3 {
     font-family: 'Amatic SC', cursive;
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 1px;
     display: flex;
     flex-direction: row;
     color: green;
+    margin-bottom: 5px;
 }
 .list_alignLeft h3:after{
     content: "";
     flex: 1 1;
     border-bottom: black 1px solid;
     margin: auto;
-}
-.list_alignLeft  h3:after {
     margin-left: 10px
 }
 
 .li_content {
     display: flex;
     font-family: 'Raleway', sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     margin: 5px 0;
     align-items: center;
 }

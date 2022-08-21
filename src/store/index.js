@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import homePageSlice from "./homePage-slice";
-import coursesSlice from "./trainingCourses-slice";
+import coursesSlice from "./coursesList-slice";
 import uiSlice from "./ui-slice";
 
 const store = configureStore({

@@ -8,17 +8,19 @@ const homePageSlice = createSlice({
   },
   reducers: {
     replaceHomePage(state, action) {
-      state.homePageContent = action.payload.content;
-    },
-    addElement(state, action) {
-      state.homePageContent.push(action.payload);
+      state.homePageContent = action.payload;
     },
     changeHomeElement(state, action) {
       const elementIndex = state.homePageContent.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log(state.homePageContent)
-      state.homePageContent[elementIndex] = action.payload.updatedContent;
+      state.homePageContent[elementIndex] = action.payload.updatedSection;
+    },
+    addHomeSection(state,action) {
+      state.homePageContent.push(action.payload)
+    },
+    removeHomeSection(state, action) {
+      state.homePageContent = state.homePageContent.filter(section => section.id !== action.payload.id)
     },
     setError(state, action) {
       state.error = action.payload;

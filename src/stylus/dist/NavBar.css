@@ -1,0 +1,103 @@
+@import url("http://fonts.cdnfonts.com/css/nasalization?styles=6717");
+.navLink_link {
+  font-family: 'Nasalization Rg', sans-serif;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #000;
+  padding: 0 10px;
+  position: relative;
+}
+.navLink_link:hover {
+  cursor: pointer;
+}
+.navLink_link:hover .dropdown_menu li {
+  display: block;
+}
+.navLink_link a {
+  text-decoration: none;
+  color: #000;
+}
+.navLink_link a:hover {
+  color: rgba(0,0,0,0.5);
+}
+.dropdown_menu {
+  position: absolute;
+  top: 100%;
+  left: -10%;
+  width: 100%;
+  perspective: 1000px;
+}
+.dropdown_menu li {
+  width: 110%;
+  display: none;
+  color: #000;
+  background-color: #e2e4d0;
+  padding: 10px 30px;
+  font-size: 15px;
+}
+.dropdown_menu li:hover {
+  color: rgba(0,0,0,0.5);
+}
+.dropdown_menu li a {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+.navLink_link:hover .dropdown_animated {
+  display: block;
+}
+.dropdown_animated {
+  display: none;
+}
+.dropdown_animated li {
+  display: block;
+}
+.dropdown_animation {
+  animation: growDown 350ms ease-in-out forwards;
+  transform-origin: top center;
+}
+@-moz-keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@-webkit-keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@-o-keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

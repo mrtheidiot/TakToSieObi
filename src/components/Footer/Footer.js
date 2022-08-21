@@ -1,17 +1,30 @@
-import React from "react";
-import "./Footer.css";
+import classes from "./Footer.module.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="footer__main">
-      <div className="footer-position">
-        <div className="footer__copy">Tak To Się Obi 2022</div>
-        <i className="fab fa-facebook"></i>
-        <i className="fas fa-at"></i>
-        <i classname="fas fa-link"></i>
-      </div>
-    </div>
+    <footer className={classes.wrapper}>
+      <section className={classes.text}>Tak to się Obi 2022</section>
+      <section className={classes.icons}>
+        <a
+          href="https://www.facebook.com/ObiTraining"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i className="fab fa-facebook" />
+        </a>
+        <a
+          href="https://www.instagram.com/taktosieobi"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i className="fab fa-instagram insta" />
+        </a>
+        <Link to="/kontakt" ><i class="fas fa-envelope"></i></Link>
+      </section>
+    </footer>
   );
 };
 
 export default Footer;
+

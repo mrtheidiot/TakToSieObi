@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import classes from './Output.module.css'
 
 const Output = (props) => {
+  if (!props.text) {
+    return "";
+  }
 
   const cos1 = props.text.split("/addresses/");
   const cos2 = cos1[1] ? cos1[1].split(",") : ""

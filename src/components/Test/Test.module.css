@@ -6,3 +6,9 @@
     border: solid 1px black;
     font-family: 'Courier New', Courier, monospace;
 }
+.cos {
+    height: 500px;
+    background-color: yellow;
+    margin: 20px;
+}
+

@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../../../components/Button/Button";
+import Button from "../../../UI/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { sendContent, updateContent } from "../../../store/fetch-actions";
-import { homePageActions } from "../../../store/homePage-slice";
+import { updateHomeSection } from "../../../store/FetchActions/put-actions";
+import { addHomeSection } from "../../../store/FetchActions/post-actions";
+import { removeSection } from "../../../store/FetchActions/delete-actions";
 
 import classes from "./Actions.module.css";
 
-const Actions = (props) => {
+const HomeActions = (props) => {
   const dispatch = useDispatch();
   const homePageContent = useSelector((state) => state.home.homePageContent);
   const [buttons, setButtons] = useState([]);
-
-  console.log("inside home actions: " + props.id)
 
   let element;
   if (props.id) {
@@ -68,8 +67,7 @@ const Actions = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const newOrUpdatedSectionElement = {
-      id: props.id,
+    const section = {
       contentPart1: content1InputRef.current.value,
       contentPart2: content2InputRef.current.value,
       contentPart3: content3InputRef.current.value,
@@ -77,36 +75,9 @@ const Actions = (props) => {
     };
 
     if (element) {
-      dispatch(
-        homePageActions.changeHomeElement({
-          id: element.id,
-          updatedContent: newOrUpdatedSectionElement,
-        })
-      );
-      dispatch(
-        updateContent(
-          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage",
-          element.id,
-          newOrUpdatedSectionElement
-        )
-      );
+      dispatch(updateHomeSection(section, element.id));
     } else {
-      const returnNewElementId = (id) => {
-        dispatch(
-          homePageActions.addElement({
-            ...newOrUpdatedSectionElement,
-            id: id,
-          })
-        );
-      };
-
-      dispatch(
-        sendContent(
-          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json",
-          newOrUpdatedSectionElement,
-          returnNewElementId
-        )
-      );
+      dispatch(addHomeSection(section));
     }
   };
 
@@ -178,10 +149,19 @@ const Actions = (props) => {
           <option value="0">Nie</option>
         </select>
         <button>DODAJ NOWY PRZYCISK</button>
+        {element && (
+          <button
+            onClick={() => {
+              dispatch(removeSection("home", element.id));
+            }}
+          >
+            Usuń ta sekcje
+          </button>
+        )}
         <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </form>
     </>
   );
 };
 
-export default Actions;
+export default HomeActions;

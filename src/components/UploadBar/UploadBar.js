@@ -10,8 +10,6 @@ const UploadBar = (props) => {
   const [percent, setPercent] = useState(0);
   const [fileLink, setFileLink] = useState(props.presetImage);
 
-
-
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
@@ -37,7 +35,7 @@ const UploadBar = (props) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           setFileLink(url);
-          props.returnLink(url);
+          props.returnLink(props.name, url);
         });
       }
     );

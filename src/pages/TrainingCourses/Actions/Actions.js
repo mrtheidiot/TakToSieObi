@@ -1,21 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { sendContent, updateContent } from "../../../store/fetch-actions";
+import React, { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
+import { useDispatch, useSelector } from "react-redux";
+import { coursesActions } from "../../../store/coursesList-slice";
+import { addCoursesSection } from "../../../store/FetchActions/post-actions";
+import { updateCourseSection } from "../../../store/FetchActions/put-actions";
+import { removeSection } from "../../../store/FetchActions/delete-actions";
 
 import classes from "./Actions.module.css";
-import { coursesActions } from "../../../store/trainingCourses-slice";
-import { uiActions } from "../../../store/ui-slice";
 
 const Actions = (props) => {
   const dispatch = useDispatch();
-  // const [sectionImage, setSectionImage] = useState("");
-  // const [bannerImage, setBannerImage] = useState("");
   const [sectionGallery, setSectionGallery] = useState([]);
   const courses = useSelector((state) => state.courses.coursesContent);
-
-  let sectionImage = "",
-    bannerImage = "";
 
   let initialValues = {
     title: "",
@@ -25,6 +21,8 @@ const Actions = (props) => {
     link: "",
     organizer: "",
     price: "",
+    sectionImage: "",
+    bannerImage: "",
     list1: "",
     list2: "",
     list3: "",
@@ -35,9 +33,11 @@ const Actions = (props) => {
     list8: "",
     list9: "",
     list10: "",
+    list1Title: "",
     list2Title: "",
     list3Title: "",
     list4Title: "",
+    list5Title: "",
     list6Title: "",
     list7Title: "",
     list8Title: "",
@@ -46,20 +46,13 @@ const Actions = (props) => {
   };
 
   let course;
+
   if (props.id) {
     course = courses.find((item) => item.id === props.id);
-    sectionImage = course.sectionImage;
-    bannerImage = course.bannerImage;
     initialValues = {
-      title: course.title,
-      description1: course.description1,
-      description2: course.description2,
-      description3: course.description3,
-      link: course.link,
-      organizer: course.organizer,
-      price: course.price,
-      list1: course.list1,
-      list2: course.list2,
+      ...course,
+      list1: course.subsite[0].content,
+      list2: course.subsite[1].content,
       list3: course.list3,
       list4: course.list4,
       list5: course.list5,
@@ -88,6 +81,17 @@ const Actions = (props) => {
     });
   };
 
+  const handleImageInputChange = (name, url) => {
+    setValues({
+      ...values,
+      [name]: url,
+    });
+  };
+
+  const removeImageFromGalleryHandler = (image) => {
+    setSectionGallery((prev) => prev.filter((item) => item !== image));
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -96,58 +100,34 @@ const Actions = (props) => {
       description1: values.description1,
       description2: values.description2,
       description3: values.description3,
-      link: values.link,
+      link: `/treningi/${values.link}`,
       organizer: values.organizer,
       price: values.price,
-      sectionImage: sectionImage,
-      bannerImage: bannerImage,
-      list1: values.list1,
-      list2: values.list2,
-      list3: values.list3,
-      list4: values.list4,
-      list5: values.list5,
-      list6: values.list6,
-      list7: values.list7,
-      list8: values.list8,
-      list9: values.list9,
-      list10: values.list10,
-      title2: values.list2Title,
-      title3: values.list3Title,
-      title4: values.list4Title,
-      title6: values.list6Title,
-      title7: values.list7Title,
-      title8: values.list8Title,
-      title9: values.list9Title,
+      sectionImage: values.sectionImage,
+      bannerImage: values.bannerImage,
+      sectionGallery: sectionGallery,
+      subsite: [
+        { title: values.list1Title, content: values.list1 },
+        { title: values.list2Title, content: values.list2 },
+        { title: values.list3Title, content: values.list3 },
+        { title: values.list4Title, content: values.list4 },
+        { title: values.list5Title, content: values.list5 },
+        { title: values.list6Title, content: values.list6 },
+        { title: values.list7Title, content: values.list7 },
+        { title: values.list8Title, content: values.list8 },
+        { title: values.list9Title, content: values.list9 },
+        { title: values.list10Title, content: values.list10 },
+      ],
     };
 
     if (course) {
-      const editedCourse = {
-        ...section,
-        id: course.id,
-      };
-      dispatch(
-        coursesActions.changeCourse({
-          id: course.id,
-          updatedCourse: section,
-        })
-      );
-      dispatch(
-        updateContent(
-          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses",
-          course.id,
-          section
-        )
-      );
+      dispatch(updateCourseSection(section, course.id));
     } else {
-      dispatch(
-        sendContent(
-          "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses.json",
-          section
-        )
-      );
-      dispatch(coursesActions.toggleIsUpToDate());
+      dispatch(addCoursesSection(section));
     }
   };
+
+  console.log(sectionGallery);
 
   return (
     <div className={classes.wrapper}>
@@ -215,19 +195,16 @@ const Actions = (props) => {
         "/treningi":
       </h3>
       <UploadBar
-        presetImage={sectionImage}
-        returnLink={(url) => {
-          // setSectionImage(url);
-          sectionImage = url;
-        }}
+        presetImage={values.sectionImage}
+        name="sectionImage"
+        returnLink={handleImageInputChange}
       />
       <h2 className={classes.subSection_heading}>Podstrona treningu:</h2>
       <h3>Dodaj baner, który będzie się wyświetlał na górze podstrony:</h3>
       <UploadBar
-       presetImage={bannerImage}
-        returnLink={(url) => {
-          bannerImage = url
-        }}
+        presetImage={values.bannerImage}
+        returnLink={handleImageInputChange}
+        name="bannerImage"
       />
       <form className={classes["add-content-form"]}>
         <label htmlFor="title">Lista 1 (wyśrodkowana na początku strony)</label>
@@ -369,9 +346,94 @@ const Actions = (props) => {
           name="list10"
         />
       </form>
+      <UploadBar
+        name="gallery"
+        returnLink={(name, url) => {
+          setSectionGallery((prev) => [...prev, url]);
+        }}
+      />
+      <div className={classes.galleryWrapper}>
+        {sectionGallery.map((image, index) => (
+          <div key={index} className={classes.galleryImage}>
+            <img src={image} />
+            <button
+              onClick={() => {
+                removeImageFromGalleryHandler(image);
+              }}
+            >
+              Usun
+            </button>
+          </div>
+        ))}
+      </div>
+      {course && (
+        <button
+          onClick={() => {
+            dispatch(removeSection("courses", course.id));
+          }}
+        >
+          Usuń ta sekcje
+        </button>
+      )}
       <button onClick={submitHandler}>ZAAKCEPTUJ</button>
     </div>
   );
 };
 
 export default Actions;
+
+// sectionImage = course.sectionImage;
+// bannerImage = course.bannerImage;
+// initialValues = {
+//   title: course.title,
+//   description1: course.description1,
+//   description2: course.description2,
+//   description3: course.description3,
+//   link: course.link,
+//   organizer: course.organizer,
+//   price: course.price,
+//   list1: course.list1,
+//   list2: course.list2,
+//   list3: course.list3,
+//   list4: course.list4,
+//   list5: course.list5,
+//   list6: course.list6,
+//   list7: course.list7,
+//   list8: course.list8,
+//   list9: course.list9,
+//   list10: course.list10,
+//   list2Title: course.title2,
+//   list3Title: course.title2,
+//   list4Title: course.title4,
+//   list6Title: course.title4,
+//   list7Title: course.title4,
+//   list8Title: course.title4,
+//   list9Title: course.title9,
+// };
+
+// title: values.title,
+// description1: values.description1,
+// description2: values.description2,
+// description3: values.description3,
+// link: values.link,
+// organizer: values.organizer,
+// price: values.price,
+// sectionImage: sectionImage,
+// bannerImage: bannerImage,
+// list1: values.list1,
+// list2: values.list2,
+// list3: values.list3,
+// list4: values.list4,
+// list5: values.list5,
+// list6: values.list6,
+// list7: values.list7,
+// list8: values.list8,
+// list9: values.list9,
+// list10: values.list10,
+// title2: values.list2Title,
+// title3: values.list3Title,
+// title4: values.list4Title,
+// title6: values.list6Title,
+// title7: values.list7Title,
+// title8: values.list8Title,
+// title9: values.list9Title,

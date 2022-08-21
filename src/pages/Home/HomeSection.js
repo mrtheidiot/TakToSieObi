@@ -1,9 +1,8 @@
-import Button from "../../components/Button/Button";
-import classes from "./HomeSection.module.css";
 import { useSelector } from "react-redux";
-import Actions from "./Actions/Actions";
-import Edit from "../../UI/Actions/Edit";
+import Button from "../../UI/Button/Button";
 import Output from "../../UI/Output/Output";
+
+import classes from "./HomeSection.module.css";
 
 const HomeSection = (props) => {
   const homePageContent = useSelector((state) => state.home.homePageContent);
@@ -11,34 +10,29 @@ const HomeSection = (props) => {
     (item) => item.id === props.id
   ).buttons;
 
-  const editMode = window.localStorage.getItem("isLoggedIn");
-  // const editMode = false;
+  // const editMode = window.localStorage.getItem("isLoggedIn");
+  const editMode = true;
 
   return (
     <div className={classes.mainpagesection__main}>
       <div className={classes.mainpagesection__text}>
         <Output text={props.contentPart1}/>
-        <div>{props.contentPart2}</div>
-        <div>{props.contentPart3}</div>
+        <Output text={props.contentPart2}/>
+        <Output text={props.contentPart3}/>
       </div>
       <div className={classes.mainpagesection__links}></div>
       <section className={classes.buttons}>
         {buttonsToCurrentSection.map((button) => (
           <Button
-            key={button.id}
-            text={button.text}
-            isInternal={button.isInternal}
-            address={button.address}
-            backgroundColor={button.backgroundColor}
-            textColor={button.textColor}
+          key={button.id}
+          text={button.text}
+          isInternal={button.isInternal}
+          address={button.address}
+          backgroundColor={button.backgroundColor}
+          textColor={button.textColor}
           />
-        ))}
+          ))}
       </section>
-      {editMode && (
-        <Edit>
-          <Actions id={props.id} />
-        </Edit>
-      )}
     </div>
   );
 };

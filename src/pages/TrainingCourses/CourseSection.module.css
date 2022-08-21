@@ -1,0 +1,133 @@
+.wrapper {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backgroundDark {
+    background-color: #FFEBC1;
+}
+
+.container {
+    height: 90%;
+    text-decoration: none;
+    background-color: #f9faef;
+    color: black;
+    width: 70%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.7fr 0.7fr 0.7fr 1.2fr;
+    align-items: center;
+    border-radius: 15px;
+    padding: 15px;
+    column-gap: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.backgroundLight .container:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.backgroundDark .container:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.image {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.title {
+    grid-row: 1 / 2;
+    font-size: 2.3rem;
+    align-self: center;
+    text-transform: uppercase;
+    font-family: 'Nasalization Rg', sans-serif;
+}
+
+.container p {
+    font-family: 'Raleway', sans-serif;
+    width: 90%;
+    margin: auto;
+    font-size: 1.1rem;
+}
+
+.price {
+    height: 100%;
+    border-radius: 10px;
+    background-color: #FFEBC1;
+}
+
+@media only screen and (max-width: 110em ) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 90em ) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 70em ) {
+    .wrapper {
+        height: auto;
+        padding: 0;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 5fr repeat(3, 0.7fr) 1.2fr ;
+        row-gap: 10px;
+        
+    }
+    .title {
+        grid-row: 1 / 2;
+        font-size: 1.5rem;
+    }
+    .image {
+        grid-row: 2 / 3;
+    }
+    .container p {
+        width: 100%;
+        font-size: 1rem;
+
+    }
+    .par1 {
+        grid-row: 3 / 4;
+    }
+    .par2 {
+        grid-row: 4 / 5;
+    }
+    .par3 {
+        grid-row: 5 / 6;
+    }
+    .price {
+        grid-row: 6 / 7;
+    }
+}
+
+
+
