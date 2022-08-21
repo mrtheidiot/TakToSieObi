@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
 import { useDispatch, useSelector } from "react-redux";
-import { coursesActions } from "../../../store/coursesList-slice";
 import { addCoursesSection } from "../../../store/FetchActions/post-actions";
 import { updateCourseSection } from "../../../store/FetchActions/put-actions";
 import { removeSection } from "../../../store/FetchActions/delete-actions";
@@ -126,8 +125,6 @@ const Actions = (props) => {
       dispatch(addCoursesSection(section));
     }
   };
-
-  console.log(sectionGallery);
 
   return (
     <div className={classes.wrapper}>

@@ -1,10 +1,13 @@
 import Banner from "../../components/Banner/Banner";
+import AboutMeActions from "./Actions/AboutMeActions";
+
 import classes from "./AboutMe.module.css";
 
 const AboutMe = () => {
   return (
     <>
       <Banner id={3} />
+      <AboutMeActions />
     </>
   );
 };

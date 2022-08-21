@@ -11,6 +11,8 @@ export const HomeList = () => {
   const error = useSelector((state) => state.home.error);
   const editMode = useSelector((state) => state.ui.editMode);
 
+  
+
   return (
     <>
       <Banner id={3} />

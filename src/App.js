@@ -15,6 +15,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 import classes from "./App.module.css";
+import AboutMe from "./pages/AboutMe/AboutMe";
 
 function App() {
   const isLoading = useSelector((state) => state.ui.isAppLoading);
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route path="/treningi" exact>
             <CoursesList />
+          </Route>
+          <Route path="/omnie" exact>
+            <AboutMe />
           </Route>
           <Route exact path="/login">
             <Login />

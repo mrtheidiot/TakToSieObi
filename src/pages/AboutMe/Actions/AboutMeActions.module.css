@@ -1,0 +1,13 @@
+.add-content-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-button-form > input {
+    height: 25px;
+    text-align: center;
+}
+
+.add-content-form > input {
+    margin-bottom: 5px;
+}
