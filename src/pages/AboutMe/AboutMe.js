@@ -1,9 +1,10 @@
 import Banner from "../../components/Banner/Banner";
 import AboutMeActions from "./Actions/AboutMeActions";
-import { useSelector } from "react-redux";
-import Gallery from "../../components/Gallery/Gallery";
-import classes from "./AboutMe.module.css";
 import AddOrEdit from "../../components/Overlays/ActionsOverlay/AddOrEdit";
+import Gallery from "../../components/Gallery/Gallery";
+import { useSelector } from "react-redux";
+
+import classes from "./AboutMe.module.css";
 
 const AboutMe = () => {
   const aboutMeContent = useSelector((state) => state.aboutme.aboutMeContent);
@@ -17,15 +18,12 @@ const AboutMe = () => {
     <>
       <Banner id={3} />
       {aboutMeContent.map((section) => (
-        <section
-          className={sectionClasses}
-          data-aos={editMode ? "" : "fade-up"}
-        >
-          <div className={classes.contentWrapper}>
+        <section className={sectionClasses} key={section.id}>
+          <div className={classes.content} data-aos={editMode ? "" : "fade-up"}>
             <h3 className={classes.title}>{section.title}</h3>
             <div className={classes.parts}>
               {section.parts.map((part) => (
-                <p>{part}</p>
+                <p key={part.id}>{part.text}</p>
               ))}
             </div>
             <div className={classes.sideImage}>

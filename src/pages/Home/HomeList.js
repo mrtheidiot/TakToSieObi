@@ -1,6 +1,6 @@
 import Banner from "../../components/Banner/Banner";
 import HomeSection from "./HomeSection";
-import Actions from "./Actions/Actions";
+import HomeActions from "./Actions/HomeActions";
 import AddOrEdit from "../../components/Overlays/ActionsOverlay/AddOrEdit";
 import { useSelector } from "react-redux";
 
@@ -11,37 +11,35 @@ export const HomeList = () => {
   const error = useSelector((state) => state.home.error);
   const editMode = useSelector((state) => state.ui.editMode);
 
-  
-
   return (
     <>
       <Banner id={3} />
-      <main className={classes.mainpage__main}>
-        <h3 className={classes.mainpage__heading}>
-          Witaj w Tak to się Obi!
-          <br></br>
-          Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:
-        </h3>
-        {error && <p>{error}</p>}
+      <main className={classes.wrapper}>
+        <h3 className={classes.heading}>Witaj w Tak to się Obi! </h3>
+        <p>Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:</p>
         {homePageContent.map((section) => (
-          <section className="dispay-flex" data-aos={editMode ? "" : "fade-up"}>
+          <section
+            data-aos={editMode ? "" : "fade-up"}
+            key={section.id}
+            className="position_relative"
+          >
             <HomeSection
               id={section.id}
               key={section.id}
-              contentPart1={section.contentPart1}
-              contentPart2={section.contentPart2}
-              contentPage3={section.contentPage3}
+              contentPart1={section.part1}
+              contentPart2={section.part2}
+              contentPage3={section.part3}
             />
             {editMode && (
               <AddOrEdit edit={true}>
-                <Actions id={section.id} />
+                <HomeActions id={section.id} />
               </AddOrEdit>
             )}
           </section>
         ))}
         {editMode && (
           <AddOrEdit edit={false}>
-            <Actions />
+            <HomeActions />
           </AddOrEdit>
         )}
       </main>

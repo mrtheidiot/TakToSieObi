@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 import Logo from "./../../assets/Logo1.svg";
+import usePageYOffset from "../../hooks/usePageYOffset";
 
 import classes from "./NavBar.module.css";
 import "./../../stylus/dist/NavBar.css";
@@ -11,17 +11,9 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses.coursesContent);
 
-  const [offsetY, setOffsetY] = useState(0);
-  const handleScroll = () => {
-    setOffsetY(window.pageYOffset);
-  };
+  const yOffset = usePageYOffset();
 
   const isLoggedIn = window.localStorage.getItem("isLoggedIn");
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const setEdititngModeHandler = (e) => {
     dispatch(uiActions.setEditMode(e.target.checked));
@@ -30,14 +22,13 @@ const NavBar = () => {
   const navData = [
     { id: 1, title: "TRENINGI OBEDIENCE", url: "/treningi", dropdown: courses },
     { id: 4, title: "JA I MOJE PSY", url: "/omnie" },
-    { id: 2, title: "ASORTYMENT", url: "/asortyment" },
     { id: 3, title: "WYDARZENIA", url: "/wydarzenia" },
     { id: 5, title: "KONTAKT", url: "/kontakt" },
   ];
 
   const navItemsList = navData.map((item, index) => (
     <nav className="navLink_link" key={item.id}>
-      <NavLink key={index} to={`${item.url}`}>
+      <NavLink key={index} to={`${item.url}`} activeClassName={classes.active}>
         {item.title}
       </NavLink>
       {item.dropdown && (
@@ -55,7 +46,7 @@ const NavBar = () => {
   ));
 
   const resizeClasses =
-    offsetY < 50
+    yOffset < 50
       ? `${classes.resizeUp} ${classes.wrapper}`
       : `${classes.wrapper} ${classes.resizeDown}`;
 
@@ -71,7 +62,7 @@ const NavBar = () => {
         {isLoggedIn && (
           <label className={classes.switch}>
             <input type="checkbox" onChange={setEdititngModeHandler} />
-            <span className={`${classes.slider} ${classes.round}`}></span>
+            <span className={classes.slider} />
           </label>
         )}
       </section>

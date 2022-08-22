@@ -1,11 +1,3 @@
-.text {
-    display: inline;
-}
-
-.text ul {
-    display: inline;
-}
-
-.text ul li {
+.text div {
     display: inline;
 }

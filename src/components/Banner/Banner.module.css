@@ -1,12 +1,12 @@
 .wrapper {
     width: 100%;
-    height: auto;
     height: 85vh;
-    margin-bottom: 2vh;
-    overflow: clip;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
   }
 
   .wrapper img {
     width: 100%;
-    height: auto;
+    object-fit: cover;
   }

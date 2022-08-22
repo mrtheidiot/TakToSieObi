@@ -20,7 +20,7 @@ const Footer = () => {
         >
           <i className="fab fa-instagram insta" />
         </a>
-        <Link to="/kontakt" ><i class="fas fa-envelope"></i></Link>
+        <Link to="/kontakt" ><i className="fas fa-envelope"></i></Link>
       </section>
     </footer>
   );

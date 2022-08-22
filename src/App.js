@@ -9,8 +9,8 @@ import Home from "./pages/Home/HomeList";
 import CoursesList from "./pages/TrainingCourses/CoursesList";
 import CourseDetails from "./pages/TrainingCourses/CourseDetails";
 import Login from "./pages/Login/Login";
-import Test from "./components/Test/Test";
 import Footer from './components/Footer/Footer'
+import Contact from "./pages/Contact/Contact";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -40,7 +40,6 @@ function App() {
       {isLoading && loadingSpinner}
       <NavBar />
       <div className={classes.app_pages}>
-        <div className="apps-wrapper">
           <Route exact path="/">
             <Home />
           </Route>
@@ -50,16 +49,16 @@ function App() {
           <Route path="/omnie" exact>
             <AboutMe />
           </Route>
+          <Route path="/kontakt" exact>
+            <Contact />
+          </Route>
           <Route exact path="/login">
             <Login />
-          </Route>
-          <Route exact path="/test">
-            <Test />
           </Route>
           <Route path="/treningi/:courselink">
             <CourseDetails />
           </Route>
-        </div>
+       
       </div>
       <Footer />
     </div>

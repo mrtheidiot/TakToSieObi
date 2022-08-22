@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
-import classes from "./AboutMeActions.module.css";
+import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
+
+import classes from "./../../../Actions.module.css"
 
 const AboutMeActionsForm = (props) => {
-  const [values, setValues] = useState(props.initialValues);
-  const [sectionGallery, setSectionGallery] = useState([]);
+  const [values, setValues] = useState(props.initialValues.baseContent);
+  const [sectionGallery, setSectionGallery] = useState(
+    props.initialValues.sectionGallery
+  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -14,20 +18,27 @@ const AboutMeActionsForm = (props) => {
     });
   };
 
-  const handleImageInputChange = (name, url) => {
+  const handleImageInputChange = (url, name) => {
     setValues({
       ...values,
       [name]: url,
     });
   };
 
-  const removeImageFromGalleryHandler = (image) => {
-    setSectionGallery((prev) => prev.filter((item) => item !== image));
+  // add url to sectionGallery
+  const handleSetSectionGallery = (url) => {
+    setSectionGallery((prev) => [...prev, url]);
+  };
+
+  //remove url from sectionGallery (triggered in ThumbnailGallery)
+  const removeImgageFromSectionGalleryHandler = (event) => {
+    setSectionGallery((prev) => prev.filter((img) => img !== event.target.src));
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const updatedObject = {
+
+    const section = {
       title: values.title,
       parts: [
         values.part1,
@@ -45,13 +56,27 @@ const AboutMeActionsForm = (props) => {
       sectionGallery: sectionGallery,
     };
 
-    props.updateSection(updatedObject);
+    props.sumbitHandler(section);
   };
 
+  const heading = props.edit ? "Edytuj sekcję:" : "Dodaj sekcję:";
+
   return (
-    <div>
-      <form className={classes["add-content-form"]} onSubmit={submitHandler}>
-        <h1>Dodawanie nowej sekcji:</h1>
+    <>
+      <form className={classes["add-content-form"]}>
+        <h1>{heading}</h1>
+        <p>
+          Tytuł wyświetla się na środku strony, na górze sekcji. Części
+          wyświetlają się po stronie lewej na środku, każdą z nich można: <br />
+          1. Przenieść do nowej linii umieszczając w tekście '/nl/', <br />
+          2. Pogrubić tekst umieszczając słowo w '/b/', np. /b/
+          <b>Jestem Gruby</b>/b/, <br />
+          3. Dodać link (jeden) umiesczając słowo w '/l/' oraz dodając na końcu
+          '/addresses/' oraz zaraz link, np: /l/link/l/ do Fejsa
+          /addresses/https://www.facebook.pl <br />
+          Obok wyświetla się zdjęcie, dobrze jest dodać zdjęcie pionowe, żeby
+          ładnie wyglądało. Galeria wyświetla się na dole. na pełnej długości.
+        </p>
         <label htmlFor="title">Tytuł:</label>
         <textarea
           type="text"
@@ -125,33 +150,30 @@ const AboutMeActionsForm = (props) => {
           name="part8"
         />
       </form>
+      <label>
+        Dodaj zdjęcie z boku (ponowne dodanie usunie poprzednie i doda nowe)
+      </label>
       <UploadBar
         presetImage={values.sideImage}
-        name="sideImage"
-        returnLink={handleImageInputChange}
+        returnLink={(url) => handleImageInputChange(url, "sideImage")}
       />
-      <UploadBar
-        name="gallery"
-        returnLink={(name, url) => {
-          setSectionGallery((prev) => [...prev, url]);
-        }}
+      <ThumbnailGallery source={[values.sideImage]} />
+      <label>
+        Dodaj zdjęcia do galerii (można dodać kolejne a kliknięcie w zdjęcie
+        spowoduje jego usunięcie)
+      </label>
+      <UploadBar name="gallery" returnLink={handleSetSectionGallery} />
+      <ThumbnailGallery
+        onDelete={removeImgageFromSectionGalleryHandler}
+        source={sectionGallery}
       />
-      <div className={classes.galleryWrapper}>
-        {sectionGallery.map((image, index) => (
-          <div key={index} className={classes.galleryImage}>
-            <img src={image} />
-            <button
-              onClick={() => {
-                removeImageFromGalleryHandler(image);
-              }}
-            >
-              Usun
-            </button>
-          </div>
-        ))}
+      <div className={classes.bottom_buttons}>
+        {props.edit && (
+          <button onClick={props.removeSectionHandler}>Usuń tę sekcję</button>
+        )}
+        <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </div>
-      <button onClick={submitHandler}>ZAAKCEPTUJ</button>
-    </div>
+    </>
   );
 };
 

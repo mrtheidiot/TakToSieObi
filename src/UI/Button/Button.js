@@ -3,24 +3,27 @@ import { Link } from "react-router-dom";
 import "./Button.css";
 
 const Button = (props) => {
-  const style={
-    backgroundColor: `#${props.backgroundColor}`,
-    color: `#${props.textColor}`
-  }
+  const { backgroundColor, textColor, address, text, internal } = props.button;
+  console.log(props)
 
-  return props.isInternal === "1" ? (
+  const style = {
+    backgroundColor: `#${backgroundColor}`,
+    color: `#${textColor}`,
+  };
+
+  return internal === "1" ? (
     <div className="button__main">
-      <Link to={props.address}>
+      <Link to={address}>
         <div className="button__sub" style={style}>
-          {props.text}
+          {text}
         </div>
       </Link>
     </div>
   ) : (
     <div className="button__main">
-      <a href={props.address} target="_blank" rel="noreferrer noopener">
+      <a href={address} target="_blank" rel="noreferrer noopener">
         <div className="button__sub" style={style}>
-          {props.text}
+          {text}
         </div>
       </a>
     </div>

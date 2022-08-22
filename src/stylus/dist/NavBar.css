@@ -3,19 +3,28 @@
   font-family: 'Nasalization Rg', sans-serif;
   font-size: 1.4rem;
   text-decoration: none;
-  color: #000;
   padding: 0 10px;
   position: relative;
+  text-decoration: none;
+}
+@media screen and (max-width: 90em) {
+  .navLink_link {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 75em) {
+  .navLink_link {
+    font-size: 1rem;
+  }
+}
+.navLink_link a {
+  color: #000;
 }
 .navLink_link:hover {
   cursor: pointer;
 }
 .navLink_link:hover .dropdown_menu li {
   display: block;
-}
-.navLink_link a {
-  text-decoration: none;
-  color: #000;
 }
 .navLink_link a:hover {
   color: rgba(0,0,0,0.5);
@@ -32,7 +41,7 @@
   display: none;
   color: #000;
   background-color: #e2e4d0;
-  padding: 10px 30px;
+  padding: 10px 20px;
   font-size: 15px;
 }
 .dropdown_menu li:hover {
@@ -46,14 +55,6 @@
 }
 .navLink_link:hover .dropdown_animated {
   display: block;
-}
-.dropdown_animated {
-  display: none;
-}
-.dropdown_animated li {
-  display: block;
-}
-.dropdown_animation {
   animation: growDown 350ms ease-in-out forwards;
   transform-origin: top center;
 }

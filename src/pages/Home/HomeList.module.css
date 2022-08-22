@@ -1,33 +1,18 @@
-.mainpage__main {
+.wrapper {
   background-color: #f9faef;
   font-family: 'Teko';
+  width: 100%;
+  position: relative;
+  text-align: center;
   font-size: 1.5rem;
-  width: 70%;
-  margin: auto;
-
 }
 
-.mainpage__heading {
+.wrapper > p {
+  font-size: 1.7rem;
+}
+
+.heading {
   width: 60%;
   margin: auto;
   font-size: 2rem;
-  padding: 1% 0;
-  text-align: center;
 }
-
-@media (max-width: 992px) {
-  .mainpage__main {
-    margin: 0 auto;
-    width: 80%;
-  }
-  .mainpage__heading {
-    margin: 5% 0;
-    width: 100%;
-  }
-}
-
-/* polubione kolory 
-background-color: #faeee7; 
-background-color: #fff8f3;
-background-color: #f8f0df;
-*/

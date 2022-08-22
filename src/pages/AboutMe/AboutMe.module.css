@@ -1,11 +1,9 @@
 .wrapper {
-    width: 100%;
-    position: relative;
-}
-
-.contentWrapper {
     width: 70%;
     margin: auto;
+}
+
+.content {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto auto auto;

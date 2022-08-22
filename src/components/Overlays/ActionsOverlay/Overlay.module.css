@@ -6,8 +6,6 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.30);
-    display: flex;
-    flex-direction: column;
 }
 
 .modal {
@@ -19,37 +17,23 @@
     top: 50%;
     left: 50%;
     background-color: white;
-    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     transform: translateX(-50%) translateY(-55%);
     overflow: auto;
-    font-family: 'Amatic SC', cursive;
-    font-size: 1.5rem;
+    font-family: 'Teko';
+    font-size: 1.4rem;
+    text-align: left;
+    border-radius: 15px;
 }
 
 .backdrop > button {
     position: fixed;
-    height: 5vh;
+    height: 50px;
     top: 91%;
     width: 300px;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-
-}
-
-.confirmation {
-    position: fixed;
-    padding: 1%;
-    height: 80vh;
-    width: 80vw;
-    z-index: 1000;
-    top: 50%;
-    left: 50%;
-    background-color: white;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    transform: translateX(-50%) translateY(-50%);
+    font-size: 1.3rem;
 }

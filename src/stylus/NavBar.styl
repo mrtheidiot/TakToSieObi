@@ -3,19 +3,21 @@
    font-family: 'Nasalization Rg', sans-serif;
    font-size: 1.4rem
    text-decoration: none
-   color: black
    padding: 0 10px
    position: relative
+   text-decoration: none
+   @media screen and (max-width: 90em)
+     font-size: 1.2rem
+   @media screen and (max-width: 75em)
+     font-size: 1rem
+   a
+     color: black
    &:hover 
      cursor: pointer
-     
    &:hover .dropdown_menu li
      display: block 
-   a
-     text-decoration: none
-     color: black
    a:hover
-     color: rgba(0,0,0,0.5) 
+     color: rgba(0,0,0,0.5)
 
  .dropdown_menu
    position: absolute
@@ -28,7 +30,7 @@
     display: none
     color: black
     background-color: #e2e4d0;
-    padding: 10px 30px
+    padding: 10px 20px
     font-size: 15px
     &:hover
       color: rgba(0,0,0,0.5) 
@@ -40,12 +42,6 @@
 
 .navLink_link:hover .dropdown_animated
     display: block
-.dropdown_animated
-    display: none
-    li
-      display: block
-    
-.dropdown_animation
     animation: growDown 350ms ease-in-out forwards
     transform-origin: top center
 

@@ -1,64 +1,50 @@
 .wrapper {
-    width: 100%;
-    height: 150px;
-    display: flex;
-    margin-top: 30px;
-}
-
-.image_container {
-    height: 150px;
-    overflow: hidden;
-    margin-right: 1%;
-    overflow: hidden;
-}
-
-.image_container img {
-    height: 100%;
-    width: 200px;
-    object-fit: cover;
-}
-
-.inputs_container {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-}
-
-.inputs {
-    height: 50%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 50%;
     align-items: center;
+    justify-content: space-around;
+    height: 40px;
+    margin-bottom: 10px;
 }
 
-.inputs input {
-    width: 30%;
+.wrapper > p {
+    grid-column: 1 / 2;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.inputs > button {
-    width: 30%;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background-color: green;
-    padding: 0.3em 1.2em;
-    border-radius: 15px;
-    font-size: 1.3rem;
-    font-weight: 550;
-    color: black;
-    background-size: 100% 100%;
-    box-shadow: 0 0 0 1px #232423 inset;
+.wrapper > input {
+    grid-column: 2 / 3;
 }
 
-  .loadingBar_container {
-    display: inline-block;
-    margin: auto;
-    width: 95%;
-  }
+.wrapper > button {
+    grid-column: 3 / 4;
+    width: 50%;
+    justify-self: center;
+}
 
-  .loadingBar {
-    border-radius: 10px;
-    background-color: brown;
+.bar_container {
+    grid-column: 4 / 5;
+    height: 80%;
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+    will-change: transform;
+    box-shadow: 0 0 5px #e76f51;
+}
+
+.bar {
+    position: absolute;
+    height: 100%;
     content: "";
-  }
+    background-color: green;
+    top:0;
+    bottom: 0;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color: white;
+    font-family: sans-serif;
+}

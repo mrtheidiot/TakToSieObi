@@ -1,0 +1,56 @@
+.wrapper {
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 300px;
+    background-color: bisque;
+    padding: 15px;
+    border-radius: 10px;
+    align-content: space-around;
+    align-items: center;
+    justify-items: center;
+}
+
+.wrapper section {
+    width: 100%;
+}
+
+.company_data {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.transfer_data {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.contact_data {
+    grid-column: 1 / 2; 
+    grid-row: 3 / 4;
+}
+
+.messenger {
+    grid-column: 2 / 3;
+    font-size: 1.2rem;
+}
+
+.obi_links {
+    grid-column: 2 / 3;
+    display: flex;
+    font-size: 1.2rem;
+    flex-direction: column;
+}
+
+.husse_links {
+    grid-column: 2 / 3;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}

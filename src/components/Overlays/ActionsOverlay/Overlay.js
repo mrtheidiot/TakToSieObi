@@ -5,20 +5,26 @@ import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 
 import classes from "./Overlay.module.css";
 
+// Overlay show the modal for edit or add actions.
+// It takes the given Actions component and renders as props.children inside
+// On fetch actions shows loading spinner and then closes by itself.
+
 const Overlay = (props) => {
   const dispatch = useDispatch();
   const isOverlayLoading = useSelector((state) => state.ui.isOverlayLoading);
   const closeOverlay = useSelector((state) => state.ui.hideOverlay);
 
-  let content = props.children;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${window.scrollY}px`;
 
-  if (isOverlayLoading && !closeOverlay) {
-    content = (
+  const content =
+    isOverlayLoading && !closeOverlay ? (
       <div className="centered">
         <LoadingSpinner />
       </div>
+    ) : (
+      props.children
     );
-  }
 
   useEffect(() => {
     if (closeOverlay && !isOverlayLoading) {
@@ -31,7 +37,7 @@ const Overlay = (props) => {
     <div className={classes.backdrop}>
       <div className={classes.modal}>{content}</div>
       <button type="button" onClick={props.onClose}>
-        Close
+        Zamknij
       </button>
     </div>
   );

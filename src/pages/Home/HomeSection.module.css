@@ -3,12 +3,13 @@
     justify-content: center;
 }
 
-.mainpagesection__main {
+  .wrapper {
     display: flex;
     text-align: center;
     flex-direction: column;
-    position: relative;
-    margin-bottom: 2vh;
+    margin-top: 2vh;
+    width: 70%;
+    margin: auto;
   }
   
   .mainpagesection__links {

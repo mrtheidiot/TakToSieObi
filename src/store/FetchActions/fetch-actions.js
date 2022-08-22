@@ -105,6 +105,15 @@ export const fetchAboutMe = () => {
           transformedImages.push(img);
         }
         data[key].sectionGallery = transformedImages;
+        let transformedParts = [];
+        for (const i in data[key].parts) {
+          const part = {
+            id: i,
+            text: data[key].parts[i],
+          };
+          transformedParts.push(part);
+        }
+        data[key].parts = transformedParts;
         const obj = {
           id: key,
           ...data[key],

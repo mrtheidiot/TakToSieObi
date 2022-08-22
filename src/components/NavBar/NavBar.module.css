@@ -12,6 +12,10 @@
     animation-fill-mode: forwards;
 }
 
+.active {
+  opacity: 0.5;
+}
+
 .resizeUp {
     animation-duration: 0.3s;
     animation-name: resizeUp;
@@ -39,15 +43,11 @@
 }
 
 .navlinks {
-    width:70%;
+    width:80%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin-right: 1vw;
-}
-
-.navlinks > div {
-    width: 100px;
-    border: solid 1px black
 }
 
 .switch {
@@ -74,6 +74,7 @@
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
+    border-radius: 34px;
   }
   
   .slider:before {
@@ -86,6 +87,7 @@
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
+    border-radius: 50%;
   }
   
   input:checked + .slider {
@@ -100,15 +102,6 @@
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
   }
 
 @keyframes resizeUp {
