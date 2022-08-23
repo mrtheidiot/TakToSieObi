@@ -34,11 +34,27 @@ const ListCenter = (props) => {
   );
 };
 
+const initialValues = {
+  title: "",
+  description1: "",
+  description2: "",
+  description3: "",
+  link: "",
+  organizer: "",
+  price: "",
+  sectionImage: "",
+  bannerImage: "",
+  subsite: [{ title: "", content: "" }],
+  sectionGallery: []
+};
+
 const CourseDetails = () => {
   const params = useParams();
   const courses = useSelector((state) => state.courses.coursesContent);
-  const course = courses.find((item) => item.link === params.courselink);
-  
+  let course = courses.find((item) => item.link === params.courselink);
+
+  if (!course) course = initialValues;
+
 
   const contentList = course.subsite.map((list, index) => (
     <div key={index}>

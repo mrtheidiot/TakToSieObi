@@ -79,44 +79,6 @@ const CoursesActions = (props) => {
     };
   }
 
-  const object = {
-    title: "",
-    description1: "",
-    description2: "",
-    description3: "",
-    link: "",
-    organizer: "",
-    price: "",
-    sectionImage: "",
-    bannerImage: "",
-    subsite: [
-      title: 
-      content :
-    ]
-    list1: "",
-    list2: "",
-    list3: "",
-    list4: "",
-    list5: "",
-    list6: "",
-    list7: "",
-    list8: "",
-    list9: "",
-    list10: "",
-    list1Title: "",
-    list2Title: "",
-    list3Title: "",
-    list4Title: "",
-    list5Title: "",
-    list6Title: "",
-    list7Title: "",
-    list8Title: "",
-    list9Title: "",
-    list10Title: "",
-  }
-
-  console.log(initialValues)
-
   const removeSectionHandler = () => {
     dispatch(removeSection("courses", objectToEdit.id));
   };
