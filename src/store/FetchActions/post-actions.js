@@ -15,7 +15,7 @@ export const addHomeSection = (newSection) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error("Nie udało się dodać sekcji do strony domwej!");
       }
       const data = await response.json();
       dispatch(
@@ -25,7 +25,9 @@ export const addHomeSection = (newSection) => {
         })
       );
       dispatch(uiActions.setHideOverlay(true));
-    } catch (error) {}
+    } catch (err) {
+      dispatch(uiActions.setOverlayError(err.message));
+    }
     dispatch(uiActions.setIsOverlayLoading(false));
   };
 };
@@ -42,13 +44,13 @@ export const addCoursesSection = (newSection) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error("Nie udało się dodać sekcji do strony kursów!");
       }
       const data = await response.json();
       console.log({
         id: data.name,
         ...newSection,
-      })
+      });
       dispatch(
         coursesActions.addCourseSection({
           id: data.name,
@@ -56,10 +58,12 @@ export const addCoursesSection = (newSection) => {
         })
       );
       dispatch(uiActions.setHideOverlay(true));
-    } catch (error) {}
+    } catch (err) {
+      dispatch(uiActions.setOverlayError(err.message));
+    }
     dispatch(uiActions.setIsOverlayLoading(false));
   };
-}
+};
 
 export const addAboutMeSection = (newSection) => {
   return async (dispatch) => {
@@ -73,7 +77,7 @@ export const addAboutMeSection = (newSection) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error("Nie udało się dodać sekcji do strony Ja i Moje Psy!");
       }
       const data = await response.json();
       dispatch(
@@ -83,7 +87,9 @@ export const addAboutMeSection = (newSection) => {
         })
       );
       dispatch(uiActions.setHideOverlay(true));
-    } catch (error) {}
+    } catch (err) {
+      dispatch(uiActions.setOverlayError(err.message));
+    }
     dispatch(uiActions.setIsOverlayLoading(false));
   };
 };

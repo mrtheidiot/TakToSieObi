@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useFetchStore from "./hooks/useFetchStore";
 
@@ -9,7 +9,7 @@ import Home from "./pages/Home/HomeList";
 import CoursesList from "./pages/TrainingCourses/CoursesList";
 import CourseDetails from "./pages/TrainingCourses/CourseDetails";
 import Login from "./pages/Login/Login";
-import Footer from './components/Footer/Footer'
+import Footer from "./components/Footer/Footer";
 import Contact from "./pages/Contact/Contact";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -40,25 +40,24 @@ function App() {
       {isLoading && loadingSpinner}
       <NavBar />
       <div className={classes.app_pages}>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/treningi" exact>
-            <CoursesList />
-          </Route>
-          <Route path="/omnie" exact>
-            <AboutMe />
-          </Route>
-          <Route path="/kontakt" exact>
-            <Contact />
-          </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route path="/treningi/:courselink">
-            <CourseDetails />
-          </Route>
-       
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/treningi" exact>
+          <CoursesList />
+        </Route>
+        <Route path="/treningi/:courselink">
+          <CourseDetails />
+        </Route>
+        <Route path="/omnie" exact>
+          <AboutMe />
+        </Route>
+        <Route path="/kontakt" exact>
+          <Contact />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
       </div>
       <Footer />
     </div>

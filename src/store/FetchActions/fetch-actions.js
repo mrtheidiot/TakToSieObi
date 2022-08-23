@@ -1,9 +1,11 @@
 import { homePageActions } from "./../homePage-slice";
 import { coursesActions } from "../coursesList-slice";
 import { aboutMeActions } from "../aboutme-slice";
+import { uiActions } from "../ui-slice";
 
 export const fetchHomePage = () => {
   return async (dispatch) => {
+    dispatch(uiActions.setIsAppLoading(true))
     dispatch(homePageActions.setError(null));
     try {
       const response = await fetch(
@@ -39,11 +41,13 @@ export const fetchHomePage = () => {
         )
       );
     }
+    dispatch(uiActions.setIsAppLoading(false))
   };
 };
 
 export const fetchCoursesList = () => {
   return async (dispatch) => {
+    dispatch(uiActions.setIsAppLoading(true))
     dispatch(coursesActions.setError(null));
     try {
       const response = await fetch(
@@ -79,11 +83,13 @@ export const fetchCoursesList = () => {
         )
       );
     }
+    dispatch(uiActions.setIsAppLoading(false))
   };
 };
 
 export const fetchAboutMe = () => {
   return async (dispatch) => {
+    dispatch(uiActions.setIsAppLoading(true))
     dispatch(aboutMeActions.setError(null));
     try {
       const response = await fetch(
@@ -128,5 +134,6 @@ export const fetchAboutMe = () => {
         )
       );
     }
+    dispatch(uiActions.setIsAppLoading(false))
   };
 };

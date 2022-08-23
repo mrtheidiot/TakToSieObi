@@ -1,76 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
-import { useDispatch, useSelector } from "react-redux";
-import { addCoursesSection } from "../../../store/FetchActions/post-actions";
-import { updateCourseSection } from "../../../store/FetchActions/put-actions";
-import { removeSection } from "../../../store/FetchActions/delete-actions";
+import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
 
-import classes from "./Actions.module.css";
+import classes from "./../../../Actions.module.css";
 
-const Actions = (props) => {
-  const dispatch = useDispatch();
-  const [sectionGallery, setSectionGallery] = useState([]);
-  const courses = useSelector((state) => state.courses.coursesContent);
+const CoursesActionsForm = (props) => {
+  const [values, setValues] = useState(props.initialValues.baseContent);
+  const [sectionGallery, setSectionGallery] = useState(
+    props.initialValues.sectionGallery
+  );
 
-  let initialValues = {
-    title: "",
-    description1: "",
-    description2: "",
-    description3: "",
-    link: "",
-    organizer: "",
-    price: "",
-    sectionImage: "",
-    bannerImage: "",
-    list1: "",
-    list2: "",
-    list3: "",
-    list4: "",
-    list5: "",
-    list6: "",
-    list7: "",
-    list8: "",
-    list9: "",
-    list10: "",
-    list1Title: "",
-    list2Title: "",
-    list3Title: "",
-    list4Title: "",
-    list5Title: "",
-    list6Title: "",
-    list7Title: "",
-    list8Title: "",
-    list9Title: "",
-    list10Title: "",
-  };
-
-  let course;
-
-  if (props.id) {
-    course = courses.find((item) => item.id === props.id);
-    initialValues = {
-      ...course,
-      list1: course.subsite[0].content,
-      list2: course.subsite[1].content,
-      list3: course.subsite[2].content,
-      list4: course.list4,
-      list5: course.list5,
-      list6: course.list6,
-      list7: course.list7,
-      list8: course.list8,
-      list9: course.list9,
-      list10: course.list10,
-      list2Title: course.title2,
-      list3Title: course.title2,
-      list4Title: course.title4,
-      list6Title: course.title4,
-      list7Title: course.title4,
-      list8Title: course.title4,
-      list9Title: course.title9,
-    };
-  }
-
-  const [values, setValues] = useState(initialValues);
+  console.log(props);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,15 +20,21 @@ const Actions = (props) => {
     });
   };
 
-  const handleImageInputChange = (name, url) => {
+  const handleImageInputChange = (url, name) => {
     setValues({
       ...values,
       [name]: url,
     });
   };
 
-  const removeImageFromGalleryHandler = (image) => {
-    setSectionGallery((prev) => prev.filter((item) => item !== image));
+  // add url to sectionGallery
+  const addImageToSectionGalleryHandler = (url) => {
+    setSectionGallery((prev) => [...prev, url]);
+  };
+
+  //remove url from sectionGallery (triggered in ThumbnailGallery)
+  const removeImgageFromSectionGalleryHandler = (event) => {
+    setSectionGallery((prev) => prev.filter((img) => img !== event.target.src));
   };
 
   const submitHandler = (event) => {
@@ -99,37 +45,35 @@ const Actions = (props) => {
       description1: values.description1,
       description2: values.description2,
       description3: values.description3,
-      link: `/treningi/${values.link}`,
+      link: values.link,
       organizer: values.organizer,
       price: values.price,
       sectionImage: values.sectionImage,
       bannerImage: values.bannerImage,
       sectionGallery: sectionGallery,
       subsite: [
-        { title: values.list1Title, content: values.list1 },
+        { title: "Title1", content: values.list1 },
         { title: values.list2Title, content: values.list2 },
         { title: values.list3Title, content: values.list3 },
         { title: values.list4Title, content: values.list4 },
-        { title: values.list5Title, content: values.list5 },
+        { title: "Title5", content: values.list5 },
         { title: values.list6Title, content: values.list6 },
         { title: values.list7Title, content: values.list7 },
         { title: values.list8Title, content: values.list8 },
         { title: values.list9Title, content: values.list9 },
-        { title: values.list10Title, content: values.list10 },
+        { title: "TItle10", content: values.list10 },
       ],
     };
 
-    if (course) {
-      dispatch(updateCourseSection(section, course.id));
-    } else {
-      dispatch(addCoursesSection(section));
-    }
+    props.dispatchAction(section);
   };
 
+  const heading = props.edit ? "Edytuj sekcję:" : "Dodaj sekcję:";
+
   return (
-    <div className={classes.wrapper}>
+    <>
       <form className={classes["add-content-form"]}>
-        <h1>Dodawanie nowej sekcji:</h1>
+        <h1>{heading}</h1>
         <label htmlFor="title">Tytuł:</label>
         <textarea
           type="text"
@@ -193,16 +137,16 @@ const Actions = (props) => {
       </h3>
       <UploadBar
         presetImage={values.sectionImage}
-        name="sectionImage"
-        returnLink={handleImageInputChange}
+        returnLink={(url) => handleImageInputChange(url, "sectionImage")}
       />
-      <h2 className={classes.subSection_heading}>Podstrona treningu:</h2>
+      <ThumbnailGallery source={[values.sectionImage]} />
+      <h2>Podstrona treningu:</h2>
       <h3>Dodaj baner, który będzie się wyświetlał na górze podstrony:</h3>
       <UploadBar
         presetImage={values.bannerImage}
-        returnLink={handleImageInputChange}
-        name="bannerImage"
+        returnLink={(url) => handleImageInputChange(url, "bannerImage")}
       />
+      <ThumbnailGallery source={[values.bannerImage]} />
       <form className={classes["add-content-form"]}>
         <label htmlFor="title">Lista 1 (wyśrodkowana na początku strony)</label>
         <textarea
@@ -343,94 +287,19 @@ const Actions = (props) => {
           name="list10"
         />
       </form>
-      <UploadBar
-        name="gallery"
-        returnLink={(name, url) => {
-          setSectionGallery((prev) => [...prev, url]);
-        }}
+      <UploadBar returnLink={addImageToSectionGalleryHandler} />
+      <ThumbnailGallery
+        onDelete={removeImgageFromSectionGalleryHandler}
+        source={sectionGallery}
       />
-      <div className={classes.galleryWrapper}>
-        {sectionGallery.map((image, index) => (
-          <div key={index} className={classes.galleryImage}>
-            <img src={image} />
-            <button
-              onClick={() => {
-                removeImageFromGalleryHandler(image);
-              }}
-            >
-              Usun
-            </button>
-          </div>
-        ))}
+      <div className={classes.bottom_buttons}>
+        {props.edit && (
+          <button onClick={props.removeSectionHandler}>Usuń tę sekcję</button>
+        )}
+        <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </div>
-      {course && (
-        <button
-          onClick={() => {
-            dispatch(removeSection("courses", course.id));
-          }}
-        >
-          Usuń ta sekcje
-        </button>
-      )}
-      <button onClick={submitHandler}>ZAAKCEPTUJ</button>
-    </div>
+    </>
   );
 };
 
-export default Actions;
-
-// sectionImage = course.sectionImage;
-// bannerImage = course.bannerImage;
-// initialValues = {
-//   title: course.title,
-//   description1: course.description1,
-//   description2: course.description2,
-//   description3: course.description3,
-//   link: course.link,
-//   organizer: course.organizer,
-//   price: course.price,
-//   list1: course.list1,
-//   list2: course.list2,
-//   list3: course.list3,
-//   list4: course.list4,
-//   list5: course.list5,
-//   list6: course.list6,
-//   list7: course.list7,
-//   list8: course.list8,
-//   list9: course.list9,
-//   list10: course.list10,
-//   list2Title: course.title2,
-//   list3Title: course.title2,
-//   list4Title: course.title4,
-//   list6Title: course.title4,
-//   list7Title: course.title4,
-//   list8Title: course.title4,
-//   list9Title: course.title9,
-// };
-
-// title: values.title,
-// description1: values.description1,
-// description2: values.description2,
-// description3: values.description3,
-// link: values.link,
-// organizer: values.organizer,
-// price: values.price,
-// sectionImage: sectionImage,
-// bannerImage: bannerImage,
-// list1: values.list1,
-// list2: values.list2,
-// list3: values.list3,
-// list4: values.list4,
-// list5: values.list5,
-// list6: values.list6,
-// list7: values.list7,
-// list8: values.list8,
-// list9: values.list9,
-// list10: values.list10,
-// title2: values.list2Title,
-// title3: values.list3Title,
-// title4: values.list4Title,
-// title6: values.list6Title,
-// title7: values.list7Title,
-// title8: values.list8Title,
-// title9: values.list9Title,
+export default CoursesActionsForm;

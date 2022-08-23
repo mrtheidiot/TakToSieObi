@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Output from "../../UI/Output/Output";
@@ -38,6 +38,7 @@ const CourseDetails = () => {
   const params = useParams();
   const courses = useSelector((state) => state.courses.coursesContent);
   const course = courses.find((item) => item.link === params.courselink);
+  
 
   const contentList = course.subsite.map((list, index) => (
     <div key={index}>
@@ -59,7 +60,7 @@ const CourseDetails = () => {
       <div className={classes.wrapper}>
         <h1>{course.title}</h1>
         {contentList}
-          <Gallery size="170" source={course.sectionGallery} />
+        <Gallery size="170" source={course.sectionGallery} />
       </div>
     </>
   );

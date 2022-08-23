@@ -6,10 +6,12 @@ const uiSlice = createSlice({
     hideOverlay: false,
     isOverlayLoading: false,
     editMode: false,
+    overlayError: null,
   },
   reducers: {
-    toggleLoadingInApp(state) {
-      state.isAppLoading = !state.isAppLoading;
+    setIsAppLoading(state, action) {
+      state.isAppLoading = action.payload;
+      console.log(state.isAppLoading)
     },
     setIsOverlayLoading(state, action) {
       state.isOverlayLoading = action.payload;
@@ -19,6 +21,9 @@ const uiSlice = createSlice({
     },
     setEditMode(state, action) {
       state.editMode = action.payload;
+    },
+    setOverlayError(state, action) {
+      state.overlayError = action.payload;
     },
   },
 });

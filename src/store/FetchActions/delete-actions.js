@@ -23,7 +23,14 @@ export const removeSection = (identifier, id) => {
             `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage/${id}.json`
           );
           dispatch(homePageActions.removeHomeSection({ id }));
-        } catch (err) {}
+        } catch (err) {
+          dispatch(
+            uiActions.setOverlayError(
+              err.message || "Nie udało się usunąć zawartości strony domowej!"
+            )
+          );
+          dispatch(uiActions.setIsOverlayLoading(false));
+        }
         break;
       case "courses":
         try {
@@ -31,7 +38,14 @@ export const removeSection = (identifier, id) => {
             `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses/${id}.json`
           );
           dispatch(coursesActions.removeCourseSection({ id }));
-        } catch (err) {}
+        } catch (err) {
+          dispatch(
+            uiActions.setOverlayError(
+              err.message || "Nie udało się usunąć zawartości strony kursów!"
+            )
+          );
+          dispatch(uiActions.setIsOverlayLoading(false));
+        }
         break;
       case "aboutme":
         try {
@@ -39,7 +53,14 @@ export const removeSection = (identifier, id) => {
             `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/aboutMe/${id}.json`
           );
           dispatch(aboutMeActions.removeAboutMeSection({ id }));
-        } catch (err) {}
+        } catch (err) {
+          dispatch(
+            uiActions.setOverlayError(
+              err.message || "Nie udało się usunąć zawartości strony Ja i Moje Psy!"
+            )
+          );
+          dispatch(uiActions.setIsOverlayLoading(false));
+        }
         break;
     }
   };

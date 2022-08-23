@@ -15,7 +15,9 @@ export const updateHomeSection = (updatedSection, id) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error(
+          "Nie udało się zaktualizować zawartości strony domowej!"
+        );
       }
       dispatch(
         homePageActions.changeHomeElement({
@@ -24,7 +26,9 @@ export const updateHomeSection = (updatedSection, id) => {
         })
       );
       dispatch(uiActions.setHideOverlay(true));
-    } catch (error) {}
+    } catch (err) {
+      dispatch(uiActions.setOverlayError(err.message));
+    }
     dispatch(uiActions.setIsOverlayLoading(false));
   };
 };
@@ -41,7 +45,7 @@ export const updateCourseSection = (updatedSection, id) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error("Nie udało się zaktualizować zawartości strony kursów!");
       }
       dispatch(
         coursesActions.changeCourseSection({
@@ -50,7 +54,9 @@ export const updateCourseSection = (updatedSection, id) => {
         })
       );
       dispatch(uiActions.setHideOverlay(true));
-    } catch (error) {}
+    } catch (err) {
+      dispatch(uiActions.setOverlayError(err.message));
+    }
     dispatch(uiActions.setIsOverlayLoading(false));
   };
 };
@@ -67,7 +73,7 @@ export const updateAboutMeSection = (updatedSection, id) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        throw new Error("Nie udało się zaktualizować zawartości strony Ja i Moje Psy!");
       }
       dispatch(
         aboutMeActions.changeAboutMeSection({
@@ -76,7 +82,9 @@ export const updateAboutMeSection = (updatedSection, id) => {
         })
       );
       dispatch(uiActions.setHideOverlay(true));
-    } catch (error) {}
+    } catch (err) {
+      dispatch(uiActions.setOverlayError(err.message));
+    }
     dispatch(uiActions.setIsOverlayLoading(false));
   };
 };

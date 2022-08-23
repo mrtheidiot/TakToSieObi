@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { uiActions } from "../store/ui-slice";
 import {
   fetchHomePage,
   fetchCoursesList,

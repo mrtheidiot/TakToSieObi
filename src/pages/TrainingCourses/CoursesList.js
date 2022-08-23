@@ -1,9 +1,9 @@
 import Banner from "../../components/Banner/Banner";
 import classes from "./CoursesList.module.css";
-import TrainingSection from "./CourseSection";
+import CourseSection from "./CourseSection";
 import { useSelector } from "react-redux";
 import AddOrEdit from "../../components/Overlays/ActionsOverlay/AddOrEdit";
-import Actions from "./Actions/Actions";
+import CoursesActions from "./Actions/CoursesActions";
 
 const CoursesList = () => {
   const courses = useSelector((state) => state.courses.coursesContent);
@@ -12,24 +12,28 @@ const CoursesList = () => {
     <>
       <Banner id={4} />
       <div className={classes.courses_container}>
-        {courses.map((item, index) => (
-          <div className="dispay-flex" data-aos={editMode ? "" : "fade-up"}>
-            <TrainingSection
-              id={item.id}
-              key={item.id}
-              title={item.title}
-              link={item.link}
-              description1={item.description1}
-              description2={item.description2}
-              description3={item.description3}
-              sectionImage={item.sectionImage}
-              organizer={item.organizer}
-              price={item.price}
+        {courses.map((section, index) => (
+          <div
+            key={section.id}
+            className="position_relative"
+            data-aos={editMode ? "" : "fade-up"}
+          >
+            <CourseSection
+              id={section.id}
+              key={section.id}
+              title={section.title}
+              link={section.link}
+              description1={section.description1}
+              description2={section.description2}
+              description3={section.description3}
+              sectionImage={section.sectionImage}
+              organizer={section.organizer}
+              price={section.price}
               index={index}
             />
             {editMode && (
               <AddOrEdit edit={true}>
-                <Actions id={item.id} />
+                <CoursesActions id={section.id} />
               </AddOrEdit>
             )}
           </div>
@@ -37,7 +41,7 @@ const CoursesList = () => {
       </div>
       {editMode && (
         <AddOrEdit edit={false}>
-          <Actions />
+          <CoursesActions />
         </AddOrEdit>
       )}
     </>

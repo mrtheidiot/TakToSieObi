@@ -26,7 +26,7 @@ const AboutMeActionsForm = (props) => {
   };
 
   // add url to sectionGallery
-  const handleSetSectionGallery = (url) => {
+  const addImageToSectionGalleryHandler = (url) => {
     setSectionGallery((prev) => [...prev, url]);
   };
 
@@ -162,7 +162,7 @@ const AboutMeActionsForm = (props) => {
         Dodaj zdjęcia do galerii (można dodać kolejne a kliknięcie w zdjęcie
         spowoduje jego usunięcie)
       </label>
-      <UploadBar name="gallery" returnLink={handleSetSectionGallery} />
+      <UploadBar returnLink={addImageToSectionGalleryHandler} />
       <ThumbnailGallery
         onDelete={removeImgageFromSectionGalleryHandler}
         source={sectionGallery}

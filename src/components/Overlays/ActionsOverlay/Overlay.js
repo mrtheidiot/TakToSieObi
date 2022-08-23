@@ -13,11 +13,12 @@ const Overlay = (props) => {
   const dispatch = useDispatch();
   const isOverlayLoading = useSelector((state) => state.ui.isOverlayLoading);
   const closeOverlay = useSelector((state) => state.ui.hideOverlay);
+  const error = useSelector((state) => state.ui.overlayError);
 
   document.body.style.position = "fixed";
   document.body.style.top = `-${window.scrollY}px`;
 
-  const content =
+  let content =
     isOverlayLoading && !closeOverlay ? (
       <div className="centered">
         <LoadingSpinner />
@@ -25,6 +26,14 @@ const Overlay = (props) => {
     ) : (
       props.children
     );
+
+  if (error) {
+    content = error;
+  }
+
+  useEffect(() => {
+    dispatch(uiActions.setOverlayError(null));
+  }, []);
 
   useEffect(() => {
     if (closeOverlay && !isOverlayLoading) {
