@@ -6,22 +6,26 @@ const AddOrEdit = (props) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
   const classesSelector =
-  props.edit === true ? `${classes.edit_btn}` : `${classes.add_btn}`;
+    props.edit === true ? `${classes.edit_btn}` : `${classes.add_btn}`;
   const text = props.edit === true ? "Edytuj" : "Dodaj";
 
-  const toggleOverlayHandler = () => {
-    setIsOverlayVisible((prev) => !prev);
+  const showOverlayHandler = () => {
+    setIsOverlayVisible(true);
+  };
+
+  const hideOverlayHandler = () => {
+    setIsOverlayVisible(false);
     document.body.style.position = "";
     document.body.style.top = "";
   };
 
   return (
     <div className={classesSelector}>
-      <button className={classes.btn} onClick={toggleOverlayHandler}>
+      <button className={classes.btn} onClick={showOverlayHandler}>
         {text}
       </button>
       {isOverlayVisible && (
-        <Overlay onClose={toggleOverlayHandler}>{props.children}</Overlay>
+        <Overlay onClose={hideOverlayHandler}>{props.children}</Overlay>
       )}
     </div>
   );

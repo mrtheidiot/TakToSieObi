@@ -4,7 +4,6 @@ import "./Button.css";
 
 const Button = (props) => {
   const { backgroundColor, textColor, address, text, internal } = props.button;
-  console.log(props)
 
   const style = {
     backgroundColor: `#${backgroundColor}`,
