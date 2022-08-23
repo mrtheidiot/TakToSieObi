@@ -12,7 +12,8 @@ export const removeSection = (identifier, id) => {
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
-      await response.json();
+      dispatch(uiActions.setHideOverlay(true));
+      dispatch(uiActions.setIsOverlayLoading(false));
     };
 
     switch (identifier) {
@@ -41,22 +42,5 @@ export const removeSection = (identifier, id) => {
         } catch (err) {}
         break;
     }
-
-    dispatch(uiActions.setHideOverlay(true));
-    dispatch(uiActions.setIsOverlayLoading(false));
   };
 };
-
-const removeHomeSection = () => {
-  return async (dispatch) => {
-    dispatch(uiActions.setIsOverlayLoading(true));
-
-    try {
-      const response = await fetch('https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage/${id}.json', { method: "DELETE" });
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-    } catch (err) {
-      
-    }
-}

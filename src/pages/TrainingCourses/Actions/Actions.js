@@ -52,7 +52,7 @@ const Actions = (props) => {
       ...course,
       list1: course.subsite[0].content,
       list2: course.subsite[1].content,
-      list3: course.list3,
+      list3: course.subsite[2].content,
       list4: course.list4,
       list5: course.list5,
       list6: course.list6,

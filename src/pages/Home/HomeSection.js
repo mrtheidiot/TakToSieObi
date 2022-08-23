@@ -10,9 +10,6 @@ const HomeSection = (props) => {
     (item) => item.id === props.id
   ).buttons;
 
-  // const editMode = window.localStorage.getItem("isLoggedIn");
-  const editMode = true;
-
   return (
     <div className={classes.wrapper}>
       <div className={classes.mainpagesection__text}>
