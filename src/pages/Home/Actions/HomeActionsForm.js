@@ -34,7 +34,7 @@ const HomeActionsForm = (props) => {
   const addButtonHandler = (event) => {
     event.preventDefault();
 
-    const internal = button.address.substring(0, 4) === "http" ? "1" : "0";
+    const internal = button.address.substring(0, 4) === "http" ? "0" : "1";
 
     const newButton = {
       text: button.text,

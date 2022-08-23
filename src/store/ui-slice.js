@@ -11,7 +11,6 @@ const uiSlice = createSlice({
   reducers: {
     setIsAppLoading(state, action) {
       state.isAppLoading = action.payload;
-      console.log(state.isAppLoading)
     },
     setIsOverlayLoading(state, action) {
       state.isOverlayLoading = action.payload;

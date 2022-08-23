@@ -14,6 +14,7 @@ export const HomeList = () => {
   return (
     <>
       <Banner id={3} />
+      {error && error}
       <main className={classes.wrapper}>
         <h3 className={classes.heading}>Witaj w Tak to się Obi! </h3>
         <p>Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:</p>
@@ -29,6 +30,7 @@ export const HomeList = () => {
               contentPart1={section.part1}
               contentPart2={section.part2}
               contentPage3={section.part3}
+              buttons={section.buttons}
             />
             {editMode && (
               <AddOrEdit edit={true}>

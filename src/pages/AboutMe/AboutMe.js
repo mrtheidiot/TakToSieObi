@@ -8,6 +8,7 @@ import classes from "./AboutMe.module.css";
 
 const AboutMe = () => {
   const aboutMeContent = useSelector((state) => state.aboutme.aboutMeContent);
+  const error = useSelector(state => state.aboutme.error)
   const editMode = useSelector((state) => state.ui.editMode);
 
   console.log(aboutMeContent);
@@ -17,6 +18,7 @@ const AboutMe = () => {
   return (
     <>
       <Banner id={3} />
+      {error && error}
       {aboutMeContent.map((section) => (
         <section className={sectionClasses} key={section.id}>
           <div className={classes.content} data-aos={editMode ? "" : "fade-up"}>

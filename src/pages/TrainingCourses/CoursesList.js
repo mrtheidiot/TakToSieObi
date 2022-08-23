@@ -1,16 +1,20 @@
 import Banner from "../../components/Banner/Banner";
-import classes from "./CoursesList.module.css";
 import CourseSection from "./CourseSection";
-import { useSelector } from "react-redux";
 import AddOrEdit from "../../components/Overlays/ActionsOverlay/AddOrEdit";
 import CoursesActions from "./Actions/CoursesActions";
+import { useSelector } from "react-redux";
+
+import classes from "./CoursesList.module.css";
 
 const CoursesList = () => {
   const courses = useSelector((state) => state.courses.coursesContent);
+  const error = useSelector(state => state.courses.error)
   const editMode = useSelector((state) => state.ui.editMode);
+
   return (
     <>
       <Banner id={4} />
+      {error && error}
       <div className={classes.courses_container}>
         {courses.map((section, index) => (
           <div

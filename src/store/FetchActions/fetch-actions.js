@@ -5,7 +5,7 @@ import { uiActions } from "../ui-slice";
 
 export const fetchHomePage = () => {
   return async (dispatch) => {
-    dispatch(uiActions.setIsAppLoading(true))
+    dispatch(uiActions.setIsAppLoading(true));
     dispatch(homePageActions.setError(null));
     try {
       const response = await fetch(
@@ -41,13 +41,13 @@ export const fetchHomePage = () => {
         )
       );
     }
-    dispatch(uiActions.setIsAppLoading(false))
+    dispatch(uiActions.setIsAppLoading(false));
   };
 };
 
 export const fetchCoursesList = () => {
   return async (dispatch) => {
-    dispatch(uiActions.setIsAppLoading(true))
+    dispatch(uiActions.setIsAppLoading(true));
     dispatch(coursesActions.setError(null));
     try {
       const response = await fetch(
@@ -83,13 +83,13 @@ export const fetchCoursesList = () => {
         )
       );
     }
-    dispatch(uiActions.setIsAppLoading(false))
+    dispatch(uiActions.setIsAppLoading(false));
   };
 };
 
 export const fetchAboutMe = () => {
   return async (dispatch) => {
-    dispatch(uiActions.setIsAppLoading(true))
+    dispatch(uiActions.setIsAppLoading(true));
     dispatch(aboutMeActions.setError(null));
     try {
       const response = await fetch(
@@ -130,10 +130,11 @@ export const fetchAboutMe = () => {
     } catch (error) {
       dispatch(
         aboutMeActions.setError(
-          error.message || "Nie udało się pobrać zawartości strony O mnie"
+          error.message ||
+            "Nie udało się pobrać zawartości strony Ja i Moje Psy"
         )
       );
     }
-    dispatch(uiActions.setIsAppLoading(false))
+    dispatch(uiActions.setIsAppLoading(false));
   };
 };

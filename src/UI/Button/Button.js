@@ -1,32 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Button.css";
+
+import classes from "./Button.module.css";
 
 const Button = (props) => {
   const { backgroundColor, textColor, address, text, internal } = props.button;
+  console.log(props);
 
-  const style = {
+  const styles = {
     backgroundColor: `#${backgroundColor}`,
     color: `#${textColor}`,
   };
 
-  return internal === "1" ? (
-    <div className="button__main">
-      <Link to={address}>
-        <div className="button__sub" style={style}>
+  const finalButton =
+    internal === "1" ? (
+      <div className={classes.button}>
+        <Link to={address} style={styles}>
           {text}
-        </div>
-      </Link>
-    </div>
-  ) : (
-    <div className="button__main">
-      <a href={address} target="_blank" rel="noreferrer noopener">
-        <div className="button__sub" style={style}>
+        </Link>
+      </div>
+    ) : (
+      <div className={classes.button}>
+        <a
+          href={address}
+          target="_blank"
+          rel="noreferrer noopener"
+          style={styles}
+        >
           {text}
-        </div>
-      </a>
-    </div>
-  );
+        </a>
+      </div>
+    );
+
+  return <div className={classes.wrapper}>
+    {finalButton}
+  </div>
 };
 
 export default Button;

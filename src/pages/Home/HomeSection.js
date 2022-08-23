@@ -6,9 +6,11 @@ import classes from "./HomeSection.module.css";
 
 const HomeSection = (props) => {
   const homePageContent = useSelector((state) => state.home.homePageContent);
-  const buttonsToCurrentSection = homePageContent.find(
-    (item) => item.id === props.id
-  ).buttons;
+  // const buttonsToCurrentSection = homePageContent.find(
+  //   (item) => item.id === props.id
+  // ).buttons;
+
+  console.log(props.buttons)
 
   return (
     <div className={classes.wrapper}>
@@ -19,7 +21,7 @@ const HomeSection = (props) => {
       </div>
       <div className={classes.mainpagesection__links}>
         <div className={classes.buttons}>
-          {buttonsToCurrentSection.map((button) => (
+          {props.buttons.map((button) => (
             <div key={button.id}>
               <Button button={button} />
             </div>

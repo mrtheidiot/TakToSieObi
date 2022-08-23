@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useFetchStore from "./hooks/useFetchStore";
 
@@ -46,7 +46,7 @@ function App() {
         <Route path="/treningi" exact>
           <CoursesList />
         </Route>
-        <Route path="/treningi/:courselink">
+        <Route path="/treningi/:courselink" exact>
           <CourseDetails />
         </Route>
         <Route path="/omnie" exact>
@@ -65,51 +65,3 @@ function App() {
 }
 
 export default App;
-
-// const trainingTitles = [
-//   { title: "Trening Indywidualny", slug: "treningi/trening-indywidualny" },
-//   {
-//     title: "Posłuszeństwo z el. obedience",
-//     slug: "treningi/posluszenstwo-el-obd",
-//   },
-//   { title: "Obedience 1", slug: "treningi/obedience-1" },
-//   { title: "Sportowy szczeniak", slug: "treningi/sportowy-szczeniak" },
-//   { title: "Treningi wspólne", slug: "treningi/treningi-wspolne" },
-// ];
-
-// const itemTitles = [
-//   { title: "Szarpaki", slug: "/asortyment/szarpaki/" },
-//   {
-//     title: "Spódniczki standardowe",
-//     slug: "/asortyment/spodniczki_standardowe",
-//   },
-//   {
-//     title: "Spódniczki dla wysokich psow",
-//     slug: "/asortyment/spodniczki_dla_wysokich_psow",
-//   },
-// ];
-
-// {menuOpen && <OverlayMenu callback={handleOverlayMenu} />}
-
-// let str =
-// "cokolwiek /bold/powiem ci/bold/ cos/nextl/ jeszcze /bold/czego nie/bold/ wiem";
-
-// // str = str.split("/bold/");
-
-// const cos1 = str.split("/nextl/").map((item) => <div>{item}</div>);
-// const cos2 = [];
-// cos1.forEach((item) => cos2.push(item.props.children));
-// console.log(cos2);
-
-// return (
-// <ul className={classes.uploadbar}>
-//   {cos2.map((item) => (
-//     <div>
-//       {item.split("/bold/").map((item2, index) => (
-//         <li>{index & (2 !== 0) ? <b>{item2}</b> : item2}</li>
-//       ))}
-//     </div>
-//   ))}
-// </ul>
-// );
-// };
