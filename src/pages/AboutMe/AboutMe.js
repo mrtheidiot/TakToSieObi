@@ -11,16 +11,14 @@ const AboutMe = () => {
   const error = useSelector(state => state.aboutme.error)
   const editMode = useSelector((state) => state.ui.editMode);
 
-  console.log(aboutMeContent);
-
   const sectionClasses = `${classes.wrapper} display-flex`;
 
   return (
-    <>
+    <div>
       <Banner id={3} />
       {error && error}
       {aboutMeContent.map((section) => (
-        <section className={sectionClasses} key={section.id}>
+        <section className={sectionClasses} key={section.id}  data-testid="aboutme-mainsection">
           <div className={classes.content} data-aos={editMode ? "" : "fade-up"}>
             <h3 className={classes.title}>{section.title}</h3>
             <div className={classes.parts}>
@@ -47,7 +45,7 @@ const AboutMe = () => {
           <AboutMeActions />
         </AddOrEdit>
       )}
-    </>
+    </div>
   );
 };
 

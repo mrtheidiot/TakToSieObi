@@ -1,9 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import homePageSlice from "./homePage-slice";
 import coursesSlice from "./coursesList-slice";
 import aboutMeSlice from "./aboutme-slice";
 import uiSlice from "./ui-slice";
+
+const rootReducer = combineReducers();
 
 const store = configureStore({
   reducer: {

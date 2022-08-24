@@ -13,14 +13,23 @@ const Gallery = (props) => {
 
   return (
     <>
-      <div className={classes.wrapper} data-aos="fade-in">
+      <div
+        className={classes.wrapper}
+        data-aos="fade-in"
+        data-testid="thumbnail-gallery-container"
+      >
         <ThumbnailGallery
           onClick={() => setToggler(!toggler)}
           source={sources}
           size={props.size}
         />
       </div>
-      <FsLightbox toggler={toggler} sources={sources} type="image" />
+      <FsLightbox
+        toggler={toggler}
+        sources={sources}
+        type="image"
+        customAttributes={[{ alt: "gallery-image" }]}
+      />
     </>
   );
 };

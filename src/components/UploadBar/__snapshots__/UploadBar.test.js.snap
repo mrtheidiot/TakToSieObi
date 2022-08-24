@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the UploadBar snapshot 1`] = `
+<div
+  class="wrapper"
+>
+  <p>
+    Wybierz zdjęcie:
+  </p>
+  <input
+    class="input"
+    type="file"
+  />
+  <button>
+    Dodaj
+  </button>
+  <div
+    class="bar_container"
+  >
+    <div
+      class="bar"
+      style="width: 0%;"
+    >
+      <span
+        style="display: none;"
+      >
+        Dodano pomyślnie!
+      </span>
+    </div>
+  </div>
+</div>
+`;

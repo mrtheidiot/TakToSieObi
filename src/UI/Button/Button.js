@@ -14,27 +14,21 @@ const Button = (props) => {
 
   const finalButton =
     internal === "1" ? (
-      <div className={classes.button}>
-        <Link to={address} style={styles}>
-          {text}
-        </Link>
-      </div>
+      <Link to={address} style={styles}>
+        <div className={classes.button}>{text}</div>
+      </Link>
     ) : (
-      <div className={classes.button}>
-        <a
-          href={address}
-          target="_blank"
-          rel="noreferrer noopener"
-          style={styles}
-        >
-          {text}
-        </a>
-      </div>
+      <a
+        href={address}
+        target="_blank"
+        rel="noreferrer noopener"
+        style={styles}
+      >
+        <div className={classes.button}>{text}</div>
+      </a>
     );
 
-  return <div className={classes.wrapper}>
-    {finalButton}
-  </div>
+  return <div className={classes.wrapper}>{finalButton}</div>;
 };
 
 export default Button;

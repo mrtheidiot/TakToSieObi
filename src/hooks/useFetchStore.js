@@ -24,7 +24,7 @@ const useFetchStore = () => {
     }
   };
 
-  return { sendRequests };
+  return {sendRequests} ;
 };
 
 export default useFetchStore;

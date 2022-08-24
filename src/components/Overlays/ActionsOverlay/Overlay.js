@@ -44,7 +44,7 @@ const Overlay = (props) => {
 
   return (
     <div className={classes.backdrop}>
-      <div className={classes.modal}>{content}</div>
+      <div className={classes.modal} data-testid="overlay">{content}</div>
       <button type="button" onClick={props.onClose}>
         Zamknij
       </button>

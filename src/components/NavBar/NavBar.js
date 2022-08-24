@@ -1,15 +1,17 @@
-import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
-import Logo from "./../../assets/Logo1.svg";
 import usePageYOffset from "../../hooks/usePageYOffset";
-
+import NavBarWide from "./NavBarWide";
+import Logo from "./../../assets/Logo1.svg";
+import { NavLink, Link } from "react-router-dom";
 import classes from "./NavBar.module.css";
 import "./../../stylus/dist/NavBar.css";
+import NavBarMobile from "./NavBarMobile";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses.coursesContent);
+  const editMode = useSelector((state) => state.ui.editMode);
 
   const yOffset = usePageYOffset();
 
@@ -26,46 +28,31 @@ const NavBar = () => {
     { id: 5, title: "KONTAKT", url: "/kontakt" },
   ];
 
-  const navItemsList = navData.map((item, index) => (
-    <nav className="navLink_link" key={item.id}>
-      <NavLink key={index} to={`${item.url}`} activeClassName={classes.active}>
-        {item.title}
-      </NavLink>
-      {item.dropdown && (
-        <ul className="dropdown_menu dropdown_animated dropdown_animation">
-          <li>
-            {item.dropdown.map((item) => (
-              <Link key={item.id} to={item.link}>
-                {item.title}
-              </Link>
-            ))}
-          </li>
-        </ul>
-      )}
-    </nav>
-  ));
-
-  const resizeClasses =
-    yOffset < 50
-      ? `${classes.resizeUp} ${classes.wrapper}`
-      : `${classes.wrapper} ${classes.resizeDown}`;
+  // const resizeClasses =
+  //   yOffset < 50
+  //     ? `${classes.resizeUp} ${classes.wrapper}`
+  //     : `${classes.wrapper} ${classes.resizeDown}`;
 
   return (
-    <div className={resizeClasses}>
+    <div className={classes.wrapper}>
       <section className={classes.logo}>
         <Link to="/">
           <img src={Logo} alt="logo TakToSieObi" />
         </Link>
       </section>
-      <section className={classes.navlinks}>
-        {navItemsList}
-        {isLoggedIn && (
-          <label className={classes.switch}>
-            <input type="checkbox" onChange={setEdititngModeHandler} />
-            <span className={classes.slider} />
-          </label>
-        )}
-      </section>
+      <NavBarWide
+        navData={navData}
+        isLoggedIn={isLoggedIn}
+        setEdititngModeHandler={setEdititngModeHandler}
+      />
+      <div className={classes.navBar_mobile}>
+        <NavBarMobile
+          navData={navData}
+          isLoggedIn={isLoggedIn}
+          setEdititngModeHandler={setEdititngModeHandler}
+          editMode={editMode}
+        />
+      </div>
     </div>
   );
 };

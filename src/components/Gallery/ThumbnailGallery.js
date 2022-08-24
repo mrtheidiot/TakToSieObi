@@ -31,6 +31,7 @@ const ThumbnailGallery = (props) => {
           onClick={onClickHandler}
           className={classes.thumbnail}
           style={boxSize}
+          data-testid="thumbnail-image"
         >
           <img src={image} />
         </div>

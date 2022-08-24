@@ -12,7 +12,7 @@ const UploadBar = (props) => {
   const [percent, setPercent] = useState(0);
 
   const text = props.text ? props.text : "Dodano pomyślnie!";
-  const bar_text = percent === 100 ? { display: "block" } : { display: "none" };
+  const bar_text = percent === 100 ? { display: "block" } : { display: "none" }; // styles for text inside the upload bar
 
   function handleChange(event) {
     setFile(event.target.files[0]);
@@ -38,7 +38,7 @@ const UploadBar = (props) => {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          props.returnLink(url);
+          {props.returnLink && props.returnLink(url);}
         });
       }
     );
