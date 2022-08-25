@@ -45,14 +45,10 @@ const NavBarMobile = (props) => {
 
   return (
     <div className={classes.navBar_mobile}>
-      <i class="fas fa-bars fa-3x" onClick={showOverlayHandler} />
+      <i className="fas fa-bars fa-3x" onClick={showOverlayHandler} />
       {showOverlay && <Overlay {...props} onClose={hideOverlayHandler} />}
     </div>
   );
 };
 
 export default NavBarMobile;
-
-{
-  /* <div className={classes.navBar_mobile_overlay}></div> */
-}

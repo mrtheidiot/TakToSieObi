@@ -49,6 +49,7 @@ const initialValues = {
 
 const CourseDetails = () => {
   const params = useParams();
+  console.log(params)
   const courses = useSelector((state) => state.courses.coursesContent);
   let course = courses.find((item) => item.link === params.courselink);
 
@@ -72,7 +73,7 @@ const CourseDetails = () => {
   return (
     <>
       <Banner id={1} imageURL={course.bannerImage} />
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} data-testid="courseDetails">
         <h1>{course.title}</h1>
         {contentList}
         <Gallery size="170" source={course.sectionGallery} />

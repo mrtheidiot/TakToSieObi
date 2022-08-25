@@ -115,7 +115,7 @@ export const fetchAboutMe = () => {
         for (const i in data[key].parts) {
           const part = {
             id: i,
-            text: data[key].parts[i],
+            text: data[key].parts[i].text,
           };
           transformedParts.push(part);
         }

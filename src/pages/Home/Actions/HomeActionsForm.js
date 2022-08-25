@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Button from "../../../UI/Button/Button";
-
 import classes from "./../../../Actions.module.css";
 
 const initialButton = {
@@ -149,7 +147,12 @@ const HomeActionsForm = (props) => {
       </form>
       <div className={classes.bottom_buttons}>
         {props.edit && (
-          <button onClick={props.removeSectionHandler}>Usuń tę sekcję</button>
+          <button
+            onClick={props.removeSectionHandler}
+            data-testid="delete-button"
+          >
+            Usuń tę sekcję
+          </button>
         )}
         <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </div>

@@ -14,16 +14,16 @@ const AboutMe = () => {
   const sectionClasses = `${classes.wrapper} display-flex`;
 
   return (
-    <div>
+    <>
       <Banner id={3} />
       {error && error}
       {aboutMeContent.map((section) => (
-        <section className={sectionClasses} key={section.id}  data-testid="aboutme-mainsection">
+        <section className={sectionClasses} key={section.id}>
           <div className={classes.content} data-aos={editMode ? "" : "fade-up"}>
             <h3 className={classes.title}>{section.title}</h3>
             <div className={classes.parts}>
-              {section.parts.map((part) => (
-                <p key={part.id}>{part.text}</p>
+              {section.parts.map((part, index) => (
+                <p key={index}>{part.text}</p>
               ))}
             </div>
             <div className={classes.sideImage}>
@@ -45,7 +45,7 @@ const AboutMe = () => {
           <AboutMeActions />
         </AddOrEdit>
       )}
-    </div>
+    </>
   );
 };
 
