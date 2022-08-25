@@ -9,6 +9,7 @@ import store from "./store/index";
 import "./index.css";
 
 window.firebaseLink = "cokolwiek";
+window.testMode = true
 
 ReactDOM.render(
   <Provider store={store}>

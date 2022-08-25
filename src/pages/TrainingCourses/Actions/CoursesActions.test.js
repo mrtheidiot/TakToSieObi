@@ -5,6 +5,7 @@ import renderWithProviders from "../../../store/TestUtils/renderWithProviders";
 import CoursesList from "../CoursesList";
 
 it("creates new section, edits it and deletes on the CoursesList page", () => {
+  window.testMode = true
   const initialState = {
     courses: {
       coursesContent: [],

@@ -7,6 +7,7 @@ import renderWithProviders from "./../../../store/TestUtils/renderWithProviders"
 import AboutMe from "../AboutMe";
 
 it("creates new section, edits it and deletes on AboutMe page", () => {
+  window.testMode = true
   const initialState = {
     aboutme: {
       aboutMeContent: [{ id: 1, title: "title", parts: [] }],

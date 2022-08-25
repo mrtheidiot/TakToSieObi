@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 import Footer from "./components/Footer/Footer";
 import Contact from "./pages/Contact/Contact";
 import Aos from "aos";
+import EventsList from "./pages/Events/EventsList";
 import "aos/dist/aos.css";
 
 import classes from "./App.module.css";
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path="/omnie" exact>
           <AboutMe />
+        </Route>
+        <Route path="/wydarzenia">
+          <EventsList />
         </Route>
         <Route path="/kontakt" exact>
           <Contact />

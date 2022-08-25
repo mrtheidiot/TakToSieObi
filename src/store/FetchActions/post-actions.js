@@ -1,14 +1,14 @@
+import { useSelector } from "react-redux";
 import { homePageActions } from "../homePage-slice";
 import { coursesActions } from "../coursesList-slice";
 import { aboutMeActions } from "../aboutme-slice";
+import { eventsActions } from "../events-slice";
 import { uiActions } from "../ui-slice";
-import { testMode } from "../ui-slice";
-
 
 export const addHomeSection = (newSection) => {
   return async (dispatch) => {
     dispatch(uiActions.setIsOverlayLoading(true));
-    if (!testMode) {
+    if (!window.testMode) {
       try {
         const response = await fetch(
           `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage.json`,
@@ -48,7 +48,7 @@ export const addHomeSection = (newSection) => {
 export const addCoursesSection = (newSection) => {
   return async (dispatch) => {
     dispatch(uiActions.setIsOverlayLoading(true));
-    if (!testMode) {
+    if (!window.testMode) {
       try {
         const response = await fetch(
           `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses.json`,
@@ -91,7 +91,7 @@ export const addCoursesSection = (newSection) => {
 export const addAboutMeSection = (newSection) => {
   return async (dispatch) => {
     dispatch(uiActions.setIsOverlayLoading(true));
-    if (!testMode) {
+    if (!window.testMode) {
       try {
         const response = await fetch(
           `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/aboutMe.json`,
@@ -119,6 +119,47 @@ export const addAboutMeSection = (newSection) => {
     } else {
       dispatch(
         aboutMeActions.addAboutMeSection({
+          id: Math.floor(Math.random() * 1000) + 1,
+          ...newSection,
+        })
+      );
+      dispatch(uiActions.setHideOverlay(true));
+    }
+    dispatch(uiActions.setIsOverlayLoading(false));
+  };
+};
+
+export const addEvent = (newSection) => {
+  return async (dispatch) => {
+    dispatch(uiActions.setIsOverlayLoading(true));
+    if (!window.testMode) {
+      try {
+        const response = await fetch(
+          `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/events.json`,
+          {
+            method: "POST",
+            body: JSON.stringify(newSection),
+          }
+        );
+        if (!response.ok) {
+          throw new Error(
+            "Nie udało się dodać sekcji do strony Wydarzenia!"
+          );
+        }
+        const data = await response.json();
+        dispatch(
+          eventsActions.addEventsSection({
+            id: data.name,
+            ...newSection,
+          })
+        );
+        dispatch(uiActions.setHideOverlay(true));
+      } catch (err) {
+        dispatch(uiActions.setOverlayError(err.message));
+      }
+    } else {
+      dispatch(
+        eventsActions.addEventsSection({
           id: Math.floor(Math.random() * 1000) + 1,
           ...newSection,
         })

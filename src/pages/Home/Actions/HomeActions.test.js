@@ -4,6 +4,7 @@ import renderWithProviders from "../../../store/TestUtils/renderWithProviders";
 import HomeList from "../HomeList";
 
 it("creates new section, edits it and deletes on the HomeList page", () => {
+  window.testMode = true
   const initialState = {
     ui: { editMode: true },
   };

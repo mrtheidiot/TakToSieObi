@@ -1,6 +1,7 @@
 import { homePageActions } from "./../homePage-slice";
 import { coursesActions } from "../coursesList-slice";
 import { aboutMeActions } from "../aboutme-slice";
+import { eventsActions } from "../events-slice";
 import { uiActions } from "../ui-slice";
 
 export const fetchHomePage = () => {
@@ -132,6 +133,40 @@ export const fetchAboutMe = () => {
         aboutMeActions.setError(
           error.message ||
             "Nie udało się pobrać zawartości strony Ja i Moje Psy"
+        )
+      );
+    }
+    dispatch(uiActions.setIsAppLoading(false));
+  };
+};
+
+export const fetchEvents = () => {
+  return async (dispatch) => {
+    dispatch(uiActions.setIsAppLoading(true));
+    dispatch(eventsActions.setError(null));
+    try {
+      const response = await fetch(
+        "https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/events.json"
+      );
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+      const data = await response.json();
+
+      let transformedObjects = [];
+      for (const key in data) {
+        const obj = {
+          id: key,
+          ...data[key],
+        };
+        transformedObjects.push(obj);
+      }
+      dispatch(eventsActions.replaceEvents(transformedObjects));
+    } catch (error) {
+      dispatch(
+        eventsActions.setError(
+          error.message ||
+            "Nie udało się pobrać zawartości strony wydarzeń!"
         )
       );
     }

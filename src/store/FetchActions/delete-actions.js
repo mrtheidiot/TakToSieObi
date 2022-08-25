@@ -2,7 +2,7 @@ import { uiActions } from "../ui-slice";
 import { homePageActions } from "../homePage-slice";
 import { coursesActions } from "../coursesList-slice";
 import { aboutMeActions } from "../aboutme-slice";
-import { testMode } from "../ui-slice";
+import { eventsActions } from "../events-slice";
 
 export const removeSection = (identifier, id) => {
   return async (dispatch) => {
@@ -19,7 +19,7 @@ export const removeSection = (identifier, id) => {
 
     switch (identifier) {
       case "home":
-        if (testMode) {
+        if (!window.testMode) {
           try {
             await deleteFunction(
               `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/homePage/${id}.json`
@@ -40,7 +40,7 @@ export const removeSection = (identifier, id) => {
         }
         break;
       case "courses":
-        if (testMode) {
+        if (!window.testMode) {
           try {
             await deleteFunction(
               `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/trainingCourses/${id}.json`
@@ -61,7 +61,7 @@ export const removeSection = (identifier, id) => {
         }
         break;
       case "aboutme":
-        if (testMode) {
+        if (!window.testMode) {
           try {
             await deleteFunction(
               `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/aboutMe/${id}.json`
@@ -80,6 +80,28 @@ export const removeSection = (identifier, id) => {
           document.body.style.position = "";
           document.body.style.top = "";
           dispatch(aboutMeActions.removeAboutMeSection({ id }));
+        }
+        break;
+      case "events":
+        if (!window.testMode) {
+          try {
+            await deleteFunction(
+              `https://taktosieobi-94781-default-rtdb.europe-west1.firebasedatabase.app/events/${id}.json`
+            );
+            dispatch(eventsActions.removeEventsSection({ id }));
+          } catch (err) {
+            dispatch(
+              uiActions.setOverlayError(
+                err.message ||
+                  "Nie udało się usunąć zawartości strony Wydarzenia!"
+              )
+            );
+            dispatch(uiActions.setIsOverlayLoading(false));
+          }
+        } else {
+          document.body.style.position = "";
+          document.body.style.top = "";
+          dispatch(eventsActions.removeEventsSection({ id }));
         }
         break;
     }
