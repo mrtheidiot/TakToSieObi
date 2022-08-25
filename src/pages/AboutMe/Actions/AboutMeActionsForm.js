@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
 import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
 
-import classes from "./../../../Actions.module.css"
+import classes from "./../../../Actions.module.css";
 
 const AboutMeActionsForm = (props) => {
   const [values, setValues] = useState(props.initialValues.baseContent);
@@ -41,22 +41,22 @@ const AboutMeActionsForm = (props) => {
     const section = {
       title: values.title,
       parts: [
-        values.part1,
-        values.part2,
-        values.part3,
-        values.part4,
-        values.part5,
-        values.part6,
-        values.part7,
-        values.part8,
-        values.part9,
-        values.part10,
+        { text: values.part1 },
+        { text: values.part2 },
+        { text: values.part3 },
+        { text: values.part4 },
+        { text: values.part5 },
+        { text: values.part6 },
+        { text: values.part7 },
+        { text: values.part8 },
+        { text: values.part9 },
+        { text: values.part10 },
       ],
       sideImage: values.sideImage,
       sectionGallery: sectionGallery,
     };
 
-    props.sumbitHandler(section);
+    props.dispatchAction(section);
   };
 
   const heading = props.edit ? "Edytuj sekcję:" : "Dodaj sekcję:";
@@ -84,6 +84,7 @@ const AboutMeActionsForm = (props) => {
           value={values.title}
           onChange={handleInputChange}
           name="title"
+          data-testid="aboutMeActions-title"
         />
         <label htmlFor="part1">Część 1:</label>
         <textarea
@@ -169,7 +170,7 @@ const AboutMeActionsForm = (props) => {
       />
       <div className={classes.bottom_buttons}>
         {props.edit && (
-          <button onClick={props.removeSectionHandler}>Usuń tę sekcję</button>
+          <button onClick={props.removeSectionHandler} data-testid="delete-button">Usuń tę sekcję</button>
         )}
         <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </div>

@@ -15,7 +15,7 @@ const CoursesList = () => {
     <>
       <Banner id={4} />
       {error && error}
-      <div className={classes.courses_container}>
+      <main className={classes.courses_container}>
         {courses.map((section, index) => (
           <div
             key={section.id}
@@ -42,7 +42,7 @@ const CoursesList = () => {
             )}
           </div>
         ))}
-      </div>
+      </main>
       {editMode && (
         <AddOrEdit edit={false}>
           <CoursesActions />

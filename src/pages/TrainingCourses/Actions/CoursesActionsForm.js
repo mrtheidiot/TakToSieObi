@@ -292,7 +292,7 @@ const CoursesActionsForm = (props) => {
       />
       <div className={classes.bottom_buttons}>
         {props.edit && (
-          <button onClick={props.removeSectionHandler}>Usuń tę sekcję</button>
+          <button onClick={props.removeSectionHandler} data-testid="delete-button">Usuń tę sekcję</button>
         )}
         <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </div>

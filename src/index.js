@@ -8,6 +8,8 @@ import store from "./store/index";
 
 import "./index.css";
 
+window.firebaseLink = "cokolwiek";
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

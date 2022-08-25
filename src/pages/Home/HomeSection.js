@@ -1,17 +1,9 @@
-import { useSelector } from "react-redux";
 import Button from "../../UI/Button/Button";
 import Output from "../../UI/Output/Output";
 
 import classes from "./HomeSection.module.css";
 
 const HomeSection = (props) => {
-  const homePageContent = useSelector((state) => state.home.homePageContent);
-  // const buttonsToCurrentSection = homePageContent.find(
-  //   (item) => item.id === props.id
-  // ).buttons;
-
-  console.log(props.buttons)
-
   return (
     <div className={classes.wrapper}>
       <div className={classes.mainpagesection__text}>

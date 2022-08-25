@@ -14,7 +14,7 @@ const Output = (props) => {
 
   return (
     <>
-      <div className={classes.text}>
+      <div className={classes.text} data-testid="output">
         {cos1[0].split("/nl/").map((item, index) => (
           <div key={index}>
             {item.split("/b/").map((item2, index) => (
