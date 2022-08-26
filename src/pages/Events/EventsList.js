@@ -14,11 +14,11 @@ const EventsList = () => {
     <>
       <Banner id={1} />
       <div className={classes.wrapper}>
-        {eventsContent.map((event) => (
+        {eventsContent.map((event, index) => (
           <div
             key={event.id}
             className="position_relative"
-            data-aos={editMode ? "" : "fade-up"}
+            data-aos={editMode ? "" : "fade-in"}
           >
             <EventsSection
               id={event.id}
@@ -28,6 +28,7 @@ const EventsList = () => {
               location={event.location}
               description={event.description}
               eventImage={event.eventImage}
+              index={index}
             />
             {editMode && (
               <AddOrEdit edit={true}>
@@ -36,9 +37,11 @@ const EventsList = () => {
             )}
           </div>
         ))}
-        <AddOrEdit edit={false}>
-          <EventsActions />
-        </AddOrEdit>
+        {editMode && (
+          <AddOrEdit edit={false}>
+            <EventsActions />
+          </AddOrEdit>
+        )}
       </div>
     </>
   );

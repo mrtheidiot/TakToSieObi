@@ -1,0 +1,59 @@
+.wrapper {
+    width: 100%;
+    padding: 3% 0;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backgroundDark {
+    background-color: #FFEBC1;
+}
+
+.container {
+    width: 90%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: #f9faef;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.image {
+    height: 25vh;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Amatic SC', cursive;
+    font-size: 3rem;
+    color: whtie;
+    border-radius: 15px;
+}
+
+.title {
+    font-family: 'Nasalization Rg', sans-serif;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    padding: 2%;
+}
+
+.description_short {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.backgroundLight .container:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.backgroundDark .container:hover {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
