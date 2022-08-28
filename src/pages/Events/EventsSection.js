@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./EventsSection.module.css";
 
 const EventsSection = (props) => {
-  const [showDescription, setShowDescription] = useState(false);
   const backgroundSelector = props.index % 2;
 
   const background =
@@ -13,7 +11,7 @@ const EventsSection = (props) => {
 
   return (
     <div className={background}>
-      <Link to="/wydarzenia" className={classes.container}>
+      <Link to={`/wydarzenia/${props.link}`} className={classes.container}>
         <div
           className={classes.image}
           style={{ backgroundImage: `url(${props.eventImage})` }}
@@ -21,10 +19,7 @@ const EventsSection = (props) => {
           {props.date}
         </div>
         <h1 className={classes.title}>{props.title}</h1>
-        <p className={classes.description_short}>
-          Szkolenie z zakresu podstawowego posłuszeństwa dla psów w różnym wieku
-          i różnych ras w Wolinie.
-        </p>
+        <p className={classes.description_short}>{props.descriptionShort}</p>
       </Link>
     </div>
   );

@@ -9,7 +9,8 @@ function renderWithProviders(
   { preloadedState = {}, store = setupStore(preloadedState) } = {}
 ) {
   function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
+    return <Provider store={store}>
+      {children}</Provider>;
   }
   return { store, ...render(ui, { wrapper: Wrapper }) };
 }

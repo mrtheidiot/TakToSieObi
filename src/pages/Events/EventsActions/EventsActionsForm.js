@@ -2,10 +2,11 @@ import { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
 import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
 
-import classes from "./../../../Actions.module.css";
+import classes from "./../../Actions.module.css";
 
 const CoursesActionsForm = (props) => {
   const [values, setValues] = useState(props.initialValues);
+  var slugify = require("slugify");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,9 +31,12 @@ const CoursesActionsForm = (props) => {
       date: values.date,
       time: values.time,
       location: values.location,
-      descrption: values.description,
+      descriptionShort: values.descriptionShort,
+      descriptionLong: values.descriptionLong,
       eventImage: values.eventImage,
+      link: slugify(values.title),
     };
+
 
     props.dispatchAction(section);
   };
@@ -75,13 +79,21 @@ const CoursesActionsForm = (props) => {
           value={values.location}
           name="location"
         />
-        <label htmlFor="description">Zawartość: </label>
+        <label htmlFor="descriptionShort">Zawartość: (krótki opis) </label>
         <textarea
           type="text"
-          id="description"
-          value={values.description}
+          id="descriptionShort"
+          value={values.descriptionShort}
           onChange={handleInputChange}
-          name="description"
+          name="descriptionShort"
+        />
+        <label htmlFor="descriptionLong">Zawartość: (długi opis) </label>
+        <textarea
+          type="text"
+          id="descriptionLong"
+          value={values.descriptionLong}
+          onChange={handleInputChange}
+          name="descriptionLong"
         />
       </form>
       <h3>

@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-
-import { ParallaxProvider } from "react-scroll-parallax";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/index";
@@ -14,11 +12,9 @@ window.testMode = false;
 
 ReactDOM.render(
   <Provider store={store}>
-    <ParallaxProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ParallaxProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

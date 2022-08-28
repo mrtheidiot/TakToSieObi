@@ -5,6 +5,7 @@ import banner4 from "./../../assets/Banners/banner4.png";
 import banner5 from "./../../assets/Banners/banner5.png";
 
 import { Parallax } from "react-scroll-parallax";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 import classes from "./Banner.module.css";
 
@@ -13,7 +14,6 @@ import classes from "./Banner.module.css";
 // Component can receive props.image, props.id or none, and it will show image depening on that order (default = 1).
 
 const Banner = (props) => {
-
   const banners = [
     { img: `${banner1}`, alt: "piesek", id: 1 },
     { img: `${banner2}`, alt: "piesek", id: 2 },
@@ -29,11 +29,13 @@ const Banner = (props) => {
     : { img: `${banner1}`, alt: "piesek", id: 1 };
 
   return (
-    <div className={classes.wrapper}>
-      <Parallax speed={-20} >
-        <img src={banner1} className={classes.image}/>
-      </Parallax>
-    </div>
+    <ParallaxProvider>
+      <div className={classes.wrapper}>
+        <Parallax speed={-20}>
+          <img src={banner1} className={classes.image} />
+        </Parallax>
+      </div>
+    </ParallaxProvider>
   );
 };
 

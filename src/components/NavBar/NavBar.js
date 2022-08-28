@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
-import usePageYOffset from "../../hooks/usePageYOffset";
 import NavBarWide from "./NavBarWide";
 import Logo from "./../../assets/Logo1.svg";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import classes from "./NavBar.module.css";
 import "./../../stylus/dist/NavBar.css";
 import NavBarMobile from "./NavBarMobile";
@@ -12,8 +11,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses.coursesContent);
   const editMode = useSelector((state) => state.ui.editMode);
-
-  const yOffset = usePageYOffset();
 
   const isLoggedIn = window.localStorage.getItem("isLoggedIn");
 

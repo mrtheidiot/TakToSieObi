@@ -26,9 +26,11 @@ const EventsList = () => {
               date={event.date}
               time={event.time}
               location={event.location}
-              description={event.description}
+              descriptionShort={event.descriptionShort}
+              descriptionLong={event.descriptionLong}
               eventImage={event.eventImage}
               index={index}
+              link={event.link}
             />
             {editMode && (
               <AddOrEdit edit={true}>

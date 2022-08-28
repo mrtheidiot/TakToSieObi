@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UploadBar from "../../../components/UploadBar/UploadBar";
 import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
 
-import classes from "./../../../Actions.module.css";
+import classes from "./../../Actions.module.css";
 
 const AboutMeActionsForm = (props) => {
   const [values, setValues] = useState(props.initialValues.baseContent);

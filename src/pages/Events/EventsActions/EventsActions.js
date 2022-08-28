@@ -21,8 +21,10 @@ const EventsActions = (props) => {
       date: elementToEdit.date,
       time: elementToEdit.time,
       location: elementToEdit.location,
-      description: elementToEdit.description,
+      descriptionshort: elementToEdit.descriptionShort,
+      descriptionLong: elementToEdit.descriptionLong,
       eventImage: elementToEdit.eventImage,
+      link: elementToEdit.link,
     };
   } else {
     initialValues = {
@@ -30,8 +32,10 @@ const EventsActions = (props) => {
       date: "",
       time: "",
       location: "",
-      description: "",
+      descriptionShort: "",
+      descriptionLong: "",
       eventImage: "",
+      link: "",
     };
   }
 
