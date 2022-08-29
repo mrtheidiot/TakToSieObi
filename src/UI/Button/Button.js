@@ -5,7 +5,6 @@ import classes from "./Button.module.css";
 
 const Button = (props) => {
   const { backgroundColor, textColor, address, text, internal } = props.button;
-  console.log(props);
 
   const styles = {
     backgroundColor: `#${backgroundColor}`,
@@ -28,7 +27,11 @@ const Button = (props) => {
       </a>
     );
 
-  return <div className={classes.wrapper}>{finalButton}</div>;
+  return (
+    <div className={classes.wrapper} key={props.key}>
+      {finalButton}
+    </div>
+  );
 };
 
 export default Button;

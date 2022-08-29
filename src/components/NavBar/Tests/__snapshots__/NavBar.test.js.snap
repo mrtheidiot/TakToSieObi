@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the NavBar snapshot 1`] = `
+<div
+  class="wrapper"
+>
+  <a
+    class="logo"
+    href="/"
+  >
+    <img
+      alt="logo TakToSieObi"
+      src="Logo1.svg"
+    />
+  </a>
+  <nav
+    class="navBar_wide"
+  >
+    <nav
+      class="navLink_navElement"
+    >
+      <a
+        href="/treningi"
+      >
+        TRENINGI OBEDIENCE
+      </a>
+      <ul
+        class="dropdown_menu dropdown_animated"
+      >
+        <li />
+      </ul>
+    </nav>
+    <nav
+      class="navLink_navElement"
+    >
+      <a
+        href="/wydarzenia"
+      >
+        WYDARZENIA
+      </a>
+    </nav>
+    <nav
+      class="navLink_navElement"
+    >
+      <a
+        href="/omnie"
+      >
+        JA I MOJE PSY
+      </a>
+    </nav>
+    <nav
+      class="navLink_navElement"
+    >
+      <a
+        href="/kontakt"
+      >
+        KONTAKT
+      </a>
+    </nav>
+  </nav>
+  <nav
+    class="navBar_mobile"
+  >
+    <i
+      class="fas fa-bars fa-3x"
+      data-testid="hamburger"
+    />
+  </nav>
+</div>
+`;

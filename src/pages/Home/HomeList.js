@@ -20,7 +20,7 @@ export const HomeList = () => {
         <p>Przedstawię Ci stronę, żebyś wiedział o co tu w ogóle chodzi:</p>
         {homePageContent.map((section) => (
           <section
-            data-aos={editMode ? "" : "fade-up"}
+            data-aos={editMode ? "" : "fade-in"}
             key={section.id}
             className="position_relative"
           >

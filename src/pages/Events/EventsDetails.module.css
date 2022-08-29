@@ -1,0 +1,39 @@
+.wrapper {
+    width: 90%;
+    margin: auto;
+    font-family: 'Raleway', sans-serif;
+}
+
+.wrapper h3{
+    text-align: center;
+    font-family: 'Nasalization Rg', sans-serif;
+    margin: 20px 0;
+}
+
+.wrapper p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.output {
+    word-wrap: break-word;
+    line-height: 1.73;
+    border-top: solid 1px green;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.descriptionShort {
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+}
+
+@media (min-width: 868px) {
+    .wrapper {
+        width: 70%;
+    }
+    .wrapper h3 {
+        font-size: 2rem;
+        margin: 40px 0;
+    }
+}

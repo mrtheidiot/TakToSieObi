@@ -1,272 +1,44 @@
-@import url('http://fonts.cdnfonts.com/css/nasalization?styles=6717');
-
 .wrapper {
-    width: 100%;
-    background-color: #f9faef;
     position: fixed;
     top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     z-index: 100;
-    animation-fill-mode: forwards;
+    width: 100%;
     height: 100px;
-}
-
-.navBar_wide {
-    width: 80%;
-    justify-content: flex-end;
-}
-
-.active {
-  opacity: 0.5;
-}
-
-.resizeUp {
-    animation-duration: 0.3s;
-    animation-name: resizeUp;
-}
-
-.resizeDown {
-    animation-duration: 0.3s;
-    animation-name: resizeDown;
+    background-color: #f9faef;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
 .logo {
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   margin-left: 30px;
-}
-
-.logo a {
     display: flex;
-    align-items: center;
 }
 
 .logo img {
     height: 80%;
+    margin: auto 0 auto 20px;
+}
+
+.navBar_mobile {
+    display: flex;
+    margin: auto 20px auto 0;
 }
 
 .navBar_wide {
-    width:80%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 1vw;
+    margin-right: 20px;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin-right: 30px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: green;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px green;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-
-@keyframes resizeUp {
-    from {
-        height: 100px;
-    }
-    to {
-        height: 150px;
-    }
-}
-
-@keyframes resizeDown {
-    from {
-        height: 150px;
-    }
-    to {
-        height: 100px;
-    }
-}
-
-@media (max-width: 1500px) {
-    .navlink {
-        font-size: 2rem;
-    }
-}
-
-@media (min-width: 1100px) {
+@media (min-width: 868px) {
     .navBar_mobile {
         display: none;
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 868px) {
     .navBar_wide {
         display: none;
     }
-    .overlay {
-        display: block;
-    }
-}
-
-.navBar_mobile {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.overlay {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
-    -moz-animation: fadeInFromNone 0.5s ease-out;
-    -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
-}
-
-.overlay_animations {
-    position: absolute;
-    left: -100vw;
-    width: 100vw;
-    height: 100vh;
-    background: black;
-    -webkit-animation: slide 0.5s forwards;
-    animation: slide 0.5s forwards;
-
-    color: white;
-}
-
-.overlay_animations i {
-    transition: ease 0.3s rotate;
-    float: right;
-    margin: 10px 20px;
-  }
-  
-  .overlay_animations i:hover {
-    rotate: 90deg;
-} 
-
-.overlay_list {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-}
-
-.overlay_list a {
-    text-decoration: none;
-    color: white;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 3rem;
-    transition: ease 0.3s opacity;
-    margin: 10px 0;
-}
-
-.overlay_list a:hover {
-    opacity: 0.5;
-}
-
-.overlay_logo {
-    height: 20vh;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-
-.overlay_logo img {
-    height: 20vh;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@-webkit-keyframes slide {
-100% {
-    left: 0;
-}
-}
-
-@keyframes slide {
-100% {
-    left: 0;
-}
-}
-
-@-webkit-keyframes fadeInFromNone {
-from {
-    opacity: 0;
-}
-
-to {
-    opacity: 1;
-}
-}
-
-@keyframes fadeInFromNone {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.navBar_mobile {
-    display: none;
 }

@@ -6,6 +6,6 @@ import Banner from './Banner'
 it('checks if the Banner image is visible', () => {
     render(<Banner id={1} />)
   
-    const banner = screen.getByRole('img')
+    const banner = screen.getByTestId('layer-0')
     expect(banner).toBeInTheDocument()
   })

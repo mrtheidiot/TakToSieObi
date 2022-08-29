@@ -1,35 +1,20 @@
+.wrapper {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 1vh;
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
 .buttons {
     display: flex;
     justify-content: center;
 }
 
+@media (max-width: 868px) {
   .wrapper {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    margin-top: 2vh;
-    width: 70%;
-    margin: auto;
+    width: 90%;
   }
-  
-  .mainpagesection__links {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .mainpagesection__link a  {
-    text-decoration: none;
-  }
-  
-  .mainpagesection__text {
-    text-align: center;
-  }
-  .mainpagesection__text a {
-    color: black;
-  }
-  
-  @media (max-width: 992px) {
-    .mainpagesection__main {
-      width: 100%;
-    }
-  }
+}

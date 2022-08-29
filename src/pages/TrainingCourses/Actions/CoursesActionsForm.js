@@ -9,6 +9,7 @@ const CoursesActionsForm = (props) => {
   const [sectionGallery, setSectionGallery] = useState(
     props.initialValues.sectionGallery
   );
+  var slugify = require("slugify");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +44,7 @@ const CoursesActionsForm = (props) => {
       description1: values.description1,
       description2: values.description2,
       description3: values.description3,
-      link: values.link,
+      link: slugify(values.title),
       organizer: values.organizer,
       price: values.price,
       sectionImage: values.sectionImage,
@@ -104,14 +105,14 @@ const CoursesActionsForm = (props) => {
           value={values.description3}
           name="description3"
         />
-        <label htmlFor="link">Link do trenignu, co ma byc po slash</label>
+        {/* <label htmlFor="link">Link do trenignu, co ma byc po slash</label>
         <input
           type="text"
           id="link"
           value={values.link}
           name="link"
           onChange={handleInputChange}
-        />
+        /> */}
         <label htmlFor="organizator">Organizator</label>
         <input
           type="text"
@@ -292,7 +293,12 @@ const CoursesActionsForm = (props) => {
       />
       <div className={classes.bottom_buttons}>
         {props.edit && (
-          <button onClick={props.removeSectionHandler} data-testid="delete-button">Usuń tę sekcję</button>
+          <button
+            onClick={props.removeSectionHandler}
+            data-testid="delete-button"
+          >
+            Usuń tę sekcję
+          </button>
         )}
         <button onClick={submitHandler}>ZAAKCEPTUJ</button>
       </div>

@@ -37,3 +37,13 @@
     transform: translateX(-50%) translateY(-50%);
     font-size: 1.3rem;
 }
+
+@media (max-width: 868px) {
+    .modal {
+        width: 95vw;
+        height: 89%;
+    }
+    .backdrop > button {
+        top: 95%;
+    }
+}

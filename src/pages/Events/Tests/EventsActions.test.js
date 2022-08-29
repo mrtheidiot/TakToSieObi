@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import renderWithProviders from "../../../store/TestUtils/renderWithProviders";
 import EventsList from "./../EventsList";
 
-it("creates new section, edits it and deletes on the EventsList page", () => {
+it("creates, edits and deltes a section on page: EventsList", () => {
   window.testMode = true
   const initialState = {
     courses: {

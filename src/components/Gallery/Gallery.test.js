@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Gallery from "./../Gallery";
+import Gallery from "./Gallery";
 
 it("checks if the thumbnails are visible and if the full sized image is visible after clicking on the image ", () => {
   const source = [
@@ -11,8 +11,8 @@ it("checks if the thumbnails are visible and if the full sized image is visible 
   ];
   render(<Gallery source={source} />);
 
-  const thumbailConiner = screen.getByTestId("thumbnail-gallery-container");
-  expect(thumbailConiner).toBeVisible();
+  const thumbailContiner = screen.getByTestId("thumbnail-gallery-container");
+  expect(thumbailContiner).toBeVisible();
 
   const thumbnailImage = screen.getByTestId("thumbnail-image");
   expect(thumbnailImage).toBeInTheDocument();

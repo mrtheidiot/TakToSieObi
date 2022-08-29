@@ -1,19 +1,25 @@
 import classes from "./ThumbnailGallery.module.css";
 
-const ThumbnailGallery = (props) => {
-  const onClickReturn = (event) => {
-    props.onDelete(event);
-  };
+//ThumbnailGallery is a component that shows thumbails of an array of imagesoruces,
+//takes optional parameter "size" to determine the size of a thumbnail,
+//takes optional onClick function:
+//  -if it's "onDelete" -> it's going to execute return function with an image as an argument
+//  -if it's "onClick" -> it's going to execute the function without any arguments
 
+const ThumbnailGallery = (props) => {
   const boxSize = props.size
     ? {
         height: `${props.size}px`,
         width: `${props.size}px`,
       }
     : {
-        height: "150px",
-        width: "150px",
+        height: "140px",
+        width: "140px",
       };
+
+  const onClickReturn = (event) => {
+    props.onDelete(event);
+  };
 
   const onClickHandler = props.onDelete
     ? onClickReturn

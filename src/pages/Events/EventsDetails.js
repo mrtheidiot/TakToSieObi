@@ -2,21 +2,47 @@ import React from "react";
 import classes from "./EventsDetails.module.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Banner from "../../components/Banner/Banner";
+import Output from "../../UI/Output/Output";
+
+const initialValues = {
+  title: "",
+  date: "",
+  time: "",
+  location: "",
+  descriptionShort: "",
+  descriptionLong: "",
+  eventImage: "",
+  link: "",
+};
 
 const EventsDetails = () => {
   const params = useParams();
   const events = useSelector((state) => state.events.eventsContent);
-  const event = events.find((event) => (event.link === params.eventlink));
-  console.log(event)
+  let event = events.find((event) => event.link === params.eventlink);
+
+  if (!event) event = initialValues;
 
   return (
-    <div>
-      <p>{event.title}</p>
-      <p>{event.date}</p>
-      <p>{event.time}</p>
-      <p>{event.location}</p>
-      <p>{event.descriptionLong}</p>
-    </div>
+    <>
+      <Banner id={3} />
+      <div className={classes.wrapper} data-testid="events-details">
+        <h3>{event.title}</h3>
+        <p>
+          Termin: <b>{event.date}</b> {event.time}
+        </p>
+        <p> Gdzie: {event.location}</p>
+        <p className={classes.descriptionShort}>{event.descriptionShort}</p>
+        <div className={classes.output}>
+          {event.descriptionLong.split("/br/").map((text, index) => (
+            <div key={index}>
+              <Output text={text} />
+              <br />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

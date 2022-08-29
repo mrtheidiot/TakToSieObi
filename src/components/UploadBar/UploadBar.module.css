@@ -1,30 +1,35 @@
 .wrapper {
-    display: grid;
-    grid-template-columns:1fr 1fr 1fr 50%;
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: space-around;
     height: 40px;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
-.wrapper > p {
-    grid-column: 1 / 2;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.wrapper > input {
-    grid-column: 2 / 3;
-}
-
-.wrapper > button {
-    grid-column: 3 / 4;
+.inputs {
+    display: flex;
+    justify-content: space-around;
     width: 50%;
-    justify-self: center;
+    align-items: center;
+}
+
+.inputs > p {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.inputs > input {
+    text-align: center;
+}
+
+.inputs > button {
+    width: 30%;
+    height: 30px;
 }
 
 .bar_container {
-    grid-column: 4 / 5;
+    width: 50%;
     height: 80%;
     border-radius: 2rem;
     position: relative;
@@ -47,4 +52,11 @@
     align-items:center;
     color: white;
     font-family: sans-serif;
+}
+
+@media (max-width: 868px) {
+    .wrapper {
+        height:  80px;
+        flex-direction: column;
+    }
 }

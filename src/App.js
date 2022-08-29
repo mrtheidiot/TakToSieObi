@@ -2,22 +2,22 @@ import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useFetchStore from "./hooks/useFetchStore";
-
-import NavBar from "./components/NavBar/NavBar";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
+
+import Login from "./components/Login/Login";
+import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/Home/HomeList";
+import AboutMe from "./pages/AboutMe/AboutMe";
 import CoursesList from "./pages/TrainingCourses/CoursesList";
 import CourseDetails from "./pages/TrainingCourses/CourseDetails";
-import Login from "./components/Login/Login";
-import Footer from "./components/Footer/Footer";
-import Contact from "./pages/Contact/Contact";
-import Aos from "aos";
 import EventsList from "./pages/Events/EventsList";
-import "aos/dist/aos.css";
+import EventsDetails from "./pages/Events/EventsDetails";
+import Contact from "./pages/Contact/Contact";
+import Footer from "./components/Footer/Footer";
 
 import classes from "./App.module.css";
-import AboutMe from "./pages/AboutMe/AboutMe";
-import EventsDetails from "./pages/Events/EventsDetails";
 
 function App() {
   const isLoading = useSelector((state) => state.ui.isAppLoading);

@@ -1,5 +1,8 @@
-import classes from "./Footer.module.css";
 import { Link } from "react-router-dom";
+
+import classes from "./Footer.module.css";
+
+// Footer component, shown on the bottom of the page as a bar
 
 const Footer = () => {
   return (

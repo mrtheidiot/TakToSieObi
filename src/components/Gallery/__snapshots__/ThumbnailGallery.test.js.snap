@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the UploadBar snapshot 1`] = `
+<div
+  class="wrapper"
+>
+  <div
+    class="thumbnail"
+    data-testid="thumbnail-image"
+    style="height: 140px; width: 140px;"
+  >
+    <img
+      src="placeholder.png"
+    />
+  </div>
+</div>
+`;

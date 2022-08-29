@@ -38,7 +38,9 @@ const UploadBar = (props) => {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          {props.returnLink && props.returnLink(url);}
+          {
+            props.returnLink && props.returnLink(url);
+          }
         });
       }
     );
@@ -46,9 +48,11 @@ const UploadBar = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <p>Wybierz zdjęcie:</p>
-      <input type="file" onChange={handleChange} className={classes.input} />
-      <button onClick={handleUpload}>Dodaj</button>
+      <div className={classes.inputs}>
+        <p>Wybierz zdjęcie:</p>
+        <input type="file" onChange={handleChange} className={classes.input} />
+        <button onClick={handleUpload}>Dodaj</button>
+      </div>
       <div className={classes.bar_container}>
         <div className={classes.bar} style={{ width: `${percent}%` }}>
           <span style={bar_text}>{text}</span>

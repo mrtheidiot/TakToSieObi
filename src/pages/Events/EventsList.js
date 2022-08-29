@@ -1,10 +1,10 @@
-import React from "react";
-import classes from "./EventsList.module.css";
 import { useSelector } from "react-redux";
 import EventsSection from "./EventsSection";
 import Banner from "../../components/Banner/Banner";
 import AddOrEdit from "../../components/Overlays/ActionsOverlay/AddOrEdit";
 import EventsActions from "./EventsActions/EventsActions";
+
+import classes from "./EventsList.module.css";
 
 const EventsList = () => {
   const eventsContent = useSelector((state) => state.events.eventsContent);
@@ -13,7 +13,7 @@ const EventsList = () => {
   return (
     <>
       <Banner id={1} />
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} data-testid="events-list">
         {eventsContent.map((event, index) => (
           <div
             key={event.id}

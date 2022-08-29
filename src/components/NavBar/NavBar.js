@@ -1,55 +1,56 @@
+import NavBarWide from "./NavBarWide";
+import NavBarMobile from "./NavBarMobile";
 import { useSelector, useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
-import NavBarWide from "./NavBarWide";
-import Logo from "./../../assets/Logo1.svg";
 import { Link } from "react-router-dom";
+
+import Logo from "./../../assets/Logo1.svg";
 import classes from "./NavBar.module.css";
-import "./../../stylus/dist/NavBar.css";
-import NavBarMobile from "./NavBarMobile";
+
+// Navigation Bar always shows the logo, the links or mobile modal are dependent on the viewport width
+// Once admin is logged in - a toogler shows and allows the editMode to be turned on
+// editMode allows admin to perform CRUD actions on the page
+// logging in is inteded to be only for admin and it's possible to access via manually going to '/login'
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses.coursesContent);
   const editMode = useSelector((state) => state.ui.editMode);
 
-  const isLoggedIn = window.localStorage.getItem("isLoggedIn");
-
   const setEdititngModeHandler = (e) => {
     dispatch(uiActions.setEditMode(e.target.checked));
   };
 
-  const navData = [
-    { id: 1, title: "TRENINGI OBEDIENCE", url: "/treningi", dropdown: courses },
-    { id: 4, title: "JA I MOJE PSY", url: "/omnie" },
-    { id: 3, title: "WYDARZENIA", url: "/wydarzenia" },
-    { id: 5, title: "KONTAKT", url: "/kontakt" },
-  ];
+  const isLoggedIn = window.localStorage.getItem("isLoggedIn");
 
-  // const resizeClasses =
-  //   yOffset < 50
-  //     ? `${classes.resizeUp} ${classes.wrapper}`
-  //     : `${classes.wrapper} ${classes.resizeDown}`;
+  const navData = [
+    { id: 1, title: "TRENINGI OBEDIENCE", to: "/treningi", dropdown: courses },
+    { id: 3, title: "WYDARZENIA", to: "/wydarzenia" },
+    { id: 4, title: "JA I MOJE PSY", to: "/omnie" },
+    { id: 5, title: "KONTAKT", to: "/kontakt" },
+  ];
 
   return (
     <div className={classes.wrapper}>
-      <section className={classes.logo}>
-        <Link to="/">
-          <img src={Logo} alt="logo TakToSieObi" />
-        </Link>
-      </section>
-      <NavBarWide
-        navData={navData}
-        isLoggedIn={isLoggedIn}
-        setEdititngModeHandler={setEdititngModeHandler}
-      />
-      <div className={classes.navBar_mobile}>
+      <Link to="/" className={classes.logo}>
+        <img src={Logo} alt="logo TakToSieObi" />
+      </Link>
+      <nav className={classes.navBar_wide}>
+        <NavBarWide
+          navData={navData}
+          isLoggedIn={isLoggedIn}
+          setEdititngModeHandler={setEdititngModeHandler}
+          editMode={editMode}
+        />
+      </nav>
+      <nav className={classes.navBar_mobile}>
         <NavBarMobile
           navData={navData}
           isLoggedIn={isLoggedIn}
           setEdititngModeHandler={setEdititngModeHandler}
           editMode={editMode}
         />
-      </div>
+      </nav>
     </div>
   );
 };

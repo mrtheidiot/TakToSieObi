@@ -1,9 +1,8 @@
 import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import renderWithProviders from "../../store/TestUtils/renderWithProviders";
-
-import AboutMe from "./AboutMe";
+import renderWithProviders from "../../../store/TestUtils/renderWithProviders";
+import AboutMe from "../AboutMe";
 
 it("renders the AboutMe page", () => {
   const initialState = {
@@ -16,6 +15,6 @@ it("renders the AboutMe page", () => {
   renderWithProviders(<AboutMe />, {
     preloadedState: initialState,
   });
-  const titleElement = screen.getByText("title");
-  expect(titleElement).toBeInTheDocument();
+  const sectionTitle = screen.getByText("title");
+  expect(sectionTitle).toBeInTheDocument();
 });

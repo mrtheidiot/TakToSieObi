@@ -1,0 +1,96 @@
+.overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    /* -webkit-animation: fadeInFromNone 0.5s ease-out;
+    -moz-animation: fadeInFromNone 0.5s ease-out;
+    -o-animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out; */
+}
+
+ .overlay_animations {
+    position: absolute;
+    left: -100vw;
+    background: black;
+    -webkit-animation: slide 0.5s forwards;
+    animation: slide 0.5s forwards;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+.overlay_animations i {
+    transition: ease 0.3s rotate;
+    float: right;
+    margin: 10px 20px;
+  }
+  
+  .overlay_animations i:hover {
+    rotate: 90deg;
+}  
+
+.overlay_list {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.overlay_list a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem;
+    transition: ease 0.3s opacity;
+    margin: 3px 0;
+}
+
+.overlay_list a:hover {
+    opacity: 0.5;
+}
+
+.overlay_logo {
+    height: 20vh;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.overlay_logo img {
+    height: 20vh;
+}
+
+@-webkit-keyframes fadeInFromNone {
+from {
+    opacity: 0;
+}
+
+to {
+    opacity: 1;
+}
+}
+
+@keyframes fadeInFromNone {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+} 
+
+@-webkit-keyframes slide {
+    100% {
+        left: 0;
+    }
+    }
+    
+    @keyframes slide {
+    100% {
+        left: 0;
+    }
+}

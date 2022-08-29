@@ -1,28 +1,36 @@
-
+import Toggler from "../../UI/Toggler/Toggler";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "./../../assets/Logo1.svg";
-import classes from "./NavBar.module.css";
 
-const Overlay = ({ navData, isLoggedIn, setEdititngModeHandler, onClose, editMode }) => {
+import Logo from "./../../assets/Logo1.svg";
+import classes from "./NavBarMobile.module.css";
+
+// NavBarMobile shows on vewport width that is less than 868px in a form of overlay
+
+const Overlay = ({
+  navData,
+  isLoggedIn,
+  setEdititngModeHandler,
+  onClose,
+  editMode,
+}) => {
   return (
     <div className={classes.overlay}>
       <div className={classes.overlay_animations}>
         <i className="fas fa-times fa-4x" onClick={onClose} />
-        <NavLink to="/" className={classes.overlay_logo}>
+        <NavLink to="/" className={classes.overlay_logo} onClick={onClose}>
           <img src={Logo} />
         </NavLink>
         <div className={classes.overlay_list}>
           {navData.map((link) => (
-            <NavLink to={link.url}>{link.title}</NavLink>
+            <NavLink onClick={onClose} to={link.to}>
+              {link.title}
+            </NavLink>
           ))}
-          {isLoggedIn && (
-            <label className={classes.switch}>
-              <input type="checkbox" onChange={setEdititngModeHandler} checked={editMode} />
-              <span className={classes.slider} />
-            </label>
-          )}
         </div>
+        {isLoggedIn && (
+          <Toggler onChange={setEdititngModeHandler} current={editMode} />
+        )}
       </div>
     </div>
   );
@@ -31,23 +39,19 @@ const Overlay = ({ navData, isLoggedIn, setEdititngModeHandler, onClose, editMod
 const NavBarMobile = (props) => {
   const [showOverlay, setShowOverlay] = useState(false);
 
-  const showOverlayHandler = () => {
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${window.scrollY}px`;
-    setShowOverlay(true);
-  };
-
-  const hideOverlayHandler = () => {
-    document.body.style.position = "";
-    document.body.style.top = "";
-    setShowOverlay(false);
+  const toggleNavBarOverlay = () => {
+    setShowOverlay((prev) => !prev);
   };
 
   return (
-    <div className={classes.navBar_mobile}>
-      <i className="fas fa-bars fa-3x" onClick={showOverlayHandler} />
-      {showOverlay && <Overlay {...props} onClose={hideOverlayHandler} />}
-    </div>
+    <>
+      <i
+        className="fas fa-bars fa-3x"
+        onClick={toggleNavBarOverlay}
+        data-testid="hamburger"
+      />
+      {showOverlay && <Overlay {...props} onClose={toggleNavBarOverlay} />}
+    </>
   );
 };
 

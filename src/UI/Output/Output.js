@@ -26,7 +26,9 @@ const Output = (props) => {
                         {item2.split("/l/").map((item3, index) => (
                           <div key={index}>
                             {index % 2 !== 0 ? (
-                              <Link to={coslink}>{item3}</Link>
+                              <Link to={coslink}>
+                                {item3}
+                              </Link>
                             ) : (
                               item3
                             )}
@@ -40,7 +42,9 @@ const Output = (props) => {
                     {item2.split("/l/").map((item3, index) => (
                       <div key={index}>
                         {index % 2 !== 0 ? (
-                          <a href={coslink}>{item3}</a>
+                          <a href={coslink}>
+                            {item3}
+                          </a>
                         ) : (
                           item3
                         )}

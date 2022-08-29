@@ -5,7 +5,7 @@ const EventsSection = (props) => {
   const backgroundSelector = props.index % 2;
 
   const background =
-    backgroundSelector === 0
+    backgroundSelector === 1
       ? `${classes.wrapper} ${classes.backgroundDark}`
       : `${classes.wrapper} ${classes.backgroundLight}`;
 
@@ -18,8 +18,13 @@ const EventsSection = (props) => {
         >
           {props.date}
         </div>
-        <h1 className={classes.title}>{props.title}</h1>
-        <p className={classes.description_short}>{props.descriptionShort}</p>
+        <div className={classes.content}>
+          <h1 className={classes.title}>{props.title}</h1>
+          <p>
+            Termin: {props.date} {props.time}, Miejsce: {props.location}
+          </p>
+          <p className={classes.description_short}>{props.descriptionShort}</p>
+        </div>
       </Link>
     </div>
   );

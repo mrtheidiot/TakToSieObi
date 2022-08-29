@@ -1,17 +1,24 @@
-import React from "react";
+import Toggler from "../../UI/Toggler/Toggler";
 import { NavLink, Link } from "react-router-dom";
 
-import classes from "./NavBar.module.css";
 import "./../../stylus/dist/NavBar.css";
 
-const NavBarWide = ({ navData, isLoggedIn, setEdititngModeHandler }) => {
+// NavBarWide shows on vewport width that is more than 868px in a form of overlay
+// this component uses the Stylus css preprocessor
+
+const NavBarWide = ({
+  navData,
+  isLoggedIn,
+  setEdititngModeHandler,
+  editMode,
+}) => {
   const navItemsList = navData.map((link) => (
-    <nav className="navLink_link" key={link.id}>
-      <NavLink to={`${link.url}`} activeClassName={classes.active}>
+    <nav className="navLink_navElement" key={link.id}>
+      <NavLink to={`${link.to}`} activeClassName="navLink_active">
         {link.title}
       </NavLink>
       {link.dropdown && (
-        <ul className="dropdown_menu dropdown_animated dropdown_animation">
+        <ul className="dropdown_menu dropdown_animated">
           <li>
             {link.dropdown.map((item) => (
               <Link key={item.id} to={item.link}>
@@ -25,15 +32,12 @@ const NavBarWide = ({ navData, isLoggedIn, setEdititngModeHandler }) => {
   ));
 
   return (
-    <section className={classes.navBar_wide}>
+    <>
       {navItemsList}
       {isLoggedIn && (
-        <label className={classes.switch}>
-          <input type="checkbox" onChange={setEdititngModeHandler} />
-          <span className={classes.slider} />
-        </label>
+        <Toggler onChange={setEdititngModeHandler} current={editMode} />
       )}
-    </section>
+    </>
   );
 };
 

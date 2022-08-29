@@ -1,12 +1,16 @@
 import { useState } from "react";
 import Overlay from "./Overlay";
+
 import classes from "./AddOrEdit.module.css";
+
+// This component is used to show a button to "Edit" or "Add" a section, it toggles the overlay, which accepts props.children
 
 const AddOrEdit = (props) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
   const classesSelector =
     props.edit === true ? `${classes.edit_btn}` : `${classes.add_btn}`;
+
   const text = props.edit === true ? "Edytuj" : "Dodaj";
 
   const showOverlayHandler = () => {

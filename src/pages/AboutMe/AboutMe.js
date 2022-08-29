@@ -1,44 +1,46 @@
 import Banner from "../../components/Banner/Banner";
 import AboutMeActions from "./Actions/AboutMeActions";
 import AddOrEdit from "../../components/Overlays/ActionsOverlay/AddOrEdit";
+import AboutMeSection from "./AboutMeSection";
 import Gallery from "../../components/Gallery/Gallery";
 import { useSelector } from "react-redux";
 
 import classes from "./AboutMe.module.css";
 
+// This components wraps the AboutMe page sections, adds the "fade" effect and shows Add and Edit buttons if the editMode is on
+// the Gallery component is displayed here, because the aos effect was interfering with the fullscreen images
+
 const AboutMe = () => {
   const aboutMeContent = useSelector((state) => state.aboutme.aboutMeContent);
-  const error = useSelector(state => state.aboutme.error)
+  const error = useSelector((state) => state.aboutme.error);
   const editMode = useSelector((state) => state.ui.editMode);
-
-  const sectionClasses = `${classes.wrapper} display-flex`;
 
   return (
     <>
       <Banner id={3} />
       {error && error}
       {aboutMeContent.map((section) => (
-        <section className={sectionClasses} key={section.id}>
-          <div className={classes.content} data-aos={editMode ? "" : "fade-up"}>
-            <h3 className={classes.title}>{section.title}</h3>
-            <div className={classes.parts}>
-              {section.parts.map((part, index) => (
-                <p key={index}>{part.text}</p>
-              ))}
-            </div>
-            <div className={classes.sideImage}>
-              <img src={section.sideImage} />
-            </div>
+        <div className={classes.wrapper} key={section.id}>
+          <section
+            data-aos={editMode ? "" : "fade-up"}
+            className="position_relative"
+          >
+            <AboutMeSection
+              title={section.title}
+              parts={section.parts}
+              sectionGallery={section.sectionGallery}
+              sideImage={section.sideImage}
+            />
             {editMode && (
               <AddOrEdit edit={true}>
                 <AboutMeActions id={section.id} />
               </AddOrEdit>
             )}
-          </div>
+          </section>
           {section.sectionGallery && (
-            <Gallery size="170" source={section.sectionGallery} />
+            <Gallery size="140" source={section.sectionGallery} />
           )}
-        </section>
+        </div>
       ))}
       {editMode && (
         <AddOrEdit edit={false}>
@@ -50,6 +52,28 @@ const AboutMe = () => {
 };
 
 export default AboutMe;
+
+// {homePageContent.map((section) => (
+// <section
+//   data-aos={editMode ? "" : "fade-up"}
+//   key={section.id}
+//   className="position_relative"
+// >
+//     <HomeSection
+//       id={section.id}
+//       key={section.id}
+//       contentPart1={section.part1}
+//       contentPart2={section.part2}
+//       contentPage3={section.part3}
+//       buttons={section.buttons}
+//     />
+//     {editMode && (
+//       <AddOrEdit edit={true}>
+//         <HomeActions id={section.id} />
+//       </AddOrEdit>
+//     )}
+//   </section>
+// ))}
 
 // import React from "react";
 // import classes from "./AboutMe.module.css";

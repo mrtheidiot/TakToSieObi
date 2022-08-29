@@ -24,7 +24,7 @@ const ListLeft = (props) => {
 const ListCenter = (props) => {
   return (
     <section className={classes.list_alignCenter}>
-      <ul>
+      <ul className={classes.alignCenter_line}>
         {props.list.map((item, index) => (
           <Output text={item} key={index} />
         ))}
@@ -49,7 +49,6 @@ const initialValues = {
 
 const CourseDetails = () => {
   const params = useParams();
-  console.log(params)
   const courses = useSelector((state) => state.courses.coursesContent);
   let course = courses.find((item) => item.link === params.courselink);
 
