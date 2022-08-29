@@ -1,10 +1,9 @@
 .wrapper {
     width: 50%;
-    margin: auto;
+    margin: 30px auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    height: 300px;
     background-color: bisque;
     padding: 15px;
     border-radius: 10px;
@@ -35,6 +34,8 @@
 .messenger {
     grid-column: 2 / 3;
     font-size: 1.2rem;
+    display: flex;
+    align-items: center;
 }
 
 .obi_links {
@@ -51,6 +52,43 @@
     flex-direction: column;
 }
 
-a {
+.wrapper a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    
+}
+
+i {
+    margin: 5px 10px 5px 0;
+}
+
+@media (max-width: 868px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .company_data {
+        grid-column: 1 / 2;
+    }
+    
+    .transfer_data {
+        grid-column: 1 / 2;
+    }
+    
+    .contact_data {
+        grid-column: 1 / 2; 
+    }
+    .obi_links {
+        grid-column: 1 / 2;
+        margin-top: 20px;
+    }
+    .husse_links {
+        grid-column: 1 / 2;
+    }
+    
+    .messenger {
+        grid-column: 1 / 2;
+        font-size: 1.2rem;
+    }
 }

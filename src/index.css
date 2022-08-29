@@ -24,14 +24,6 @@ code {
     monospace;
 }
 
-.centered {
-  margin: 3rem auto;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .position_relative {
   position: relative;
   margin: 20px 0;
@@ -39,27 +31,4 @@ code {
 
 html {
   text-rendering: optimizeLegibility;
-}
-
-@media only screen and (max-width : 868px) {
-  .animated {
-      /*CSS transitions*/
-      -o-transition-property: none !important;
-      -moz-transition-property: none !important;
-      -ms-transition-property: none !important;
-      -webkit-transition-property: none !important;
-      transition-property: none !important;
-      /*CSS transforms*/
-      -o-transform: none !important;
-      -moz-transform: none !important;
-      -ms-transform: none !important;
-      -webkit-transform: none !important;
-      transform: none !important;
-      /*CSS animations*/
-      -webkit-animation: none !important;
-      -moz-animation: none !important;
-      -o-animation: none !important;
-      -ms-animation: none !important;
-      animation: none !important;
-  }
 }

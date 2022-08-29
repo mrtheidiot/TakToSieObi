@@ -2,6 +2,10 @@
     min-height: 100vh;
 }
 
+.app_pages {
+    margin-top: 70px;
+}
+
 .loadingSpinnerOuter {
     position: fixed;
     width: 100vw;
@@ -17,8 +21,4 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-}
-
-.app_pages {
-    margin-top: 70px;
 }
