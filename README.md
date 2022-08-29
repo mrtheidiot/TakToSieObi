@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Tak To Się Obi
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This live demo of this project is available here: [https://taktosieobi2.herokuapp.com/](https://taktosieobi2.herokuapp.com/)
 
-## Available Scripts
+To open this project on your machine just download it and run:
 
-In the project directory, you can run:
+### npm install
 
-### `npm start`
+**Please go to the /login and type any credentials to login and swich the slider to on/off to turn on and off the editingMode**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Project contains a lot of react features and it's intended to be a form of practise and an example of the developer skills.
+I have created it from scrach using mainly google searches (ofc), knownledge from courses and experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Most of the sections has comments at the top to briefly explain the content.
 
-### `npm test`
+Each page has an Action folder which contains form for editing or adding new section, it's then stored in the redux store and a request is sent to the backend API.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project uses Firebase, my firebase has the write rules disabled and it's uploaded in "testMode". TestMode pulls the data from an API, but the create, update and delete operations are only stored in store (redux) and will be lost after the reload.
 
-### `npm run build`
+there are 2 global variables declared in the index.js - testMode(default = true) and firebase link (firebase link can be changed along with the firebaseConfig.js to change the API)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I'm fully aware that the styling required some polishing and it will be done once the project will be on it's way to production.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+There are some things I want to add to this project (like authentication) and it will be added in time. 
