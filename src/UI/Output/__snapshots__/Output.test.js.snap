@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the Output snapshot 1`] = `
+<div
+  class="text"
+  data-testid="output"
+>
+  <div>
+    <div>
+      <div>
+        <div>
+          Is it 
+        </div>
+      </div>
+    </div>
+    <div>
+      <b>
+        <div>
+          <div>
+            possible
+          </div>
+        </div>
+      </b>
+    </div>
+    <div>
+      <div>
+        <div>
+           to be such a 
+        </div>
+        <div>
+          <a
+            href="/treningi"
+          >
+            beaurifull
+          </a>
+        </div>
+        <div>
+           person?
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

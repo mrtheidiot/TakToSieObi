@@ -7,8 +7,7 @@ import store from "./store/index";
 
 import "./index.css";
 
-window.firebaseLink = "cokolwiek";
-window.testMode = false;
+window.testMode = true; // this disables sending data to database (fetching is still on), it's used in Actions components in /pages
 
 ReactDOM.render(
   <Provider store={store}>

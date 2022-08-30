@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import classes from "./../../Actions.module.css";
 
 const initialButton = {
@@ -161,13 +162,3 @@ const HomeActionsForm = (props) => {
 };
 
 export default HomeActionsForm;
-
-// const removeButtonHandler = (address) => {
-//     setButtons((prevList) =>
-//       prevList.filter(
-//         (item) =>
-//           item.address !==
-//           buttons.find((object) => object.address === address).address
-//       )
-//     );
-//   };

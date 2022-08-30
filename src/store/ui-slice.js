@@ -5,9 +5,8 @@ const uiSlice = createSlice({
     isAppLoading: false,
     hideOverlay: false,
     isOverlayLoading: false,
-    editMode: false,
     overlayError: null,
-    testMode: false, // this disables sending data to database (fetching is still on), it's used in Actions components in /pages
+    editMode: false,
   },
   reducers: {
     setIsAppLoading(state, action) {

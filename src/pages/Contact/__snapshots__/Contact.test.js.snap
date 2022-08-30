@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checks if the Contact Page matches snapshot 1`] = `
+<div
+  class="banner"
+  style="position: relative; overflow: hidden; width: 100%;"
+>
+  <div
+    data-testid="layer-0"
+    style="background-image: url(banner2.png); background-position: center; background-size: cover; position: absolute; top: -150px; left: 0px; right: 0px; bottom: -150px; will-change: transform; transform: translateY(150px);"
+  />
+</div>
+`;

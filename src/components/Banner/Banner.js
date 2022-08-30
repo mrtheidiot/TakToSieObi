@@ -25,7 +25,7 @@ const Banner = (props) => {
     ? props.image
     : props.id
     ? Object.values(banners).filter((baner) => baner.id === props.id)[0]
-    : { img: `${banner1}`, alt: "piesek", id: 3 };
+    : { img: `${banner3}`, alt: "tak to sie obi banner image", id: 3};
 
   return (
     <ParallaxProvider>

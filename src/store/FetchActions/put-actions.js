@@ -4,6 +4,8 @@ import { aboutMeActions } from "../aboutme-slice";
 import { eventsActions } from "../events-slice";
 import { uiActions } from "../ui-slice";
 
+// Redux thunk - updates the data on the API and in the store
+
 export const updateHomeSection = (updatedSection, id) => {
   return async (dispatch) => {
     dispatch(uiActions.setIsOverlayLoading(true));

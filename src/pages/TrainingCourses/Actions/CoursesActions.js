@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCoursesSection } from "../../../store/FetchActions/post-actions";
 import { updateCourseSection } from "../../../store/FetchActions/put-actions";

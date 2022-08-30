@@ -5,6 +5,10 @@ import Banner from "../../components/Banner/Banner";
 import classes from "./CourseDetails.module.css";
 import Gallery from "../../components/Gallery/Gallery";
 
+// Course Details uses 2 additional components to show the centerd and left-aligned lists
+// Those 2 are splitted, beacuse the use different props
+// initialValues are present, because reloading the page causes the browser to throw error due to not loaded Router scripts
+
 const ListLeft = (props) => {
   return (
     <section className={classes.list_alignLeft}>

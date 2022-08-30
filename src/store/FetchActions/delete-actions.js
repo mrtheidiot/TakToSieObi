@@ -36,6 +36,7 @@ export const removeSection = (identifier, id) => {
         } else {
           document.body.style.position = "";
           document.body.style.top = "";
+          dispatch(uiActions.setIsOverlayLoading(false));
           dispatch(homePageActions.removeHomeSection({ id }));
         }
         break;
@@ -57,6 +58,7 @@ export const removeSection = (identifier, id) => {
         } else {
           document.body.style.position = "";
           document.body.style.top = "";
+          dispatch(uiActions.setIsOverlayLoading(false));
           dispatch(coursesActions.removeCourseSection({ id }));
         }
         break;
@@ -79,6 +81,7 @@ export const removeSection = (identifier, id) => {
         } else {
           document.body.style.position = "";
           document.body.style.top = "";
+          dispatch(uiActions.setIsOverlayLoading(false));
           dispatch(aboutMeActions.removeAboutMeSection({ id }));
         }
         break;
@@ -101,6 +104,7 @@ export const removeSection = (identifier, id) => {
         } else {
           document.body.style.position = "";
           document.body.style.top = "";
+          dispatch(uiActions.setIsOverlayLoading(false));
           dispatch(eventsActions.removeEventsSection({ id }));
         }
         break;

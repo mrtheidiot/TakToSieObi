@@ -4,6 +4,8 @@ import { aboutMeActions } from "../aboutme-slice";
 import { eventsActions } from "../events-slice";
 import { uiActions } from "../ui-slice";
 
+// Redux thunk - pulls data from an API, transforms it and dispatches to store 
+
 export const fetchHomePage = () => {
   return async (dispatch) => {
     dispatch(uiActions.setIsAppLoading(true));

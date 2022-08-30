@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the Toggler snapshot 1`] = `
+<label
+  class="switch"
+>
+  <input
+    type="checkbox"
+  />
+  <span
+    class="slider"
+  />
+</label>
+`;

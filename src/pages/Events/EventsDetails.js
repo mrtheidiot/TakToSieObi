@@ -1,9 +1,11 @@
-import React from "react";
-import classes from "./EventsDetails.module.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Banner from "../../components/Banner/Banner";
 import Output from "../../UI/Output/Output";
+
+import classes from "./EventsDetails.module.css";
+
+// initialValues are present, because reloading the page causes the browser to throw error due to not loaded Router scripts
 
 const initialValues = {
   title: "",

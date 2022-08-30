@@ -3,6 +3,9 @@ import Banner from "./../Banner/Banner";
 
 import classes from "./Login.module.css";
 
+// Login component accesible via going to /login
+// It's using custom input hook to show different styles on input change, blur etc.
+
 const Login = () => {
   const {
     value: enteredPassword,

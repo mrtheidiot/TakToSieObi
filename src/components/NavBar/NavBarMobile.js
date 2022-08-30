@@ -23,7 +23,7 @@ const Overlay = ({
         </NavLink>
         <div className={classes.overlay_list}>
           {navData.map((link) => (
-            <NavLink onClick={onClose} to={link.to}>
+            <NavLink onClick={onClose} to={link.to} key={link.id}>
               {link.title}
             </NavLink>
           ))}

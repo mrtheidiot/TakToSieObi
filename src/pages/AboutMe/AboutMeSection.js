@@ -2,7 +2,7 @@ import Output from "../../UI/Output/Output";
 
 import classes from "./AboutMeSection.module.css";
 
-// just the text display of the AboutMe sections
+// The text display of the AboutMe sections
 
 const AboutMeSection = (props) => {
   return (

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import classes from "./EventsSection.module.css";
 
 const EventsSection = (props) => {

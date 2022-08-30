@@ -77,6 +77,10 @@
     height: 100%;
     border-radius: 10px;
     background-color: #FFEBC1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
 }
 
 @media (min-width: 868px) and (max-width: 1300px) {

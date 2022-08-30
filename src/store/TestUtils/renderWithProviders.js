@@ -1,8 +1,8 @@
-import React from "react";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
-
 import { setupStore } from "./store";
+
+// customer renderer which preloads the store with content for testing components using redux
 
 function renderWithProviders(
   ui,

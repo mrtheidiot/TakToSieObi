@@ -1,9 +1,10 @@
-import { useSelector } from "react-redux";
 import { homePageActions } from "../homePage-slice";
 import { coursesActions } from "../coursesList-slice";
 import { aboutMeActions } from "../aboutme-slice";
 import { eventsActions } from "../events-slice";
 import { uiActions } from "../ui-slice";
+
+// Redux thunk - sends data to an API and adds the content to Store
 
 export const addHomeSection = (newSection) => {
   return async (dispatch) => {

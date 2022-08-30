@@ -4,6 +4,9 @@ import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
 
 import classes from "./../../Actions.module.css";
 
+// ActionsForm handles the input of new or edited content. 
+// Prefills the component if it's to be edited and handles the images/buttons upload and delete
+
 const CoursesActionsForm = (props) => {
   const [values, setValues] = useState(props.initialValues);
   var slugify = require("slugify");

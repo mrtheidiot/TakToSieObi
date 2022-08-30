@@ -1,4 +1,5 @@
 import Banner from "../../components/Banner/Banner";
+
 import classes from "./Contact.module.css";
 
 const Contact = () => {

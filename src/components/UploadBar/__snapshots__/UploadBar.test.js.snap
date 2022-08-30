@@ -4,16 +4,20 @@ exports[`matches the UploadBar snapshot 1`] = `
 <div
   class="wrapper"
 >
-  <p>
-    Wybierz zdjęcie:
-  </p>
-  <input
-    class="input"
-    type="file"
-  />
-  <button>
-    Dodaj
-  </button>
+  <div
+    class="inputs"
+  >
+    <p>
+      Wybierz zdjęcie:
+    </p>
+    <input
+      class="input"
+      type="file"
+    />
+    <button>
+      Dodaj
+    </button>
+  </div>
   <div
     class="bar_container"
   >

@@ -4,6 +4,9 @@ import ThumbnailGallery from "../../../components/Gallery/ThumbnailGallery";
 
 import classes from "./../../Actions.module.css";
 
+// ActionsForm handles the input of new or edited content. 
+// Prefills the component if it's to be edited and handles the images/buttons upload and delete
+
 const CoursesActionsForm = (props) => {
   const [values, setValues] = useState(props.initialValues.baseContent);
   const [sectionGallery, setSectionGallery] = useState(
@@ -105,14 +108,6 @@ const CoursesActionsForm = (props) => {
           value={values.description3}
           name="description3"
         />
-        {/* <label htmlFor="link">Link do trenignu, co ma byc po slash</label>
-        <input
-          type="text"
-          id="link"
-          value={values.link}
-          name="link"
-          onChange={handleInputChange}
-        /> */}
         <label htmlFor="organizator">Organizator</label>
         <input
           type="text"

@@ -6,6 +6,8 @@ import aboutMeSlice from "../aboutme-slice";
 import eventsSlice from "../events-slice";
 import uiSlice from "../ui-slice";
 
+// custom testing store with preloaded contnet for testing components using redux
+
 const rootReducer = combineReducers({
   ui: uiSlice.reducer,
   home: homePageSlice.reducer,
