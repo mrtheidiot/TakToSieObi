@@ -24,7 +24,7 @@ const NavBar = () => {
   const isLoggedIn = window.localStorage.getItem("isLoggedIn");
 
   const navData = [
-    { id: 1, title: "TRENINGI OBEDIENCE", to: "/treningi", dropdown: courses },
+    { id: 1, title: "TRENINGI OBEDIENCE", to: "/treningi", dropdown: courses, pre: "/treningi/" },
     { id: 3, title: "WYDARZENIA", to: "/wydarzenia" },
     { id: 4, title: "JA I MOJE PSY", to: "/omnie" },
     { id: 5, title: "KONTAKT", to: "/kontakt" },

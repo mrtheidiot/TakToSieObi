@@ -21,7 +21,7 @@ const NavBarWide = ({
         <ul className="dropdown_menu dropdown_animated">
           <li>
             {link.dropdown.map((item) => (
-              <Link key={item.id} to={item.link}>
+              <Link key={item.id} to={`${link.pre}${item.link}`}>
                 {item.title}
               </Link>
             ))}

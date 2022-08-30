@@ -13,7 +13,7 @@ const CoursesList = () => {
 
   return (
     <>
-      <Banner id={4} />
+      <Banner />
       {error && error}
       <main className={classes.courses_container}>
         {courses.map((section, index) => (

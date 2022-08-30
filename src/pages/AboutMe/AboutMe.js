@@ -38,7 +38,7 @@ const AboutMe = () => {
             )}
           </section>
           {section.sectionGallery && (
-            <Gallery size="140" source={section.sectionGallery} />
+            <Gallery size="140" sources={section.sectionGallery} />
           )}
         </div>
       ))}

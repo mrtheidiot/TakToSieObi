@@ -9,8 +9,6 @@ import classes from "./Gallery.module.css";
 const Gallery = (props) => {
   const [toggler, setToggler] = useState(false);
 
-  const sources = props.source.map(({ link }) => link);
-
   return (
     <>
       <div
@@ -20,13 +18,13 @@ const Gallery = (props) => {
       >
         <ThumbnailGallery
           onClick={() => setToggler(!toggler)}
-          source={sources}
+          source={props.sources}
           size={props.size}
         />
       </div>
       <FsLightbox
         toggler={toggler}
-        sources={sources}
+        sources={props.sources}
         type="image"
         customAttributes={[{ alt: "gallery-image" }]}
       />

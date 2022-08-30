@@ -8,20 +8,20 @@ const Contact = () => {
       <div className={classes.wrapper} data-aos="fade-in">
         <section className={classes.company_data}>
           <h3>Dane firmy:</h3>
-          <p>Animalevra Dorota Alewras</p>
-          <p>ul. Monte Cassino 36/7</p>
-          <p>70-465 Szczecin</p>
+          <p>Tak To Się Obi Dorota Papadopoulos</p>
+          <p>ul. Gwiazdowa 36</p>
+          <p>70-554 Szczecin</p>
         </section>
         <section className={classes.transfer_data}>
           <h3>Dane do przelewu:</h3>
-          <p>Animalevra Dorota Alewras</p>
+          <p>Tak To Się Obi Dorota Papadopoulos</p>
           <p>ING BANK Śląski:</p>
           <p>68 1050 1559 1000 0092 6329 1545</p>
         </section>
         <section className={classes.contact_data}>
           <h3>Dane kontaktowe:</h3>
-          <p>Tel: 697 288 234</p>
-          <p>ul. Monte Cassino 36/7</p>
+          <p>Tel: 697 288 123</p>
+          <p>ul. Gwiazdowa 36</p>
           <p>email: taktosieobi@gmail.com</p>
         </section>
         <section className={classes.obi_links}>
@@ -56,7 +56,7 @@ const Contact = () => {
             target="_blank"
             rel="noreferrer noopener"
           >
-            <i class="fab fa-2x fa-instagram insta"></i> husse_szczecin
+            <i className="fab fa-2x fa-instagram insta"></i> husse_szczecin
           </a>
         </section>
         <section className={classes.messenger}>

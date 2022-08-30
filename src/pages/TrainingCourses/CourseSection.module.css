@@ -79,33 +79,31 @@
     background-color: #FFEBC1;
 }
 
-@media only screen and (max-width: 110em ) {
-    .container {
-        width: 80%;
+@media (min-width: 868px) and (max-width: 1300px) {
+    .wrapper {
+        height: auto;
     }
-}
 
-@media only screen and (max-width: 90em ) {
     .container {
         width: 90%;
     }
 }
 
-@media only screen and (max-width: 70em ) {
+@media only screen and (max-width: 968px ) {
     .wrapper {
         height: auto;
-        padding: 0;
     }
 
     .container {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 5fr repeat(3, 0.7fr) 1.2fr ;
         row-gap: 10px;
+        width: 80%;
         
     }
     .title {
         grid-row: 1 / 2;
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     .image {
         grid-row: 2 / 3;

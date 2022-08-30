@@ -12,7 +12,7 @@ const EventsList = () => {
 
   return (
     <>
-      <Banner id={1} />
+      <Banner />
       <div className={classes.wrapper} data-testid="events-list">
         {eventsContent.map((event, index) => (
           <div

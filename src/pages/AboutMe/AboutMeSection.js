@@ -10,9 +10,9 @@ const AboutMeSection = (props) => {
       <h3 className={classes.title}>{props.title}</h3>
       <div className={classes.parts}>
         {props.parts.map((part, index) => (
-          <p key={index}>
+          <div key={index}>
             <Output text={part.text} />
-          </p>
+          </div>
         ))}
       </div>
       <div className={classes.sideImage}>

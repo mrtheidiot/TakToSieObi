@@ -1,5 +1,4 @@
 @import url("http://fonts.cdnfonts.com/css/nasalization?styles=6717");
-
 .navLink_navElement {
   font-family: 'Nasalization Rg', sans-serif;
   font-size: 1.4rem;
@@ -20,6 +19,7 @@
 }
 .navLink_navElement a {
   color: #000;
+  text-decoration: none;
 }
 .navLink_navElement:hover {
   cursor: pointer;

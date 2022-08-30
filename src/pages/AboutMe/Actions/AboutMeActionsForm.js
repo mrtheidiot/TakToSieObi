@@ -10,6 +10,8 @@ const AboutMeActionsForm = (props) => {
     props.initialValues.sectionGallery
   );
 
+  const heading = props.edit ? "Edytuj sekcję:" : "Dodaj sekcję:";
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -59,7 +61,6 @@ const AboutMeActionsForm = (props) => {
     props.dispatchAction(section);
   };
 
-  const heading = props.edit ? "Edytuj sekcję:" : "Dodaj sekcję:";
 
   return (
     <>
@@ -76,6 +77,7 @@ const AboutMeActionsForm = (props) => {
           /addresses/https://www.facebook.pl <br />
           Obok wyświetla się zdjęcie, dobrze jest dodać zdjęcie pionowe, żeby
           ładnie wyglądało. Galeria wyświetla się na dole. na pełnej długości.
+          
         </p>
         <label htmlFor="title">Tytuł:</label>
         <textarea

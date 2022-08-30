@@ -27,7 +27,7 @@ const ThumbnailGallery = (props) => {
     ? props.onClick
     : () => {};
 
-  const source = props.source[0] === "" ? [] : props.source;
+  let source = props.source[0] === "" ? [] : props.source;
 
   return (
     <div className={classes.wrapper}>

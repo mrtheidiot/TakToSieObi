@@ -75,7 +75,7 @@ const CourseDetails = () => {
       <div className={classes.wrapper} data-testid="courseDetails">
         <h1>{course.title}</h1>
         {contentList}
-        <Gallery size="170" source={course.sectionGallery} />
+        <Gallery size="170" sources={course.sectionGallery} />
       </div>
     </>
   );

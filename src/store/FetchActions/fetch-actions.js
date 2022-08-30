@@ -105,11 +105,8 @@ export const fetchAboutMe = () => {
       for (const key in data) {
         let transformedImages = [];
         for (const i in data[key].sectionGallery) {
-          const img = {
-            id: i,
-            link: data[key].sectionGallery[i],
-          };
-          transformedImages.push(img);
+          const item = data[key].sectionGallery[i];
+          transformedImages.push(item);
         }
         data[key].sectionGallery = transformedImages;
         let transformedParts = [];

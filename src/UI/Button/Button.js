@@ -28,7 +28,7 @@ const Button = (props) => {
     );
 
   return (
-    <div className={classes.wrapper} key={props.key}>
+    <div className={classes.wrapper}>
       {finalButton}
     </div>
   );
