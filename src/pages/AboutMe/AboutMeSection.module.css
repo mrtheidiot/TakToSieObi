@@ -22,8 +22,8 @@
     font-family: 'Raleway', sans-serif;
 }
 
-.parts p {
-    margin: 10px 0;
+.parts div {
+    margin: 5px 0;
 }
 
 .sideImage {

@@ -10,7 +10,7 @@ const CrouseSection = (props) => {
       : `${classes.wrapper} ${classes.backgroundLight}`;
 
   return (
-    <div className={background}>
+    <div className={background} data-testid="courses-section">
       <Link to={`/treningi/${props.link}`} className={classes.container} data-testid="coursesSection-link">
         <div className={classes.image}>
           <img src={props.sectionImage} alt="piesek" />

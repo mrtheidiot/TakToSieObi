@@ -10,7 +10,7 @@ const EventsSection = (props) => {
       : `${classes.wrapper} ${classes.backgroundLight}`;
 
   return (
-    <div className={background}>
+    <div className={background} data-testid="events-section">
       <Link to={`/wydarzenia/${props.link}`} className={classes.container}>
         <div
           className={classes.image}

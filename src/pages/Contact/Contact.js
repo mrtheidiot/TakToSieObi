@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <>
       <Banner id={2} />
-      <div className={classes.wrapper} data-aos="fade-in">
+      <div className={classes.wrapper} data-aos="fade-in" data-testid="contact">
         <section className={classes.company_data}>
           <h3>Dane firmy:</h3>
           <p>Tak To Się Obi Dorota Papadopoulos</p>
@@ -32,7 +32,7 @@ const Contact = () => {
           >
             <i className="fab fa-2x fa-facebook fejs"></i>ObiTraining
           </a>
-          
+
           <a
             href="https://www.instagram.com/taktosieobi"
             target="_blank"
@@ -40,7 +40,6 @@ const Contact = () => {
           >
             <i className="fab fa-2x fa-instagram insta"></i>taktosieobi
           </a>
-          
         </section>
         <section className={classes.husse_links}>
           <a
@@ -50,7 +49,7 @@ const Contact = () => {
           >
             <i className="fab fa-2x fa-facebook fejs"></i> AnimalevraHusse
           </a>
-          
+
           <a
             href="https://www.instagram.com/husse_szczecin"
             target="_blank"

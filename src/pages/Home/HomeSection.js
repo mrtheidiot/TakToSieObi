@@ -5,7 +5,7 @@ import classes from "./HomeSection.module.css";
 
 const HomeSection = (props) => {
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper} data-testid="home-section">
       <Output text={props.contentPart1} />
       <Output text={props.contentPart2} />
       <Output text={props.contentPart3} />
