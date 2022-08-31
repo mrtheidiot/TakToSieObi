@@ -62,6 +62,7 @@
     grid-row: 1 / 2;
     font-size: 2.3rem;
     align-self: center;
+    justify-self: center;
     text-transform: uppercase;
     font-family: 'Nasalization Rg', sans-serif;
 }
@@ -100,14 +101,14 @@
 
     .container {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 5fr repeat(3, 0.7fr) 1.2fr ;
+        grid-template-rows: 0.7fr 5fr repeat(3, 0.7fr) 1.2fr ;
         row-gap: 10px;
         width: 80%;
         
     }
     .title {
         grid-row: 1 / 2;
-        font-size: 2rem;
+        font-size:1.5rem;
     }
     .image {
         grid-row: 2 / 3;

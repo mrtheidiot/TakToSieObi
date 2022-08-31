@@ -66,6 +66,7 @@ i {
 @media (max-width: 868px) {
     .wrapper {
         grid-template-columns: 1fr;
+        width: 80%;
     }
     
     .company_data {

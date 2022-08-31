@@ -7,7 +7,7 @@ import store from "./store/index";
 
 import "./index.css";
 
-window.testMode = true; // this disables sending data to database (fetching is still on), it's used in Actions components in /pages
+window.testMode = false; // this disables sending data to database (fetching is still on), it's used in Actions components in /pages
 
 ReactDOM.render(
   <Provider store={store}>

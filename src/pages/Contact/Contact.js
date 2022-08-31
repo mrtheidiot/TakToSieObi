@@ -5,7 +5,7 @@ import classes from "./Contact.module.css";
 const Contact = () => {
   return (
     <>
-      <Banner id={2} />
+      <Banner />
       <div className={classes.wrapper} data-aos="fade-in" data-testid="contact">
         <section className={classes.company_data}>
           <h3>Dane firmy:</h3>
