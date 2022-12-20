@@ -2,7 +2,7 @@
 
 To open this project on your machine just download it and run:
 
-### npm install
+### npm install -f
 
 **Please go to the /login and type any credentials to login and swich the slider to on/off to turn on and off the editingMode**
 
