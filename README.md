@@ -1,7 +1,5 @@
 # Tak To Się Obi
 
-This live demo of this project is available here: [https://taktosieobi2.herokuapp.com/](https://taktosieobi2.herokuapp.com/)
-
 To open this project on your machine just download it and run:
 
 ### npm install
